@@ -22,26 +22,22 @@
             </div>
             <div class="row">
               <div class="col-md-4 col-xs-12">
-                <%= f.label :first_name, "First Name", class:"label" %><br />
-                <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name', class: 'form-control', style:"font-size: 1em;", required: true %>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <%= f.label :last_name, "Last Name", class:"label" %><br />
-                <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+                <%= f.label :name, "First Name", class:"label" %><br />
+                <%= f.text_field :name, autofocus: true, placeholder: 'First Name', class: 'form-control', style:"font-size: 1em;", required: true %>
               </div>
               <div class="col-md-4 col-xs-12">
                 <%= f.label :nick_name, "Nick Name", class:"label" %><br />
                 <%= f.text_field :nick_name, autofocus: true, placeholder: 'Your Nick Name', class: 'form-control', style:"font-size: 1em;"%>
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-4 col-xs-12">
                 <%= f.label :gender, "Gender", class:"label" %><br />
                 <%= f.select :gender, options_for_select([ "Female", "Male" ]),{prompt: "Select Gender"}, {class: 'form-control', style:"font-size: 1em;"}%>
               </div>
-              <div class="col-md-8 col-xs-12">
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
                 <%= f.label :dob, "Date of Birth", class:"label" %><br />
-                <%= f.date_select :dob, {start_year:1950, prompt: true}, {class: 'form-control', style:"font-size: 0.8em;display:inline-block;width:32%;"}%>
+                <%= f.date_select :dob, {start_year:1950, prompt: true}, {class: 'form-control', style:"font-size: 0.8em;display:inline-block;width:33%;"}%>
               </div>
             </div>
             <div class="row">

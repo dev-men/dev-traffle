@@ -8,8 +8,7 @@ class Api::V1::RegistrationsController < ApplicationController
           @user.email = params[:email]
           @user.password = params[:password]
           @user.password_confirmation = params[:password_confirmation]
-          @user.first_name = params[:first_name]
-          @user.last_name = params[:last_name]
+          @user.name = params[:name]
           if @user.save
             render json: { :user => @user.as_json(:except => [:created_at, :updated_at]) }, status: 200
           else

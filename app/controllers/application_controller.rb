@@ -29,8 +29,8 @@ use OmniAuth::Strategies::Twitter
 
   protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price])
     end
 
     def set_carts_count
@@ -49,7 +49,6 @@ use OmniAuth::Strategies::Twitter
     end
 
     def set_notifications
-      #debugger
       if user_signed_in?
 
          @current_user_products = current_user.products
@@ -58,7 +57,7 @@ use OmniAuth::Strategies::Twitter
            @current_user_products.each do |cp|
              current_product_id = cp.id
              current_user_id = current_user.id
-             current_user_name = current_user.first_name
+             current_user_name = current_user.name
              #debugger
              #All tickets are sold and Count down time is over
              if cp.count_down < Time.current && cp.sold_tickets == cp.total_tickets

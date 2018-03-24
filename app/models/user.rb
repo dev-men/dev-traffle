@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :carts
   has_many :notifications
   acts_as_token_authenticatable
-  validates :first_name, presence: true
+  validates :name, presence: true
   #validates :last_name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

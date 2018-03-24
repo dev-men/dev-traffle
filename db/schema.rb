@@ -110,8 +110,7 @@ ActiveRecord::Schema.define(version: 20180324102737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "authentication_token", limit: 30
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name"
     t.string "nick_name"
     t.string "gender"
     t.date "dob"

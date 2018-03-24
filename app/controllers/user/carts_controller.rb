@@ -6,7 +6,6 @@ class User::CartsController < ApplicationController
   end
 
   def add_to_cart
-    #debugger
       price = params[:ticket][:price]
       price = price.to_i
       product_id = params[:id].to_i
