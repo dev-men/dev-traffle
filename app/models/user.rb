@@ -20,8 +20,7 @@ class User < ApplicationRecord
         user.password = Devise.friendly_token[0,20]
         user.uid = auth.uid
         user.provider = auth.provider
-        user.first_name = auth.extra.raw_info.first_name
-        user.last_name = auth.extra.raw_info.last_name
+        user.name = auth.extra.raw_info.first_name + " " + auth.extra.raw_info.last_name
         user.gender = auth.extra.raw_info.gender
         user.image_url = auth.info.image + "?height=500"
         user.save!
@@ -29,8 +28,7 @@ class User < ApplicationRecord
     else
       @u.provider = auth.provider
       @u.uid = auth.uid
-      @u.first_name = auth.extra.raw_info.first_name
-      @u.last_name = auth.extra.raw_info.last_name
+      @u.name = auth.extra.raw_info.first_name + " " + auth.extra.raw_info.last_name
       @u.gender = auth.extra.raw_info.gender
       @u.image_url = auth.info.image + "?height=500"
       @u.save!
@@ -46,22 +44,14 @@ class User < ApplicationRecord
         user.password = Devise.friendly_token[0,20]
         user.uid = auth.uid
         user.provider = auth.provider
-        @name = auth.info.name.gsub(/\s+/m, ' ').strip.split(" ")
-        user.first_name = @name[0]
-        if @name.size > 0
-          user.last_name = @name[1]
-        end
+        user.name = auth.info.name
         user.image_url = auth.info.image
         user.save!
       end
     else
       @u.provider = auth.provider
       @u.uid = auth.uid
-      @name = auth.info.name.gsub(/\s+/m, ' ').strip.split(" ")
-      @u.first_name = @name[0]
-      if @name.size > 0
-        @u.last_name = @name[1]
-      end
+      @u.name = auth.info.name
       @u.image_url = auth.info.image
       @u.save!
       return @u

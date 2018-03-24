@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
      namespace :v1 do
-       resources :registrations, :only => [:create]
+       resources :registrations do
+         collection do
+           post :social
+         end
+       end
        resources :sessions, :only => [:create, :destroy]
        resources :products
      end
