@@ -43,9 +43,9 @@ class Admin::ProductsController < ApplicationController
     if @product.save
        user_id = @product.imageable_id
        product_id = @product.id
-       user = User.where(:id => user_id).select("first_name").first
-       user_first_name = user.first_name
-       set_noti_description =  user_first_name + " your Product " + @product.title + " has been approved by admin."
+       user = User.where(:id => user_id).select("name").first
+       user_name = user.name
+       set_noti_description =  user_name + " your Product " + @product.title + " has been approved by admin."
 
        set_approve_notification = Notification.new(:user_id => user_id, :product_id => product_id, :category => 1, :description => set_noti_description)
        if set_approve_notification.save
