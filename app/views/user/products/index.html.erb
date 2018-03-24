@@ -1,0 +1,49 @@
+<% content_for :title, "Items | Traffle" %>
+<div class="container-fluid my_top_div">
+  <div class="row">
+    <%= render 'user/user_panel'%>
+    <div class="col-md-9">
+      <div class="products">
+    		<h2>My Items</h2>
+        <hr style="background:#BA4A00;height:2px;">
+        <div class="col-md-12">
+          <% @products.each do |p|%>
+            <div class="col-md-4 col-md4" style="margin-bottom:1em;">
+              <div class="col-md1 simpleCart_shelfItem">
+                <% if p.images[0] %>
+                  <%= link_to user_product_path(p.id) do %>
+                    <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
+                  <%end%>
+                <%else%>
+  
+                <%end%>
+                <h3><a href="#"><%= p.title%></a></h3>
+                <div class="price">
+                  <% if p.approve? %>
+                    <h6 class="item_price">Your Product is approved by Admin.</h6>
+                  <% else %>
+                    <h6 class="item_price">Your Product is not approved by Admin yet.</h6>
+                  <%end%>
+                  <br>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                  </div>
+                  <div class="col-md-4">
+                    <%= link_to("Edit", edit_user_product_path(p.id), class:"btn btn-md btn-info") %>
+                  </div>
+                  <div class="col-md-4">
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%end%>
+        </div>
+        <center>
+          <%= will_paginate @product, renderer: BootstrapPagination::Rails %>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<% content_for :title, "Login | Traffle" %>
+<div class="container-fluid signup_login_bg my_top_div" style="padding-bottom:2em;">
+  <br><br>
+  <div class="row">
+    <div class="col-md-6 col-xs-12"  style="margin-bottom: 3em;">
+      <center>
+        <%= form_for(resource, as: resource_name, :html => {:class => "login"}, url: session_path(resource_name)) do |f| %>
+          <p class="title">LOGIN</p>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off", placeholder: 'Your Password', class: 'form-control', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "LOGIN" %>
+          </div>
+        <% end %>
+      </center>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div class="jumbotron" style="background: #FFFFFF;">
+        <h2 class="heading_sign">SIGN UP / SIGN IN</h2>
+        <br>
+        <h3 class="text_sign">Registration is required for new users who wish to play for an
+          item or want to sell an item on the TRAFFLE. Signing up is easy and free of
+          charge, simply provide an email address and
+          you are good to go. Afterwards, proceed to setting up your
+          profile to provide a detailed information of yourself. We would
+          love to know more about you.</h3>
+        <%= render "users/shared/links"%>
+      </div>
+    </div>
+  </div>
+</div>

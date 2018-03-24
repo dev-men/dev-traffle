@@ -1,0 +1,55 @@
+<% content_for :title, "Items By Location | Traffle" %>
+<div class="container-fluid my_top_div">
+  <div class="products">
+		<h2>Items By Location</h2>
+		<div class="col-md-10">
+      <div class="content-top1">
+        <% @items_by_location.each do |r| %>
+          <div class="col-md-4 col-md4">
+            <div class="col-md1 simpleCart_shelfItem">
+              <%= link_to home_path(r.id) do %>
+                <%= image_tag(r.images[0].avatar, class:"img-responsive")%>
+              <%end%>
+              <% @count_down = r.count_down%>
+              <h3><a href="#"><%= r.title %></a></h3>
+              <%= render :partial => 'countdown' %>
+              <br>
+               <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
+                 <div class="col-md-2 col-xs-12" style="height:4em;">
+                   <label style="font-size:20px; margin-top:0.7em;" > ₦</label>
+                 </div>
+                 <div class="col-md-10">
+                   <div class="row">
+                     <%= form_for :ticket, url: add_to_cart_user_cart_path(r.id, key: 8) do |f| %>
+                       <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
+                         <div class="form-group">
+                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
+                         </div>
+                       </div>
+                       <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
+                         <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn  cart_button" do %>
+                              <span class="glyphicon glyphicon-shopping-cart"></span>
+                         <% end %>
+                       </div>
+                     <%end%>
+                   </div>
+                 </div>
+                 <div class="col-md-12 col-xs-12">
+                   <div class="row">
+                     <div class="col-md-2">
+                     </div>
+                     <div class="col-md-10">
+                       <label style="float:right;">1 ticket = N100.00</label>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="clearfix"> </div>
+      </div>
+    </div>
+    <%= render 'right_side_bar' %>
+  </div>
+</div>

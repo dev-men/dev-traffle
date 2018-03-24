@@ -1,0 +1,54 @@
+<% content_for :title, "Your Cart | Traffle" %>
+
+<!--content-->
+<div class="content" style="padding-top: 10em;">
+  <div class="container">
+    <div class="content-top">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <h1><center style="color: #FFA07A;" >Playing Cart </center>
+             <hr style="color: #f00; background-color: #FFA07A; height: 5px; width:25%;">
+          </h1>
+        </div>
+        <% if @no_of_prizes == 0%>
+          <div class="col-md-12 col-xs-12">
+            <center><h1>Your Cart is Empty </h1></center>
+          </div>
+        <%end%>
+        <div class="col-md-12 col-xs-12">
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Prizes in Cart <span><%= @no_of_prizes %></span></h5>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+            <br>
+          </div>
+        </div>
+        <% @carts.each do |i| %>
+          <div class="col-md-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-3 col-xs-12">
+                <%= image_tag(i.product.images[0].avatar, class: "img-responsive") %>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= i.product.title %>
+              </div>
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-2 col-xs-12">
+                <%= i.total_price %>
+              </div>
+              <div class="col-md-1">
+                <%= link_to "Remove", user_cart_path(i.id), method: :delete, data: {confirm: "Are you sure you want to remove this?"}, class:"btn btn-sm btn-danger"%>
+              </div>
+            </div>
+            <br>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

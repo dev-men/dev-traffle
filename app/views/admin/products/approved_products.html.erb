@@ -1,0 +1,30 @@
+<% content_for :title, "Approved Items | Traffle" %>
+<div class="container-fluid" style="padding-top:5em;padding-bottom:2em;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="products">
+        <h2>All Approved Items</h2>
+        <hr style="background:#BA4A00;height:2px;">
+        <div class="col-md-12">
+          <% @products.each do |p|%>
+            <div class="col-md-4 col-md4" style="margin-bottom:1em;">
+              <div class="col-md1 simpleCart_shelfItem">
+                <% if p.images[0] %>
+                  <%= link_to admin_product_path(p.id) do %>
+                    <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
+                  <%end%>
+                <%end%>
+                <h3><a href="#"><%= p.title%></a></h3>
+                <h3><a href="#"><%= p.category%></a></h3>
+              </div>
+            </div>
+          <%end%>
+        </div>
+        <center>
+          <%= will_paginate @product, renderer: BootstrapPagination::Rails %>
+        </center>
+      </div>
+    </div>
+  </div>
+
+</div>

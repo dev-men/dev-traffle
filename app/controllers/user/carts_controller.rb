@@ -1,0 +1,86 @@
+class User::CartsController < ApplicationController
+  before_action :authenticate_user!
+  def index
+    @carts = Cart.where(:user_id => current_user.id)
+    @no_of_prizes = @carts.count
+  end
+
+  def add_to_cart
+    #debugger
+      price = params[:ticket][:price]
+      price = price.to_i
+      product_id = params[:id].to_i
+      user_id =  current_user.id
+      if Product.where("imageable_id = ? AND id = ?", user_id, product_id).first
+        flash[:notice] = "You can't buy tickets for this product!"
+        redirect_to root_path
+      else
+        no_of_tickets = price / 100
+        product = Product.find_by(["id = ?", product_id])
+        remaining_tickets = product.total_tickets - product.sold_tickets
+
+        if no_of_tickets <= remaining_tickets
+           if Cart.where("user_id = ? AND product_id = ?", user_id, product_id).first
+             update_cart = Cart.find_by("user_id = ? AND product_id = ?", user_id, product_id)
+             update_cart.total_price = update_cart.total_price + price
+             update_cart.save
+           else
+             new_cart = Cart.new(:user_id => current_user.id, :product_id => product_id, :total_price => price)
+             new_cart.save
+           end
+
+           flash[:notice] = "Product is Successfully added to your cart!"
+           redirect_to user_carts_path
+        else
+          flash[:alert] = "Only " + remaining_tickets.to_s + " tickets are remaining!"
+          if params[:key].to_i == 1
+            redirect_to root_path
+          elsif params[:key].to_i == 2
+            redirect_to real_estate_homes_path
+          elsif params[:key].to_i == 3
+            redirect_to electronics_homes_path
+          elsif params[:key].to_i == 4
+            redirect_to phone_and_tablets_homes_path
+          elsif params[:key].to_i == 5
+            redirect_to automobiles_homes_path
+          elsif params[:key].to_i == 6
+            redirect_to featured_items_homes_path
+          elsif params[:key].to_i == 7
+            redirect_to promoted_items_homes_path
+          elsif params[:key].to_i == 8
+            redirect_to items_by_location_homes_path
+          end
+        end
+     end
+  end
+
+
+  def destroy
+    @carts = Cart.where(:user_id => current_user.id)
+    cart = Cart.find(params[:id])
+    if cart.destroy
+      flash[:notice] = "Item from cart is deleted!"
+      redirect_to user_carts_path
+    else
+      flash[:notice] = "Item from cart is not deleted!"
+      redirect_to user_carts_path
+    end
+  end
+
+  def empty_cart
+    #debugger
+    @carts = Cart.where(:user_id => current_user.id)
+    @count = @carts.count
+    if @count != 0
+      @carts.each do |f|
+        f.destroy
+      end
+      flash[:notice] = "Your cart has been emptied!"
+      redirect_to homes_path
+    else
+      flash[:notice] = "Your cart is already empty!"
+      redirect_to homes_path
+    end
+  end
+
+end

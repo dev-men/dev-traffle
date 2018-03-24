@@ -1,0 +1,131 @@
+<% content_for :title, "Edit Profile | Traffle" %>
+<div class="container-fluid my_top_div">
+  <div class="row">
+    <%= render 'user/user_panel' %>
+    <div class="col-md-9">
+      <div class="jumbotron" style="padding:0px 0px 0px 0px;background:#11AA99;">
+        <center>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class:"login", style:"min-width:100%;max-width:100%;padding-bottom:40px;" }) do |f| %>
+            <p class="title">MY PROFILE</p>
+
+            <%= devise_error_messages! %>
+
+            <div class="row">
+              <div class="col-md-12">
+                <p class="accurate" style="font-size:0.7em;">Please provide Your accurate information so we can contact you if you win. Click on the text in blue to edit your information. Then go search for prizes you desire! Go through our FAQs or chat with us if you need help.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <p class="accurate" style="font-size:1.1em;">Personal Detail</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :first_name, "First Name", class:"label" %><br />
+                <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :last_name, "Last Name", class:"label" %><br />
+                <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :nick_name, "Nick Name", class:"label" %><br />
+                <%= f.text_field :nick_name, autofocus: true, placeholder: 'Your Nick Name', class: 'form-control', style:"font-size: 1em;"%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :gender, "Gender", class:"label" %><br />
+                <%= f.select :gender, options_for_select([ "Female", "Male" ]),{prompt: "Select Gender"}, {class: 'form-control', style:"font-size: 1em;"}%>
+              </div>
+              <div class="col-md-8 col-xs-12">
+                <%= f.label :dob, "Date of Birth", class:"label" %><br />
+                <%= f.date_select :dob, {start_year:1950, prompt: true}, {class: 'form-control', style:"font-size: 0.8em;display:inline-block;width:32%;"}%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <p class="accurate" style="font-size:1.1em;">Account Detail</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :email, class:"label" %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true %>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :password, "New Password", class:"label" %> <i class="label" style="font-size:0.7em;">(leave blank if you don't want to change it)</i><br />
+                <%= f.password_field :password, autocomplete: "off", placeholder: 'Your New Password (6 characters minimum)', class: 'form-control'%>
+              </div>
+              <div class="col-md-4 col-xs-12" style="padding-top:10px;">
+                <%= f.label :password_confirmation, "Password Confirmation", class:"label" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Password Confirmation', class: 'form-control'%>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <p class="accurate" style="font-size:1.1em;">Address Detail</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :address, "Address", class:"label" %><br />
+                <%= f.text_field :address, autofocus: true, placeholder: 'Your Address', class: 'form-control', style:"font-size: 1em;"%>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :city, "City", class:"label" %><br />
+                <%= f.text_field :city, autofocus: true, placeholder: 'Your City', class: 'form-control', style:"font-size: 1em;"%>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :state, "State", class:"label" %><br />
+                <%= f.text_field :state, autofocus: true, placeholder: 'Your State', class: 'form-control', style:"font-size: 1em;"%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :zip, "Zip-Code", class:"label" %><br />
+                <%= f.text_field :zip, autofocus: true, placeholder: 'Your Zip-Code', class: 'form-control', style:"font-size: 1em;"%>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :country, "Country", class:"label" %><br />
+                <%= f.country_select :country, {prompt: "Select Country"}, {class: 'form-control', style:"font-size: 1em;"}%>
+              </div>
+              <div class="col-md-4 col-xs-12">
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <%= f.label :current_password, "Current Password", class:"label" %> <i class="label" style="font-size:0.7em;">(We need your current password to confirm)</i><br />
+                <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Current Password', class: 'form-control'%>
+              </div>
+              <%= f.submit "Save", style:"margin-top:3.6em;" %>
+            </div>
+          <% end %>
+          <div class="row" style="margin-top:3em;">
+            <div class="col-md-12">
+              <h3>Cancel my account</h3>
+
+              <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+            </div>
+          </div>
+        </center>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

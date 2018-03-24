@@ -1,0 +1,29 @@
+<% content_for :title, "Admin Login | Traffle" %>
+<div class="container-fluid signup_login_bg" style="padding-top:14em;padding-bottom:2em;">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <center>
+        <%= form_for(resource, as: resource_name, :html => {:class => "login"}, url: session_path(resource_name)) do |f| %>
+          <p class="title">ADMIN LOGIN</p>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <%= f.label :email, class:"label"%><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control', required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class:"label" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: 'Enter Password', class: 'form-control', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "LOGIN" %>
+          </div>
+        <% end %>
+
+        <%= render "admins/shared/links" %>
+      </center>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

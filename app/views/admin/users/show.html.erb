@@ -1,0 +1,120 @@
+<script>
+ $(document).ready(function() {
+   $('.flexslider').flexslider({
+     animation: "slide",
+     controlNav: "thumbnails"
+   });
+ });
+</script>
+<% content_for :title, "Item | Traffle" %>
+<div class="container-fluid my_top_div" style="padding-bottom:3em;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="single">
+        <div class="col-md-12">
+          <div class="col-md-5 grid col-xs-12">
+        		<div class="flexslider">
+              <ul class="slides">
+                <% if @user.provider != nil %>
+                  <div class="thumb-image"> <%= image_tag(@user.image_url, data: { 'imagezoom' => true}, class:"img-responsive")%></div>
+                <% end %>
+              </ul>
+        		</div>
+        	</div>
+
+          <div class="col-md-7 col-xs-12">
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                  <h1 class="admin_heading">User's Details</h1>
+                 <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 col-xs-12">
+                <h4 class="admin_key">First Name: </h4> <h4 class="admin_value"><%= @user.first_name%></h4>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <h4 class="admin_key">Last Name: </h4> <h4 class="admin_value"><%= @user.last_name%></h4>
+              </div>
+              <div class="col-md-5 col-xs-12">
+                <h4 class="admin_key">Nick Name: </h4> <h4 class="admin_value"><%= @user.nick_name%></h4>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <h4 class="admin_key">Gender: </h4> <h4 class="admin_value"><%= @user.gender %></h4>
+              </div>
+              <div class="col-md-5 col-xs-12">
+                <h4 class="admin_key">DOB: </h4> <h4 class="admin_value"><%= @user.dob %></h4>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <h4 class="admin_key">Email: </h4> <h4 class="admin_value"><%= @user.email %></h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_key">Address: </h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_value" style="margin:0px;"><%= @user.address %></h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_key">City: </h4> <h4 class="admin_value"><%= @user.city %></h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_key">State: </h4> <h4 class="admin_value"><%= @user.state %></h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_key">Zip Code: </h4> <h4 class="admin_value"><%= @user.zip %></h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_key">Country: </h4> <h4 class="admin_value"><%= @user.country %></h4>
+              </div>
+            </div>
+              <br><br>
+              <div class="row">
+                <div class="col-md-3">
+                </div>
+                <% if @user.approve == true %>
+                  <div class="col-md-3 col-xs-12">
+                    <%= link_to("Block", block_user_admin_user_path(@user.id), class:"btn btn-block block_decline_button")%>
+                  </div>
+                  <div class="col-md-3 col-xs-12">
+                    <%= link_to("Delete", remove_user_admin_user_path(@user.id), class:"btn btn-block block_decline_button")%>
+                  </div>
+                <% else %>
+                  <div class="col-md-6 col-xs-12">
+                    <%=  link_to("UnBlock", unblock_user_admin_user_path(@user.id), class:"btn btn-block show_button") %>
+                  </div>
+                <% end %>
+
+                <div class="col-md-3">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="padding-top:5em;padding-bottom:2em;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="products">
+        <h2>User's Items</h2>
+        <hr style="background:#BA4A00;height:2px;">
+        <div class="col-md-12">
+          <% @user_products.each do |p|%>
+            <div class="col-md-4 col-md4" style="margin-bottom:1em;">
+              <div class="col-md1 simpleCart_shelfItem">
+                <% if p.images[0] %>
+                  <%= link_to product_detail_admin_user_path(p.id) do %>
+                    <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
+                  <%end%>
+                <%end%>
+                <h3><a href="#"><%= p.title%></a></h3>
+                <h3><a href="#"><%= p.category%></a></h3>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

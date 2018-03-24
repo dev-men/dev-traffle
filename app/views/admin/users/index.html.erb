@@ -1,0 +1,59 @@
+<% content_for :title, "All Users | Traffle" %>
+<script>
+  $(document).ready(function(){
+    $('#users').dataTable({
+        "pagingType": "full_numbers"
+      });
+  });
+</script>
+
+<div div class="container my_top_div" style="padding-top:9em;padding-bottom:2em;">
+  <div class="row">
+    <div class="col-md-12 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">All Users</h3></center>
+        </div>
+      </div>
+        <div class="jumbotron" style="padding-top:1em;padding-bottom:1em;background-color:rgba(48,110,255,0.3);border-radius:0 0 1em 1em;">
+          <div class="row">
+            <div class="col-md-12 login_signup_panel">
+              <center>
+                <br>
+                <table id="users" class="table display responsive">
+                  <thead class="table_header">
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Gender</th>
+                      <th>Email</th>
+                      <th>Products</th>
+                      <th>Show</th>
+
+                      <!-- <th>Block</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @users.each do |user| %>
+                    <% if user.approve == true %>
+                      <tr class="table_row">
+                          <td><%= user.first_name %></td>
+                          <td><%= user.last_name %></td>
+                          <td><%= user.gender %></td>
+                          <td><%= user.email %></td>
+                          <td><%= user.products.count %>
+                          <td><%= link_to("Show",admin_user_path(user.id), class:"btn btn-sm show_button", target:"_blank") %></td>
+                        <!-- <td><button class="btn btn-sm block_decline_button">Block</button></td> -->
+                      </tr>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
+                <br>
+              </center>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

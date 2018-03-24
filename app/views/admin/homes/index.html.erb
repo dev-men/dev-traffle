@@ -1,0 +1,56 @@
+<% content_for :title, "Home | Traffle" %>
+<div class="container" style="padding-top:9em;padding-bottom:2em;">
+  <div class="row">
+    <div class="col-md-4 col-xs-12">
+      <div class="jumbotron">
+        <center>
+          <h4 class="admin_heading">Total Items:</h4>
+          <h3 class="admin_heading"><%= @prodcuts%></h3>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="jumbotron">
+        <center>
+          <h4 class="admin_heading">Total Approved Items:</h4>
+          <h3 class="admin_heading"><%= @approved%></h3>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="jumbotron">
+        <center>
+          <h4 class="admin_heading">Total Unapproved Items:</h4>
+          <h3 class="admin_heading"><%= @unapproved%></h3>
+        </center>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-xs-12">
+      <div class="jumbotron">
+        <center>
+          <h4 class="admin_heading">Total Items Added By Admin:</h4>
+          <h3 class="admin_heading"><%= @total_admin_products %></h3>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="jumbotron">
+        <center>
+          <h4 class="admin_heading">Total Items Added By Users:</h4>
+          <h3 class="admin_heading"><%= @total_users_products %></h3>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="jumbotron">
+        <center>
+          <h4 class="admin_heading">Total Registered Users:</h4>
+          <br>
+          <h3 class="admin_heading"><%= @total_users %></h3>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
