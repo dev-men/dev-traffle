@@ -96,10 +96,12 @@
                     <ul class="menu-drop">
                       <li class="item1">
                         <span class="glyphicon glyphicon-menu-down" style="color:#BA4A00;font-size:1.5em;font-style:bold;margin-right:-10px;margin-top:5px;"></span>
-                        <%if current_user.provider == nil%>
-                           <%= image_tag ("user.png"), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:60px;height:60px;" %>
-                        <%else%>
-                            <%= image_tag (current_user.image_url), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:60px;height:60px;" %>
+                        <%if current_user.avatar.present? %>
+                          <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:60px;height:60px;" %>
+                        <%elsif current_user.image_url != nil%>
+                          <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:60px;height:60px;" %>
+                        <%else %>
+                          <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:60px;height:60px;" %>
                         <%end%>
 
                         <ul class="cute">
