@@ -21,11 +21,11 @@
                         <center>
                           <%= form_for :user, url: change_image_user_dashboard_path(current_user.id), html: { multipart: true } do |form| %>
                           <%if current_user.avatar.present? %>
-                          <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                            <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
                           <%elsif current_user.image_url != nil%>
-                          <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                            <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
                           <%else %>
-                          <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                            <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
                           <%end%>
                           <%= form.file_field :avatar, id:"post-upload",class: "btn btn-info" %>
                           <h4 class="heading_text" style="font-style: italic;color:#2DBF7F;font-weight:normal;">Preview</h4>
