@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   before_action :find_user, only: [:show, :block_user, :remove_user, :unblock_user]
   before_action :find_product, only: [:product_detail]
   def index
-    @users = User.all
+    @users = User.where(approve: true)
   end
 
 
@@ -26,7 +26,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def all_blocked_users
-    @blocked_users = User.where(:approve => false)
+    @users = User.where(approve: false)
     #debugger
   end
 

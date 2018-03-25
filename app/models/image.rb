@@ -7,4 +7,8 @@ class Image < ApplicationRecord
   styles: { medium: "250x250#", thumb: "150x150#" },
   default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
+  def avatar_url
+    avatar.url(:original)
+  end
 end

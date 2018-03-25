@@ -15,42 +15,42 @@
           <center><h3 class="heading_text">Blocked Users</h3></center>
         </div>
       </div>
-        <div class="jumbotron" style="padding-top:1em;padding-bottom:1em;background-color:rgba(48,110,255,0.3);border-radius:0 0 1em 1em;">
-          <div class="row">
-            <div class="col-md-12 login_signup_panel">
-              <center>
-                <br>
-                <table id="blocked_users" class="table display responsive">
-                  <thead class="table_header">
-                    <tr>
-                      <th>Name</th>
-                      <th>Gender</th>
-                      <th>Email</th>
-                      <th>Products</th>
-                      <th>Show</th>
-
-                      <!-- <th>Block</th> -->
+      <div class="jumbotron" style="padding-top:1em;padding-bottom:1em;background:#F0B27A;border-radius:0 0 1em 1em;">
+        <div class="row">
+          <div class="col-md-12 login_signup_panel">
+            <center>
+              <br>
+              <table id="blocked_users" class="table display responsive">
+                <thead class="table_header">
+                  <tr>
+                    <th style="font-size:0.8em;">ID</th>
+                    <th style="font-size:0.8em;">Name</th>
+                    <th style="font-size:0.8em;">Email</th>
+                    <th style="font-size:0.8em;">Regsitration Date</th>
+                    <th style="font-size:0.8em;">Total Products Products</th>
+                    <th style="font-size:0.8em;">Show</th>
+                    <!-- <th>Block</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each do |user| %>
+                    <tr class="table_row">
+                      <td style="color:#FFFFFF;font-size:0.9em;"><%= user.id %></td>
+                      <td style="color:#FFFFFF;font-size:0.9em;"><%= user.name %></td>
+                      <td style="color:#FFFFFF;font-size:0.9em;"><%= user.email %></td>
+                      <% @str = user.created_at.to_s %>
+                      <% @str = @str.tr('UTC', '')%>
+                      <td style="color:#FFFFFF;font-size:0.9em;"><%= @str %></td>
+                      <td style="color:#FFFFFF;font-size:0.9em;"><%= user.products.count %>
+                      <td><%= link_to("Show",admin_user_path(user.id), class:"btn btn-sm show_button", target:"_blank") %></td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <% @blocked_users.each do |user| %>
-                    <% if user.approve == false %>
-                      <tr class="table_row">
-                          <td><%= user.name %></td>
-                          <td><%= user.gender %></td>
-                          <td><%= user.email %></td>
-                          <td><%= user.products.count %>
-                          <td><%= link_to("Show",admin_user_path(user.id), class:"btn btn-sm show_button", target:"_blank") %></td>
-                        <!-- <td><button class="btn btn-sm block_decline_button">Block</button></td> -->
-                      </tr>
-                      <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
-                <br>
-              </center>
-            </div>
+                  <% end %>
+                </tbody>
+              </table>
+              <br>
+            </center>
           </div>
+        </div>
       </div>
     </div>
   </div>

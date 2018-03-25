@@ -50,7 +50,6 @@ Rails.application.routes.draw do
         get :unblock_user
       end
     end
-    resources :categories
     resources :products do
       collection do
         get :approved_products
@@ -69,7 +68,6 @@ Rails.application.routes.draw do
   resources :homes do
     collection do
       post :search
-      get :products
       get :contact
       get :play
       get :how_to_play
@@ -79,7 +77,6 @@ Rails.application.routes.draw do
       get :automobiles
       get :featured_items
       get :promoted_items
-      get :items_by_location
     end
   end
 
