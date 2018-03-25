@@ -1,5 +1,5 @@
 class User::NotificationsController < ApplicationController
-
+  before_action :authenticate_user!
   def update
     update_notification_obj = Notification.find_by_id(params[:id])
     update_notification_obj.read = true
