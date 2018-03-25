@@ -48,6 +48,15 @@
             <br>
           </div>
         <% end %>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <% if @no_of_prizes > 0 %>
+              <%= link_to("Check Out", check_out_user_carts_path) %>
+          <% end  %>
+        </div>
       </div>
     </div>
   </div>

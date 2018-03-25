@@ -2,6 +2,57 @@
 <div class="container-fluid my_top_div">
   <div class="row">
     <%= render 'user/user_panel'%>
+    <div class="row">
+      <center>
+        <div class="container">
+          <div class="modal fade" id="addPhoto" style="margin-top:10em;">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header" style="background: #F5CBA7;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h4 class="heading_text" style="color:white;">Choose Avatar</h4></center>
+                </div>
+                <!-- Body (form) -->
+                <div class="modal-body">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <center>
+                          <%= form_for :user, url: change_image_user_dashboard_path(current_user.id), html: { multipart: true } do |form| %>
+                          <%if current_user.avatar.present? %>
+                          <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                          <%elsif current_user.image_url != nil%>
+                          <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                          <%else %>
+                          <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                          <%end%>
+                          <%= form.file_field :avatar, id:"post-upload",class: "btn btn-info" %>
+                          <h4 class="heading_text" style="font-style: italic;color:#2DBF7F;font-weight:normal;">Preview</h4>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                      <%= form.submit "Save", class:"btn btn-success btn-block" %>
+                    </div>
+                    <div class="col-md-3">
+                      <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="col-md-3"></div>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </center>
+    </div>
     <div class="col-md-9">
       <div class="products">
     		<h2>My Items</h2>
@@ -15,7 +66,7 @@
                     <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
                   <%end%>
                 <%else%>
-  
+
                 <%end%>
                 <h3><a href="#"><%= p.title%></a></h3>
                 <div class="price">

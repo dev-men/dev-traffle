@@ -82,4 +82,32 @@ class User::CartsController < ApplicationController
     end
   end
 
+  def check_out
+    #debugger
+    user_carts = current_user.carts
+    user_carts.each do |current_cart|
+      #debugger
+      product_id =  current_cart.product_id
+      product = Product.find(product_id)
+
+      product.sold_tickets = product.sold_tickets + current_cart.total_price / 100
+      product.save
+
+      no_of_tickets_for_specific_product = current_cart.total_price.to_i / 100
+      no_of_tickets_for_specific_product.times{
+        tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => 100)
+        tickets_purchased.save
+       }
+
+    end
+
+    @carts = Cart.where(:user_id => current_user.id)
+    @carts.each do |f|
+      f.destroy
+    end
+    flash[:notice] = "Your Check Out is Successfully created!"
+    redirect_to homes_path
+
+  end
+
 end

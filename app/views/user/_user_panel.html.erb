@@ -7,19 +7,25 @@
             <span class="glyphicon glyphicon-th-large" style="font-size:2em;"></span>
           </button>
           <center>
-            <%if current_user.provider == nil%>
-               <%= image_tag ("user.png"), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
-            <%else%>
-                <%= image_tag (current_user.image_url), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+            <%if current_user.avatar.present? %>
+              <%= image_tag (current_user.avatar(:original)), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+            <%elsif current_user.image_url != nil%>
+              <%= image_tag (current_user.image_url), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+            <%else %>
+              <%= image_tag ("user.png"), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
             <%end%>
-
             <br>
+            <!--
+             Image Upload Button through modal
+            -->
+            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPhoto">Change Profile Image</button>
+
             <h4 class="user_name"><%= current_user.name%></h4>
             <label class="customer_id">Customer ID: </label>
             <label class="customer_id_value"><%= current_user.id%></label>
             <br>
             <label class="customer_id">Tickets Purchased: </label>
-            <label class="customer_id_value">12345</label>
+            <label class="customer_id_value"><%= @user_no_of_tickets %></label>
             <br>
           </center>
           <hr style="height:4px;background:#DC7633;">

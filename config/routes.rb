@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
-
   namespace :api, defaults: {format: :json} do
-     namespace :v1 do
-       resources :registrations do
-         collection do
-           post :social
+       namespace :v1 do
+         resources :registrations do
+           collection do
+             post :social
+           end
          end
+         resources :sessions, :only => [:create, :destroy]
+         resources :products
        end
-       resources :sessions, :only => [:create, :destroy]
-       resources :products
-     end
   end
 
   namespace :user do
     resources :profiles
-    resources :dashboards, :only => [:show]
+    resources :dashboards do
+      member do
+        post :change_image
+      end
+    end
     resources :products do
       collection do
         get :approved
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
       end
       collection do
         get :empty_cart
+        get :check_out
       end
     end
     resources :notifications
@@ -50,7 +54,6 @@ Rails.application.routes.draw do
         get :unblock_user
       end
     end
-    resources :categories
     resources :products do
       collection do
         get :approved_products

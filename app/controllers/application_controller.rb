@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_carts_count
   before_action :set_notifications
+  before_action :set_user_tickets_count
 
   protected
     def configure_permitted_parameters
@@ -82,7 +83,13 @@ class ApplicationController < ActionController::Base
            end
          end
          @current_user_notifications = current_user.notifications.where(:read => false)
+      end
+    end
 
+
+    def set_user_tickets_count
+      if user_signed_in?
+        @user_no_of_tickets = current_user.tickets.count
       end
     end
 end
