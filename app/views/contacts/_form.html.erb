@@ -1,0 +1,44 @@
+<% content_for :title, "Contact Us | Traffle" %>
+  <div class="container-fluid my_top_div">
+    <div class="contact">
+      <div class="container">
+        <h3>Contact Us</h3>
+        <div class="contact-grids">
+          <div class="contact-form">
+            <%= form_with(model: contact, local: true) do |form| %>
+              <% if contact.errors.any? %>
+                <div class="form-group alert alert-error alert-block" id="error_explanation">
+                  <button type="button" class="close" data-dismiss="alert">x</button>
+                  <% contact.errors.full_messages.each do |message| %>
+                    <h6 class="heading_error"><%= message%></h6>
+                  <% end %>
+                </div>
+             <% end %>
+              <div class="contact-bottom">
+                <div class="col-md-4 in-contact">
+                  <span style="color:#BA4A00">Name</span>
+                  <%= form.text_field :name, id: :contact_name, style:"color:#BA4A00" , required: true%>
+                </div>
+                <div class="col-md-4 in-contact">
+                  <span style="color:#BA4A00">Email</span>
+                  <%= form.text_field :email, id: :contact_email, style:"color:#BA4A00", required: true %>
+                </div>
+                <div class="col-md-4 in-contact">
+                  <span style="color:#BA4A00">Phonenumber</span>
+                  <%= form.text_field :phone_no, id: :contact_phone_no , style:"color:#BA4A00", required: true%>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+
+              <div class="contact-bottom-top">
+                <span style="color:#BA4A00">Message</span>
+                <%= form.text_area :message, id: :contact_message, style:"color:#BA4A00" , required: true%>
+                </div>
+              <%= form.submit "Send", style:"float:right;" %>
+            </form>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

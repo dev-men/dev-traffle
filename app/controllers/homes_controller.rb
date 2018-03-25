@@ -31,8 +31,6 @@ class HomesController < ApplicationController
   def search
   end
 
-  def contact
-  end
 
   def play
     @products = []

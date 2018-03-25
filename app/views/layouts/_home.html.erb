@@ -145,7 +145,7 @@
               <li style="padding:0px;margin:0px;"><%= link_to("Featured Items",  featured_items_homes_path) %></li>
               <li style="padding:0px;margin:0px;"><%= link_to("Promoted Items",  promoted_items_homes_path) %></li>
               <li style="padding:0px;margin:0px;"><%= link_to("Sell an Item",  new_user_product_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("Contact Us",  contact_homes_path) %></li>
+              <li style="padding:0px;margin:0px;"><%= link_to("Contact Us",  new_contact_path) %></li>
               <% if user_signed_in? %>
                 <li style="padding:0px;margin:0px;"><%= link_to "Dashboard",  user_dashboard_path(current_user)%></li>
                 <li style="padding:0px;margin:0px;"><%= link_to "Logout",  destroy_user_session_path, method: :delete%></li>

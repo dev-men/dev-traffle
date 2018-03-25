@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts, :only => [:index, :show, :new, :create, :destroy]
   namespace :api, defaults: {format: :json} do
        namespace :v1 do
          resources :registrations do
@@ -72,7 +73,6 @@ Rails.application.routes.draw do
   resources :homes do
     collection do
       post :search
-      get :contact
       get :play
       get :how_to_play
       get :real_estate
