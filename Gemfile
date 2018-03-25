@@ -29,6 +29,7 @@ gem 'jquery-rails'
 gem 'will_paginate-bootstrap'
 gem 'will_paginate', '~> 3.1.0'
 
+# Data Table for All Users
 gem 'jquery-datatables'
 # Use Devise Gem For authentication
 gem 'devise'

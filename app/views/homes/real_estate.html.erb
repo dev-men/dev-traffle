@@ -1,10 +1,10 @@
-<% content_for :title, "real Estate | Traffle" %>
+<% content_for :title, "Real Estate | Traffle" %>
 <div class="container-fluid my_top_div">
   <div class="products">
 		<h2>Real Estate</h2>
 		<div class="col-md-10">
       <div class="content-top1">
-        <% @real_estates.each do |r| %>
+        <% @products.each do |r| %>
           <div class="col-md-4 col-md4">
             <div class="col-md1 simpleCart_shelfItem">
               <%= link_to home_path(r.id) do %>
@@ -20,7 +20,7 @@
                  </div>
                  <div class="col-md-10">
                    <div class="row">
-                     <%= form_for :ticket, url: add_to_cart_user_cart_path(r.id, key: 2) do |f| %>
+                     <%= form_for :ticket, url: add_to_cart_user_cart_path(r.id, key: 7) do |f| %>
                        <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
                          <div class="form-group">
                            <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
@@ -49,6 +49,7 @@
         <% end %>
         <div class="clearfix"> </div>
       </div>
+      <center><%= will_paginate @p, renderer: BootstrapPagination::Rails %></center>
     </div>
     <%= render 'right_side_bar' %>
   </div>

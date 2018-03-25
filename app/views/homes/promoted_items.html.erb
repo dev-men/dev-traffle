@@ -4,7 +4,7 @@
 		<h2>Promoted Items</h2>
 		<div class="col-md-10">
       <div class="content-top1">
-        <% @promoted_items.each do |r| %>
+        <% @products.each do |r| %>
           <div class="col-md-4 col-md4">
             <div class="col-md1 simpleCart_shelfItem">
               <%= link_to home_path(r.id) do %>
@@ -49,6 +49,7 @@
         <% end %>
         <div class="clearfix"> </div>
       </div>
+      <center><%= will_paginate @p, renderer: BootstrapPagination::Rails %></center>
     </div>
     <%= render 'right_side_bar' %>
   </div>
