@@ -1,6 +1,7 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
   skip_before_action :authenticate_user_from_token!, :raise => false
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.paginate(:page => params[:page], :per_page => 12)
@@ -35,6 +36,17 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+      @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+       flash[:notice] = "Item has been updated!"
+       redirect_to admin_products_path
+    else
+       render 'edit'
+    end
   end
 
   def approve_product
@@ -57,6 +69,28 @@ class Admin::ProductsController < ApplicationController
       redirect_to admin_product_path(@product.id)
     end
   end
+
+  def decline_product
+    #debugger
+    @product = Product.find(params[:id])
+    @product.approve = nil
+    if @product.save
+       user_id = @product.imageable_id
+       product_id = @product.id
+       user = User.where(:id => user_id).select("name").first
+       user_name = user.name
+       set_noti_description =  user_name + " your Product " + @product.title + " has been decline by admin."
+
+       set_approve_notification = Notification.new(:user_id => user_id, :product_id => product_id, :category => 5, :description => set_noti_description)
+       if set_approve_notification.save
+         flash[:notice] = "Item decline Successfully"
+         redirect_to root_path
+       end
+    else
+
+    end
+  end
+
 
   def approved_products
     @products = Product.where(approve: true).paginate(:page => params[:page], :per_page => 12)

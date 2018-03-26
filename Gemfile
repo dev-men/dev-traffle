@@ -38,8 +38,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 gem 'omniauth-google-oauth2'
+#PayStack gem for payment integration
+gem 'paystack'
 
-gem "cocoon"
+
 gem "figaro"
 #Use for datetime validation
 gem 'validates_timeliness', '~> 4.0'

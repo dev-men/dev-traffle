@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       end
       member do
         get :approve_product
+        get :decline_product
       end
     end
   end
