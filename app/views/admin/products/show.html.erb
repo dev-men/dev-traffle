@@ -72,13 +72,25 @@
               <div class="row">
                 <div class="col-md-3">
                 </div>
-                <div class="col-md-6 col-xs-12">
-                  <%= link_to("Approve this Item", approve_product_admin_product_path(@product.id), class:"btn btn-block btn-info")%>
+                <div class="col-md-3 col-xs-12">
+                  <%= link_to("Approve this Item", approve_product_admin_product_path(@product.id), class:"btn btn-sm show_button")%>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  <%= link_to("Decline this Item", decline_product_admin_product_path(@product.id), class:"btn btn-block block_decline_button")%>
                 </div>
                 <div class="col-md-3">
                 </div>
               </div>
             <% end %>
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-6">
+                  <%= link_to("Edit this Item", edit_admin_product_path(@product.id), class:"btn btn-sm show_button")%>
+              </div>
+              <div class="col-md-3">
+              </div>
+            </div>
           </div>
         </div>
       </div>
