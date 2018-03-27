@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325120949) do
+ActiveRecord::Schema.define(version: 20180327114626) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20180325120949) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -103,6 +114,16 @@ ActiveRecord::Schema.define(version: 20180325120949) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_tickets_on_product_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "reference"
+    t.string "amount"
+    t.string "email"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

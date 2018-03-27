@@ -1,0 +1,41 @@
+<% content_for :title, "Check Out | Traffle" %>
+
+<!--content-->
+<div class="content" style="padding-top: 10em;">
+  <div class="container">
+    <div class="content-top">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <h1><center style="color: #FFA07A;" >Check Out</center>
+             <hr style="color: #f00; background-color: #FFA07A; height: 5px; width:25%;">
+          </h1>
+        </div>
+
+        <% @user_carts.each do |i| %>
+          <div class="col-md-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+                <%= i.product.title %>
+              </div>
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= i.total_price %>
+              </div>
+            </div>
+            <br>
+          </div>
+        <% end %>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <% if @no_of_prizes > 0 %>
+              <%= link_to("Check Out", check_out_user_carts_path) %>
+          <% end  %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
