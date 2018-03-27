@@ -43,7 +43,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(product_params)
        flash[:notice] = "Item has been updated!"
-       redirect_to admin_products_path
+       redirect_to adminatom _products_path
     else
        render 'edit'
     end

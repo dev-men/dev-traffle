@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :tickets
   has_many :carts
   has_many :notifications
+  has_one :customer
+  has_many :transactions
   acts_as_token_authenticatable
   validates :name, presence: true
   #validates :last_name, presence: true

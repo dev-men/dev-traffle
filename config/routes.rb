@@ -8,7 +8,16 @@ Rails.application.routes.draw do
            end
          end
          resources :sessions, :only => [:create, :destroy]
-         resources :products
+         resources :products do
+           collection do
+             get :real_estate
+             get :electronics
+             get :phone_and_tablets
+             get :automobiles
+             get :featured_items
+             get :promoted_items
+           end
+         end
        end
   end
 

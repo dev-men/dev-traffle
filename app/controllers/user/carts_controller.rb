@@ -83,31 +83,81 @@ class User::CartsController < ApplicationController
   end
 
   def check_out
+    @user_carts = current_user.carts
+    # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    # transactions = PaystackTransactions.new(paystackObj)
+    # result = transactions.initializeTransaction(
+    #
+    #   :amount => 300000,
+    #   :email => current_user.email
+    #   )
+    # auth_url = result['data']['authorization_url']
+
+
     #debugger
-    user_carts = current_user.carts
-    user_carts.each do |current_cart|
-      #debugger
-      product_id =  current_cart.product_id
-      product = Product.find(product_id)
+    # user_carts = current_user.carts
+    # user_carts.each do |current_cart|
+    #   #debugger
+    #   product_id =  current_cart.product_id
+    #   product = Product.find(product_id)
+    #
+    #   product.sold_tickets = product.sold_tickets + current_cart.total_price / 100
+    #   product.save
+    #
+    #   no_of_tickets_for_specific_product = current_cart.total_price.to_i / 100
+    #   no_of_tickets_for_specific_product.times{
+    #     tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => 100)
+    #     tickets_purchased.save
+    #   }
+    # end
+    #
+    # if current_user.customer == nil
+    #   redirect_to  new_user_cart_path
+    # else
+    #   debugger
+    #   paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    #   page_number = 1
+    # 	customers = PaystackCustomers.new(paystackObj)
+    # 	result = customers.list(page_number) 	#Optional `page_number` parameter,  50 items per page
+    # 	customers_list = result['data']
+    # end
+    #
+    # @carts = Cart.where(:user_id => current_user.id)
+    # @carts.each do |f|
+    #   f.destroy
+    # end
+  end
 
-      product.sold_tickets = product.sold_tickets + current_cart.total_price / 100
-      product.save
 
-      no_of_tickets_for_specific_product = current_cart.total_price.to_i / 100
-      no_of_tickets_for_specific_product.times{
-        tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => 100)
-        tickets_purchased.save
-       }
+  def new
+    @customer = Customer.new
+    @user = User.find(current_user.id)
+  end
 
-    end
+  def create
+    #debugger
 
-    @carts = Cart.where(:user_id => current_user.id)
-    @carts.each do |f|
-      f.destroy
-    end
-    flash[:notice] = "Your Check Out is Successfully created!"
-    redirect_to homes_path
+    customer = Customer.new(:first_name => params[:customer][:first_name], :last_name => params[:customer][:last_name], :email => params[:customer][:email], :phone => params[:customer][:phone])
+    current_user.customer = customer
 
+    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    paystack_customer = PaystackCustomers.new(paystackObj)
+    result = paystack_customer.create(
+      :first_name => params[:customer][:first_name],
+      :last_name =>  params[:customer][:last_name],
+      :phone => params[:customer][:phone],
+      :email => params[:customer][:email]
+    )
+    debugger
+      transactions = PaystackTransactions.new(paystackObj)
+      result = transactions.initializeTransaction(
+        :reference => "1235454657",
+        :amount => 300000,
+        :email => params[:customer][:email]
+        )
+      auth_url = result['data']['authorization_url']
+
+      redirect_to root_path
   end
 
 end
