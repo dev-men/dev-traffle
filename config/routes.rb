@@ -46,6 +46,8 @@ Rails.application.routes.draw do
       collection do
         get :empty_cart
         get :check_out
+        post :pay
+        post :move_next
       end
     end
     resources :notifications

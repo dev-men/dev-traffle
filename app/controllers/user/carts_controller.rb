@@ -83,7 +83,13 @@ class User::CartsController < ApplicationController
   end
 
   def check_out
-    @user_carts = current_user.carts
+    #debugger
+    if current_user.customer == nil
+      redirect_to new_user_cart_path
+    else
+      @user_carts = current_user.carts
+    end
+
     # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
     # transactions = PaystackTransactions.new(paystackObj)
     # result = transactions.initializeTransaction(
@@ -140,24 +146,74 @@ class User::CartsController < ApplicationController
     customer = Customer.new(:first_name => params[:customer][:first_name], :last_name => params[:customer][:last_name], :email => params[:customer][:email], :phone => params[:customer][:phone])
     current_user.customer = customer
 
-    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    paystack_customer = PaystackCustomers.new(paystackObj)
-    result = paystack_customer.create(
-      :first_name => params[:customer][:first_name],
-      :last_name =>  params[:customer][:last_name],
-      :phone => params[:customer][:phone],
-      :email => params[:customer][:email]
-    )
-    debugger
-      transactions = PaystackTransactions.new(paystackObj)
-      result = transactions.initializeTransaction(
-        :reference => "1235454657",
-        :amount => 300000,
-        :email => params[:customer][:email]
-        )
-      auth_url = result['data']['authorization_url']
+    redirect_to check_out_user_carts_path
+    # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    # paystack_customer = PaystackCustomers.new(paystackObj)
+    # result = paystack_customer.create(
+    #   :first_name => params[:customer][:first_name],
+    #   :last_name =>  params[:customer][:last_name],
+    #   :phone => params[:customer][:phone],
+    #   :email => params[:customer][:email]
+    # )
+    # debugger
+    #   transactions = PaystackTransactions.new(paystackObj)
+    #   result = transactions.initializeTransaction(
+    #     :reference => "1235454657",
+    #     :amount => 300000,
+    #     :email => params[:customer][:email]
+    #     )
+    #   auth_url = result['data']['authorization_url']
+    #
+    #   redirect_to root_path
+  end
 
-      redirect_to root_path
+  def pay
+    #debugger
+    # Required
+     paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    # if current_user.customer
+      #debugger
+       # customer_email = current_user.customer.email
+       # pay_customer = PaystackCustomers.new(paystackObj)
+       # result = pay_customer.get(customer_email)
+       # customer =  result['data']
+       # if customer['email']
+       #Required
+          amount = params[:amount][:price].to_i
+          amount = amount * 100
+          transactions = PaystackTransactions.new(paystackObj)
+           result = transactions.initializeTransaction(
+               :amount => amount,
+               :email => current_user.customer.email
+             )
+          @auth_url = result['data']['authorization_url']
+       # else
+       #     new_customer = PaystackCustomers.new(paystackObj)
+       #     result = new_customer.create(
+       #       :first_name => current_user.customer.first_name,
+       #       :last_name => current_user.customer.last_name,
+       #       :phone => current_user.customer.phone,
+       #       :email => current_user.customer.email
+       #     )
+       #
+       #     amount = params[:amount][:price] * 100
+       #     transactions = PaystackTransactions.new(paystackObj)
+       #     	trans_result = transactions.initializeTransaction(
+       #       		:amount => amount,
+       #       		:email => current_user.customer.email
+       #     		)
+       #     auth_url = trans_result['data']['authorization_url']
+       # end
+       #Required
+    #end
+  end
+
+  def move_next
+    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
+  	transactions = PaystackTransactions.new(paystackObj)
+  	result = transactions.verify(transaction_reference)
+
   end
 
 end
