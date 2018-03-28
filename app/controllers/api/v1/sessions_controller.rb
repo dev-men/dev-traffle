@@ -9,7 +9,7 @@ class Api::V1::SessionsController < ApplicationController
         if @user.approve
           @user.authentication_token = nil
           @user.save
-          render json: { :user => @user.as_json(:except => [:created_at, :updated_at]) }, status: 200
+          render json: { :user => @user.as_json(:except => [:created_at, :updated_at]), :include => [:customer]}, status: 200
         else
           render json:  "0", status: 200
         end

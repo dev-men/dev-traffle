@@ -143,18 +143,19 @@ class User::CartsController < ApplicationController
   def create
     #debugger
 
+    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    paystack_customer = PaystackCustomers.new(paystackObj)
+    result = paystack_customer.create(
+      :first_name => params[:customer][:first_name],
+      :last_name =>  params[:customer][:last_name],
+      :phone => params[:customer][:phone],
+      :email => params[:customer][:email]
+    )
     customer = Customer.new(:first_name => params[:customer][:first_name], :last_name => params[:customer][:last_name], :email => params[:customer][:email], :phone => params[:customer][:phone])
     current_user.customer = customer
 
     redirect_to check_out_user_carts_path
-    # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    # paystack_customer = PaystackCustomers.new(paystackObj)
-    # result = paystack_customer.create(
-    #   :first_name => params[:customer][:first_name],
-    #   :last_name =>  params[:customer][:last_name],
-    #   :phone => params[:customer][:phone],
-    #   :email => params[:customer][:email]
-    # )
+
     # debugger
     #   transactions = PaystackTransactions.new(paystackObj)
     #   result = transactions.initializeTransaction(
