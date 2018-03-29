@@ -23,7 +23,10 @@ class User < ApplicationRecord
   default_url: "/images/:style/missing.png"
   do_not_validate_attachment_file_type :avatar
   #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-
+  # For returning Avatar URL in API for Ionic App
+  def avatar_url
+    avatar.url(:original)
+  end
   def self.from_omniauth(auth)
     @u = User.find_by_email(auth.info.email)
     if @u == nil

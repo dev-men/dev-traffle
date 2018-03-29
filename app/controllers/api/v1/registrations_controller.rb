@@ -9,7 +9,7 @@ class Api::V1::RegistrationsController < ApplicationController
           @user.password_confirmation = params[:password_confirmation]
           @user.name = params[:name]
           if @user.save
-            render json: { :user => @user.as_json(:except => [:created_at, :updated_at]), :include => [:customer]}, status: 200
+            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
           else
             render json: {:errors => @user.errors.full_messages}, status: 200
           end
@@ -25,14 +25,18 @@ class Api::V1::RegistrationsController < ApplicationController
      begin
        @u = User.find_by_email(params[:email])
        if @u
-         @u.uid = params[:uid]
-         @u.provider = params[:provider]
-         @u.image_url = params[:image_url]
-         @u.name = params[:name]
-         if @u.save
-           render json: { :user => @u.as_json(:except => [:created_at, :updated_at]) }, status: 200
+         if @u.approve
+           @u.uid = params[:uid]
+           @u.provider = params[:provider]
+           @u.image_url = params[:image_url]
+           @u.name = params[:name]
+           if @u.save
+             render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
+           else
+             render json: {:errors => @u.errors.full_messages}, status: 200
+           end
          else
-           render json: {:errors => @u.errors.full_messages}, status: 200
+           render json:  "0", status: 200
          end
        elsif params[:password] == params[:password_confirmation]
           @user = User.new
@@ -44,7 +48,7 @@ class Api::V1::RegistrationsController < ApplicationController
           @user.password_confirmation = params[:password_confirmation]
           @user.name = params[:name]
           if @user.save
-            render json: { :user => @user.as_json(:except => [:created_at, :updated_at]) }, status: 200
+            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
           else
             render json: {:errors => @user.errors.full_messages}, status: 200
           end
@@ -72,7 +76,7 @@ class Api::V1::RegistrationsController < ApplicationController
         @u.country = params[:country]
         if params[:password] == ""
           if @u.save
-            render json: { :user => @u.as_json(:except => [:created_at, :updated_at]) }, status: 200
+            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
           else
             render json: {:errors => @u.errors.full_messages}, status: 200
           end
@@ -80,7 +84,7 @@ class Api::V1::RegistrationsController < ApplicationController
           @u.password = params[:password]
           @u.password_confirmation = params[:password_confirmation]
           if @u.save
-            render json: { :user => @u.as_json(:except => [:created_at, :updated_at]) }, status: 200
+            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
           else
             render json: {:errors => @u.errors.full_messages}, status: 200
           end
@@ -99,16 +103,16 @@ class Api::V1::RegistrationsController < ApplicationController
      begin
        @u = User.find_by_email(params[:user_email])
        if @u
-        if params[:avatar]
-          picture_params = params[:avatar]
-          encoded_picture = picture_params[:avatar_file_data]
-          content_type = picture_params[:content_type]
+        if params[:avatar_file_data]
+          #picture_params = params[:avatar]
+          encoded_picture = params[:avatar_file_data]
+          content_type = params[:content_type]
           image = Paperclip.io_adapters.for(encoded_picture)
-          image.original_filename = picture_params[:avatar_file_name]
+          image.original_filename = params[:avatar_file_name]
           @u.avatar = image
         end
         if @u.save
-          render json: { :user => @u.as_json(:except => [:created_at, :updated_at]) }, status: 200
+          render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
         else
           render json: {:errors => @u.errors.full_messages}, status: 200
         end
