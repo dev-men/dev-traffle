@@ -168,9 +168,18 @@ class User::CartsController < ApplicationController
   end
 
   def pay
+    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    amount = params[:amount][:price].to_i
+    amount = amount * 100
+    transactions = PaystackTransactions.new(paystackObj)
+     result = transactions.initializeTransaction(
+         :amount => amount,
+         :email => current_user.customer.email
+       )
+    @auth_url = result['data']['authorization_url']
+    #redirect_to move_next_user_carts_path
     #debugger
-    # Required
-     paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    #1 Required
     # if current_user.customer
       #debugger
        # customer_email = current_user.customer.email
@@ -179,14 +188,7 @@ class User::CartsController < ApplicationController
        # customer =  result['data']
        # if customer['email']
        #Required
-          amount = params[:amount][:price].to_i
-          amount = amount * 100
-          transactions = PaystackTransactions.new(paystackObj)
-           result = transactions.initializeTransaction(
-               :amount => amount,
-               :email => current_user.customer.email
-             )
-          @auth_url = result['data']['authorization_url']
+
        # else
        #     new_customer = PaystackCustomers.new(paystackObj)
        #     result = new_customer.create(
@@ -209,11 +211,11 @@ class User::CartsController < ApplicationController
   end
 
   def move_next
-    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
-  	transactions = PaystackTransactions.new(paystackObj)
-  	result = transactions.verify(transaction_reference)
-
+    # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    # transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
+  	# transactions = PaystackTransactions.new(paystackObj)
+  	# result = transactions.verify(transaction_reference)
+    debugger
   end
 
 end

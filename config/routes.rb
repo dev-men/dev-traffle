@@ -47,10 +47,14 @@ Rails.application.routes.draw do
         get :empty_cart
         get :check_out
         post :pay
-        post :move_next
+        get :move_next
       end
     end
-    resources :notifications
+    resources :notifications do
+      member do
+        get :select_winner
+      end
+    end
   end
 
   namespace :admin do

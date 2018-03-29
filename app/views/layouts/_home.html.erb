@@ -86,7 +86,11 @@
                         </a>
                         <ul class="cute">
                           <% @current_user_notifications.each do |i| %>
-                              <li class="btn btn-outline-primary"><%= link_to i.description, user_notification_path(i.id, key: i.category), method: :patch %></li>
+                              <% if i.category == 2 || i.category == 3 || i.category == 4%>
+                                 <li class="btn btn-outline-primary"><%= link_to i.description, select_winner_user_notification_path(i.id, key: i.category) %></li>
+                              <% else %>
+                                <li class="btn btn-outline-primary"><%= link_to i.description, user_notification_path(i.id, key: i.category), method: :patch %></li>
+                              <%end%>
                           <% end %>
                         </ul>
                       </li>
