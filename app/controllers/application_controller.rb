@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-# use Rack::Cors
+use Rack::Cors
 # use Rack::Sendfile
 # use Rack::Runtime
 # use Rack::MethodOverride
