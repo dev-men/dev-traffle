@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   validates :images, presence: true
   validates :price, presence: true
 
-  #validates_datetime :count_down, :after => lambda { Time.current }# + 30.days}
+  validates_datetime :count_down, :after => lambda { Time.current  + 30.days}, on: :create
   accepts_nested_attributes_for :images
   validates_associated :images
 end
