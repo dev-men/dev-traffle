@@ -7,6 +7,7 @@ Rails.application.routes.draw do
          resources :registrations do
            collection do
              post :social
+             post :profile_image
            end
          end
          resources :sessions, :only => [:create, :destroy]

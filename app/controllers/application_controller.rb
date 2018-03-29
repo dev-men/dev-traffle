@@ -1,25 +1,25 @@
 class ApplicationController < ActionController::Base
-# use Rack::Cors
-# use Rack::Sendfile
-# use Rack::Runtime
-# use Rack::MethodOverride
-# use ActionDispatch::RequestId
-# use ActionDispatch::RemoteIp
-# use Sprockets::Rails::QuietAssets
-# use Rails::Rack::Logger
-# use WebConsole::Middleware
-# use ActionDispatch::DebugExceptions
-# use ActionDispatch::Callbacks
-# use ActiveRecord::Migration::CheckPending
-# use ActionDispatch::Cookies
-# use ActionDispatch::Session::CookieStore
-# use ActionDispatch::Flash
-# use Rack::Head
-# use Rack::ConditionalGet
-# use Rack::ETag
-# use Warden::Manager
-# use OmniAuth::Strategies::Facebook
-# use OmniAuth::Strategies::Twitter
+use Rack::Cors
+use Rack::Sendfile
+use Rack::Runtime
+use Rack::MethodOverride
+use ActionDispatch::RequestId
+use ActionDispatch::RemoteIp
+use Sprockets::Rails::QuietAssets
+use Rails::Rack::Logger
+use WebConsole::Middleware
+use ActionDispatch::DebugExceptions
+use ActionDispatch::Callbacks
+use ActiveRecord::Migration::CheckPending
+use ActionDispatch::Cookies
+use ActionDispatch::Session::CookieStore
+use ActionDispatch::Flash
+use Rack::Head
+use Rack::ConditionalGet
+use Rack::ETag
+use Warden::Manager
+use OmniAuth::Strategies::Facebook
+use OmniAuth::Strategies::Twitter
 
   protect_from_forgery with: :null_session
   acts_as_token_authentication_handler_for User
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price, :avatar])
     end
 
     def set_carts_count

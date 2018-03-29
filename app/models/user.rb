@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  #before_validation :parse_image
+
   has_many :products, as: :imageable
   has_many :tickets
   has_many :carts
@@ -7,6 +9,8 @@ class User < ApplicationRecord
   has_many :transactions
   acts_as_token_authenticatable
   validates :name, presence: true
+  # This object is to receive image BASE64 from API (Ionic Application)
+  attr_accessor :image_base
   #validates :last_name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -15,9 +19,10 @@ class User < ApplicationRecord
 
   attr_accessor :avatar, :avatar_cache, :remove_avatar
   has_attached_file :avatar,
-  styles: { medium: "300x300>", thumb: "100x100>" },
+  styles: { medium: "300x300>" },
   default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  do_not_validate_attachment_file_type :avatar
+  #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   def self.from_omniauth(auth)
     @u = User.find_by_email(auth.info.email)
