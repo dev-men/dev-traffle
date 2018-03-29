@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-# use Rack::Cors
+use Rack::Cors
 # use Rack::Sendfile
 # use Rack::Runtime
 # use Rack::MethodOverride
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price, :avatar])
     end
 
     def set_carts_count

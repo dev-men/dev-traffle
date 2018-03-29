@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   resources :contacts, :only => [:index, :show, :new, :create, :destroy]
   namespace :api, defaults: {format: :json} do
        namespace :v1 do
+         resources :carts
+         resources :customers
          resources :registrations do
            collection do
              post :social
+             post :profile_image
            end
          end
          resources :sessions, :only => [:create, :destroy]

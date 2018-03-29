@@ -17,24 +17,24 @@
               <div class="contact-bottom">
                 <div class="col-md-4 in-contact">
                   <span style="color:#BA4A00">Name</span>
-                  <%= form.text_field :name, id: :contact_name, style:"color:#BA4A00" , required: true%>
+                  <%= form.text_field :name, autofocus: true, placeholder: 'Your Name', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
                 <div class="col-md-4 in-contact">
                   <span style="color:#BA4A00">Email</span>
-                  <%= form.text_field :email, id: :contact_email, style:"color:#BA4A00", required: true %>
+                  <%= form.email_field :email, autofocus: true, placeholder: 'Your Email', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
                 <div class="col-md-4 in-contact">
                   <span style="color:#BA4A00">Phonenumber</span>
-                  <%= form.text_field :phone_no, id: :contact_phone_no , style:"color:#BA4A00", required: true%>
+                  <%= form.number_field :phone_no, autofocus: true, placeholder: 'Your Number', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
                 <div class="clearfix"> </div>
               </div>
 
               <div class="contact-bottom-top">
                 <span style="color:#BA4A00">Message</span>
-                <%= form.text_area :message, id: :contact_message, style:"color:#BA4A00" , required: true%>
+                <%= form.text_area :message, autofocus: true, placeholder: 'Your Message', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
-              <%= form.submit "Send", style:"float:right;" %>
+              <%= form.submit "Send", style:"float:right;background:#BA4A00;" %>
             </form>
           </div>
           <% end %>
