@@ -1,6 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
   require 'json'
-  skip_before_action :authenticate_user_from_token!, :raise => false
   def index
     begin
       @products = []
@@ -161,7 +160,7 @@ class Api::V1::ProductsController < ApplicationController
   def search
     begin
       @products = []
-      @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND title LIKE ?", Time.current, true, "%#{params[:search]}%").order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+      @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(title) LIKE ?", Time.current, true, "%#{params[:search].downcase}%").order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
       @p.each do |pro|
         if pro.imageable_type == "User"
           @u = User.find(pro.imageable_id)
