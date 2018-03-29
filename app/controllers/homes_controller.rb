@@ -3,7 +3,7 @@ class HomesController < ApplicationController
 
   def index
     @products = []
-    @p = Product.where("count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").limit(30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").limit(30)
     @count = 0
     @p.each do |pro|
       if pro.imageable_type == "User"
@@ -35,7 +35,7 @@ class HomesController < ApplicationController
   def play
     @products = []
     category = "Featured Items";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)
@@ -53,13 +53,24 @@ class HomesController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @products = Product.where("count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").limit(10)
+    @products = []
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").limit(10)
+    @p.each do |pro|
+      if pro.imageable_type == "User"
+        @u = User.find(pro.imageable_id)
+        if @u && @u.approve
+          @products << pro
+        end
+      elsif pro.imageable_type == "Admin"
+        @products << pro
+      end
+    end
   end
 
   def real_estate
     @products = []
     category = "Real Estate";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)
@@ -75,7 +86,7 @@ class HomesController < ApplicationController
   def electronics
     @products = []
     category = "Electronics";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)
@@ -91,7 +102,7 @@ class HomesController < ApplicationController
   def phone_and_tablets
     @products = []
     category = "Phones and Tablets";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)
@@ -107,7 +118,7 @@ class HomesController < ApplicationController
   def automobiles
     @products = []
     category = "Automobiles";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)
@@ -123,7 +134,7 @@ class HomesController < ApplicationController
   def featured_items
     @products = []
     category = "Featured Items";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)
@@ -139,7 +150,7 @@ class HomesController < ApplicationController
   def promoted_items
     @products = []
     category = "Promoted Items";
-    @p = Product.where("count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)

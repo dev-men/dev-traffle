@@ -4,10 +4,12 @@ Rails.application.routes.draw do
        namespace :v1 do
          resources :carts
          resources :customers
+         resources :contacts, :only => [:create]
          resources :registrations do
            collection do
              post :social
              post :profile_image
+             post :change_password
            end
          end
          resources :sessions, :only => [:create, :destroy]
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
              get :automobiles
              get :featured_items
              get :promoted_items
+             post :search
            end
          end
        end

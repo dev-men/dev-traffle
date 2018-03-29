@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  #before_validation :parse_image
-
   has_many :products, as: :imageable
   has_many :tickets
   has_many :carts
