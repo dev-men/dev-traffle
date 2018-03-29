@@ -1,25 +1,25 @@
 class ApplicationController < ActionController::Base
-use Rack::Cors
-use Rack::Sendfile
-use Rack::Runtime
-use Rack::MethodOverride
-use ActionDispatch::RequestId
-use ActionDispatch::RemoteIp
-use Sprockets::Rails::QuietAssets
-use Rails::Rack::Logger
-use WebConsole::Middleware
-use ActionDispatch::DebugExceptions
-use ActionDispatch::Callbacks
-use ActiveRecord::Migration::CheckPending
-use ActionDispatch::Cookies
-use ActionDispatch::Session::CookieStore
-use ActionDispatch::Flash
-use Rack::Head
-use Rack::ConditionalGet
-use Rack::ETag
-use Warden::Manager
-use OmniAuth::Strategies::Facebook
-use OmniAuth::Strategies::Twitter
+# use Rack::Cors
+# use Rack::Sendfile
+# use Rack::Runtime
+# use Rack::MethodOverride
+# use ActionDispatch::RequestId
+# use ActionDispatch::RemoteIp
+# use Sprockets::Rails::QuietAssets
+# use Rails::Rack::Logger
+# use WebConsole::Middleware
+# use ActionDispatch::DebugExceptions
+# use ActionDispatch::Callbacks
+# use ActiveRecord::Migration::CheckPending
+# use ActionDispatch::Cookies
+# use ActionDispatch::Session::CookieStore
+# use ActionDispatch::Flash
+# use Rack::Head
+# use Rack::ConditionalGet
+# use Rack::ETag
+# use Warden::Manager
+# use OmniAuth::Strategies::Facebook
+# use OmniAuth::Strategies::Twitter
 
   protect_from_forgery with: :null_session
   acts_as_token_authentication_handler_for User
