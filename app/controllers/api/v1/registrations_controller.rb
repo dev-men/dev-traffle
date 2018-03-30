@@ -74,22 +74,10 @@ class Api::V1::RegistrationsController < ApplicationController
         @u.zip = params[:zip]
         @u.address = params[:address]
         @u.country = params[:country]
-        if params[:password] == ""
-          if @u.save
-            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
-          else
-            render json: {:errors => @u.errors.full_messages}, status: 200
-          end
-        elsif params[:password] == params[:password_confirmation]
-          @u.password = params[:password]
-          @u.password_confirmation = params[:password_confirmation]
-          if @u.save
-            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
-          else
-            render json: {:errors => @u.errors.full_messages}, status: 200
-          end
+        if @u.save
+          render json: { :user => @u.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
         else
-          render json: "0", status: 200
+          render json: {:errors => @u.errors.full_messages}, status: 200
         end
       else
         render json: "-1", status: 200
@@ -104,7 +92,6 @@ class Api::V1::RegistrationsController < ApplicationController
        @u = User.find_by_email(params[:user_email])
        if @u
         if params[:avatar_file_data]
-          #picture_params = params[:avatar]
           encoded_picture = params[:avatar_file_data]
           content_type = params[:content_type]
           image = Paperclip.io_adapters.for(encoded_picture)
@@ -127,6 +114,28 @@ class Api::V1::RegistrationsController < ApplicationController
      end
    end
 
+   def change_password
+      begin
+        @u = User.find_by_email(params[:user_email])
+        if @u
+          if params[:password] != "" && params[:password] == params[:password_confirmation]
+            @u.password = params[:password]
+            @u.password_confirmation = params[:password_confirmation]
+            if @u.save
+              render json: { :user => @u.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
+            else
+              render json: {:errors => @u.errors.full_messages}, status: 200
+            end
+          else
+            render json: "0", status: 200
+          end
+        else
+          render json: "-1", status: 200
+        end
+      rescue
+        render json: "-2", status: 200
+      end
+   end
 
    private
    def registrations_params

@@ -14,6 +14,7 @@ class Product < ApplicationRecord
   validates :long_description, presence: true
   validates :long_description, length: {minimum: 30}
   validates :images, presence: true
+  #validates :price, presence: true
 
   validates_datetime :count_down, :after => lambda { Time.current  + 30.days}, on: :create
   accepts_nested_attributes_for :images
