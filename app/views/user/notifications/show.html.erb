@@ -1,0 +1,93 @@
+<script>
+ $(document).ready(function() {
+   $('.flexslider').flexslider({
+     animation: "slide",
+     controlNav: "thumbnails"
+   });
+ });
+</script>
+<% content_for :title, "Item Detail | Traffle" %>
+<div class="container-fluid my_top_div">
+  <div class="single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2><center>You have won this Product</center></h2>
+          <br>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-5 grid col-xs-12">
+      		<div class="flexslider">
+      			  <ul class="slides">
+                <% @images = @product.images%>
+                <% @images.each do |i|%>
+                  <li data-thumb="<%= i.avatar%>">
+                      <div class="thumb-image"> <%= image_tag(i.avatar, data: { 'imagezoom' => true}, class:"img-responsive")%></div>
+                  </li>
+                <%end%>
+      			  </ul>
+      		</div>
+      	</div>
+        <div class="col-md-7 col-xs-12">
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <center>
+                <h1 class="admin_heading" style="text-transform: uppercase;"><%= @product.title%></h1>
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_key">Item ID: </h4> <h4 class="admin_value"><%= @product.id%></h4>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_key">Item Category: </h4> <h4 class="admin_value"><%= @product.category%></h4>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_key">Item Price: </h4> <h4 class="admin_value"><%= @product.price%></h4>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_key">Total Tickets: </h4> <h4 class="admin_value"><%= @product.total_tickets %></h4>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_key">Sold Tickets: </h4> <h4 class="admin_value"><%= @product.sold_tickets %></h4>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12 col-xs-12">
+            </div>
+            <br>
+            <div class="col-md-12">
+              <h4 class="admin_value" style="margin:0px; word-break: normal;"><%= @product.short_description %></h4>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12">
+              <h4 class="admin_value" style="margin:0px; word-break: normal;"><%= @product.long_description %></h4>
+            </div>
+          </div>
+          <% if @product.approve == false %>
+            <br><br>
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <%= link_to("Approve this Item", approve_product_admin_product_path(@product.id), class:"btn btn-block btn-info")%>
+              </div>
+              <div class="col-md-3">
+              </div>
+            </div>
+          <% end %>
+          <div class="col-md-12 col-xs-12">
+            <br><br>
+            <center><button class="btn btn-info">I have received this Product</button></center>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
