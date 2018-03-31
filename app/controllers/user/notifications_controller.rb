@@ -21,7 +21,7 @@ class User::NotificationsController < ApplicationController
   end
 
   def select_winner
-    #debugger
+
      @notification = Notification.find_by_id(params[:id])
      product_id = @notification.product_id
      @product = Product.find_by_id(product_id)
@@ -49,6 +49,16 @@ class User::NotificationsController < ApplicationController
      #
      #
      # }
+  end
+
+  def select_one_option
+  #  debugger
+    @notification_id = params[:id]
+    @notification = Notification.find_by_id(params[:id])
+    @notification.read = true
+    @notification.save
+    @product_id = @notification.product_id
+
   end
 
   def show

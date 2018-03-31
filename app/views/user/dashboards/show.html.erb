@@ -97,23 +97,39 @@
                <div class="col-md-12 col-xs-12">
                  <center><h3>No Available CASH Prizes</h3></center>
                </div>
+               <div class="col-md-12 col-xs-12">
+                 <center><%= link_to("Request For withdraw", request_for_withdraw_user_withdraws_path, class:"btn btn-success")%></center>
+               </div>
              </div>
           </div>
           <div class="col-md-12">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
              <div class="row jumbotron" style="background-color: #789456; padding-bottom: 7.5em;">
                <div class="col-md-12 col-xs-12">
-                 <h4>Bonus Account</h4>
+                 <h4>My Transactions</h4>
                  <hr style="height:2px;background:#000000; margin-right:1em;">
                </div>
                <div class="col-md-12">
                </div>
+               <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Transaction Detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @all_transactions.each do |n| %>
+                    <tr>
+                      <% @t = n.created_at.to_s%>
+                      <% @t = @t[0..18]%>
+                      <td>You commited a transaction of amount <bold><%= n.amount %> <label>₦ </label></bold> at <%= @t %></td>
+                    </tr>
+                  <% end  %>
+                </tbody>
+              </table>
                <div class="col-md-12 col-xs-12">
-                 <center><h4>Balance</h4></center>
-               </div>
-               <div class="col-md-12 col-xs-12">
-                 <center><label>₦ <span>0</span></label></center>
+                 <center></center>
                </div>
              </div>
           </div>
@@ -122,6 +138,20 @@
                <div class="col-md-12 col-xs-12">
                  <h4>Notifications</h4>
                  <hr style="height:2px;background:#000000; margin-right:1em;">
+                 <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @all_notifications.each do |n| %>
+                      <tr>
+                        <td><%= n.description %></td>
+                      </tr>
+                    <% end  %>
+                  </tbody>
+                </table>
                </div>
              </div>
           </div>
@@ -161,7 +191,7 @@
                <div class="col-md-6 col-xs-12">
                  <h5>0</h5>
                </div>
-    
+
              </div>
           </div>
         </div>

@@ -1,0 +1,6 @@
+      invoke  active_record
+      create    db/migrate/20180331095626_create_recipients.rb
+      create    app/models/recipient.rb
+      invoke    test_unit
+      create      test/models/recipient_test.rb
+      create      test/fixtures/recipients.yml

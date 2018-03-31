@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330152649) do
+ActiveRecord::Schema.define(version: 20180331151006) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -107,6 +107,30 @@ ActiveRecord::Schema.define(version: 20180330152649) do
     t.index ["imageable_type", "imageable_id"], name: "index_products_on_imageable_type_and_imageable_id"
   end
 
+  create_table "recipients", force: :cascade do |t|
+    t.string "r_type", default: "nuban"
+    t.string "name"
+    t.text "description"
+    t.string "account_number"
+    t.string "bank_code"
+    t.string "currency", default: "NGN"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "recipient_code"
+    t.string "paystack_recipient_id"
+    t.index ["user_id"], name: "index_recipients_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.boolean "status"
+    t.string "description"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
@@ -162,6 +186,8 @@ ActiveRecord::Schema.define(version: 20180330152649) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer "winner_id"
+    t.integer "balance"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
