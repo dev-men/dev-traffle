@@ -20,6 +20,7 @@
 //= require trafflecart
 //= require wow.min
 //= require custom
+
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
