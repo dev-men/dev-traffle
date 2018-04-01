@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :contacts, :only => [:index, :show, :new, :create, :destroy]
   namespace :api, defaults: {format: :json} do
        namespace :v1 do
+         resources :transactions
          resources :carts
          resources :customers
          resources :contacts, :only => [:create]
@@ -59,6 +60,13 @@ Rails.application.routes.draw do
     resources :notifications do
       member do
         get :select_winner
+        get :select_one_option
+      end
+    end
+    resources :withdraws do
+      collection do
+        get :request_for_withdraw
+
       end
     end
   end

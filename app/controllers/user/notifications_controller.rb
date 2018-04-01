@@ -1,21 +1,27 @@
 class User::NotificationsController < ApplicationController
   before_action :authenticate_user!
   def update
-    update_notification_obj = Notification.find_by_id(params[:id])
-    update_notification_obj.read = true
-    if update_notification_obj.save
-      if params[:key].to_i == 1
-         redirect_to user_product_path(update_notification_obj.product_id)
-      elsif params[:key].to_i == 5
-         redirect_to user_product_path(update_notification_obj.product_id)
+    #debugger
+    if params[:key].to_i == 1
+      update_notification_obj = Notification.find_by_id(params[:id])
+      update_notification_obj.read = true
+      if update_notification_obj.save
+        redirect_to user_product_path(update_notification_obj.product_id)
       end
-
-    else
+    elsif params[:key].to_i == 5
+      update_notification_obj = Notification.find_by_id(params[:id])
+      update_notification_obj.read = true
+      if update_notification_obj.save
+        redirect_to user_product_path(update_notification_obj.product_id)
+      end
+    elsif params[:key].to_i == 6
+       update_notification_obj = Notification.find_by_id(params[:id])
+       redirect_to user_notification_path(update_notification_obj.product_id)
     end
   end
 
   def select_winner
-    #debugger
+
      @notification = Notification.find_by_id(params[:id])
      product_id = @notification.product_id
      @product = Product.find_by_id(product_id)
@@ -43,5 +49,20 @@ class User::NotificationsController < ApplicationController
      #
      #
      # }
+  end
+
+  def select_one_option
+  #  debugger
+    @notification_id = params[:id]
+    @notification = Notification.find_by_id(params[:id])
+    @notification.read = true
+    @notification.save
+    @product_id = @notification.product_id
+
+  end
+
+  def show
+    #debugger
+    @product = Product.find(params[:id])
   end
 end

@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :notifications
   has_one :customer
   has_many :transactions
+  has_one :recipient
+  has_many :requests
+
   acts_as_token_authenticatable
   validates :name, presence: true
   # This object is to receive image BASE64 from API (Ionic Application)

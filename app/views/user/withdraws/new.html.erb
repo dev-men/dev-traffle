@@ -1,0 +1,46 @@
+<% content_for :title, "Bank Account Details | Traffle" %>
+<div class="col-md-9">
+  <div class="jumbotron" style="padding: 12em 0px 0px 0px;background:#FFFFFF;margin-left: 15em;">
+    <%= form_with(model: @recipient, url: user_withdraws_path, local: true, html: { class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
+          <p class="title" style="text-align:center;">Bank Account Details</p>
+        <% if @recipient.errors.any? %>
+          <div class="form-group alert alert-error alert-block" id="error_explanation">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <% @recipient.errors.full_messages.each do |message| %>
+              <h6 class="heading_error"><%= message%></h6>
+            <% end %>
+          </div>
+        <% end %>
+        <br>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <%= f.label :r_type, "Type", class:"label" %><br />
+            <%= f.label :r_type, autofocus: true, value: @recipient.r_type, class: 'form-control', style:"font-size: 1em;", required: true %>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <%= f.label :name, "Account Name", class:"label" %><br />
+            <%= f.text_field :name, autofocus: true, placeholder: 'Account Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <%= f.label :account_number, "Account Number", class:"label" %><br />
+            <%= f.text_field :account_number, autofocus: true,  placeholder: 'Account Number',class: 'form-control', style:"font-size: 1em;", required: true %>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <%= f.label :bank_code, "Bank Code", class:"label" %><br />
+            <%= f.text_field :bank_code, autofocus: true, placeholder: 'Bank Code', class: 'form-control', style:"font-size: 1em;", required: true %>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <%= f.label :currency, "Currency", class:"label" %><br />
+            <%= f.label :currency, autofocus: true, value: @recipient.currency, class: 'form-control', style:"font-size: 1em;", required: true %>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <br/>
+            <%= f.label :description, "Description", class:"label" %><br />
+            <%= f.text_area :description, autofocus: true, placeholder: 'Enter Description', class: 'form-control', style:"font-size: 1em;", required: true %>
+          </div>
+
+        </div>
+        <%= f.submit "Save", style:"margin-top:1.2em;"%>
+    <%end%>
+  </div>
+</div>
