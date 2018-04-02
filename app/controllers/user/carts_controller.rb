@@ -14,8 +14,9 @@ class User::CartsController < ApplicationController
         flash[:notice] = "You can't buy tickets for this product!"
         redirect_to root_path
       else
-        no_of_tickets = price / 100
+
         product = Product.find_by(["id = ?", product_id])
+        no_of_tickets = price / product.ticket_price
         remaining_tickets = product.total_tickets - product.sold_tickets
 
         if no_of_tickets <= remaining_tickets

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331151006) do
+ActiveRecord::Schema.define(version: 20180402104351) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20180331151006) do
     t.datetime "updated_at", null: false
     t.float "price"
     t.integer "winner_id"
+    t.float "ticket_price"
     t.index ["imageable_type", "imageable_id"], name: "index_products_on_imageable_type_and_imageable_id"
   end
 

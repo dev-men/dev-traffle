@@ -39,6 +39,8 @@ class User::ProductsController < ApplicationController
       @product.imageable_id = current_user.id
       @product.imageable_type = "User"
     end
+    @product_total_tickets = params['product']['price'].to_i / params['product']['ticket_price'].to_i
+    @product.total_tickets = @product_total_tickets
     respond_to do |format|
       if @product.save
         format.html { redirect_to user_dashboard_path(current_user), notice: "Your Product is submitted. You will be notified after Admin approval"  }
@@ -67,7 +69,7 @@ class User::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:category, :title, :total_tickets, :sold_tickets, :short_description, :long_description, :price,
+      params.require(:product).permit(:category, :title, :total_tickets, :sold_tickets, :short_description, :long_description, :price, :ticket_price,
                                       :approve, :hot, :count_down, :user_id, :admin_id,
                                       images_attributes: [:id, :avatar, :product_id])
     end

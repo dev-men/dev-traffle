@@ -25,7 +25,7 @@ class Api::V1::ProductsController < ApplicationController
           end
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
     rescue
       render json: "-2", status: 200
     end
@@ -46,7 +46,8 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+
     rescue
       render json: "-2", status: 200
     end
@@ -67,7 +68,8 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+
     rescue
       render json: "-2", status: 200
     end
@@ -88,7 +90,7 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
     rescue
       render json: "-2", status: 200
     end
@@ -109,7 +111,7 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
     rescue
       render json: "-2", status: 200
     end
@@ -130,7 +132,7 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
     rescue
       render json: "-2", status: 200
     end
@@ -151,7 +153,7 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
     rescue
       render json: "-2", status: 200
     end
@@ -171,7 +173,8 @@ class Api::V1::ProductsController < ApplicationController
           @products << pro
         end
       end
-      render json: { :products => @products.as_json(:except => [:created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+      render json: { :products => @products.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]) }, status: 200
+
     rescue
       render json: "-2", status: 200
     end
@@ -184,8 +187,10 @@ class Api::V1::ProductsController < ApplicationController
         @product = Product.new(product_params)
         @product.title = params[:title]
         @product.category = params[:category]
-        @product.total_tickets = params[:total_tickets]
+        #@product.total_tickets = params[:total_tickets]
         @product.price = params[:price]
+        @product_total_tickets = params[:price].to_i / params[:ticket_price].to_i
+        @product.total_tickets = @product_total_tickets
         @product.short_description = params[:short_description]
         @product.long_description = params[:long_description]
         @product.imageable_id = @user.id
