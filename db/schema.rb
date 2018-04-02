@@ -186,7 +186,6 @@ ActiveRecord::Schema.define(version: 20180331151006) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "winner_id"
     t.integer "balance"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
