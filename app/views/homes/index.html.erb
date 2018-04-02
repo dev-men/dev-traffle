@@ -36,6 +36,13 @@
               <% @count_down = @products[@count].count_down%>
               <h3><a href="#"><%= @products[@count].title %></a></h3>
               <%= render :partial => 'countdown' %>
+              <div class="col-md-12 col-xs-12">
+                <% @s = @products[@count].sold_tickets * 1.0 %>
+                <% @t = @products[@count].total_tickets*1.0 %>
+                <% @p = @s / @t %>
+                <br>
+                <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
+              </div>
               <br>
                <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
                  <div class="col-md-2 col-xs-12" style="height:4em;">
@@ -46,7 +53,7 @@
                      <%= form_for :ticket,method: :post,  url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
                        <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
                          <div class="form-group">
-                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
+                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:@products[@count].ticket_price, step:@products[@count].ticket_price, required:true%>
                          </div>
                        </div>
                        <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
@@ -62,7 +69,7 @@
                      <div class="col-md-5">
                      </div>
                      <div class="col-md-7">
-                       <label style="float:right;">1 ticket = N100.00</label>
+                       <label style="float:right;">1 ticket = ₦<%= @products[@count].ticket_price %></label>
                      </div>
                    </div>
                  </div>
@@ -88,6 +95,13 @@
               <% @count_down = @products[@count].count_down%>
               <h3><a href="#"><%= @products[@count].title %></a></h3>
               <%= render :partial => 'countdown' %>
+              <div class="col-md-12 col-xs-12">
+                <% @s = @products[@count].sold_tickets * 1.0 %>
+                <% @t = @products[@count].total_tickets*1.0 %>
+                <% @p = @s / @t %>
+                <br>
+                <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
+              </div>
               <br>
                <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
                  <div class="col-md-2 col-xs-12" style="height:4em;">
@@ -98,7 +112,8 @@
                      <%= form_for :ticket, url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
                        <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
                          <div class="form-group">
-                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
+                           <% @my_ticket_price = @products[@count].ticket_price %>
+                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min: @my_ticket_price , step: @my_ticket_price, required:true%>
                          </div>
                        </div>
                        <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
@@ -114,7 +129,7 @@
                      <div class="col-md-5">
                      </div>
                      <div class="col-md-7">
-                       <label style="float:right;">1 ticket = N100.00</label>
+                       <label style="float:right;">1 ticket = ₦<%= @products[@count].ticket_price %></label>
                      </div>
                    </div>
                  </div>
@@ -136,6 +151,13 @@
                     <% @count_down = @products[@count].count_down%>
                     <h3><a href="#"><%= @products[@count].title %></a></h3>
                     <%= render :partial => 'countdown' %>
+                    <div class="col-md-12 col-xs-12">
+                      <% @s = @products[@count].sold_tickets * 1.0 %>
+                      <% @t = @products[@count].total_tickets*1.0 %>
+                      <% @p = @s / @t %>
+                      <br>
+                      <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
+                    </div>
                     <br>
                      <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
                        <div class="col-md-2 col-xs-12" style="height:4em;">
@@ -146,7 +168,7 @@
                            <%= form_for :ticket, url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
                              <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
                                <div class="form-group">
-                                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
+                                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:@products[@count].ticket_price, step:@products[@count].ticket_price, required:true%>
                                </div>
                              </div>
                              <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
@@ -162,7 +184,7 @@
                            <div class="col-md-5">
                            </div>
                            <div class="col-md-7">
-                             <label style="float:right;">1 ticket = N100.00</label>
+                             <label style="float:right;">1 ticket = ₦<%= @products[@count].ticket_price %></label>
                            </div>
                          </div>
                        </div>
@@ -232,6 +254,13 @@
                     <% @count_down = @products[@count].count_down%>
                     <h3><a href="#"><%= @products[@count].title %></a></h3>
                     <%= render :partial => 'countdown' %>
+                    <div class="col-md-12 col-xs-12">
+                      <% @s = @products[@count].sold_tickets * 1.0 %>
+                      <% @t = @products[@count].total_tickets*1.0 %>
+                      <% @p = @s / @t %>
+                      <br>
+                      <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
+                    </div>
                     <br>
                      <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
                        <div class="col-md-2 col-xs-12" style="height:4em;">
@@ -242,7 +271,7 @@
                            <%= form_for :ticket, url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
                              <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
                                <div class="form-group">
-                                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
+                                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:@products[@count].ticket_price, step:@products[@count].ticket_price, required:true%>
                                </div>
                              </div>
                              <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">

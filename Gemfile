@@ -14,6 +14,9 @@ gem 'aws-sdk-s3', '~> 1.8', '>= 1.8.2'
 gem 'json_pure', '~> 2.1'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
+# Progress Bar gem
+gem 'bootstrap_progressbar'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use Puma as the app server
