@@ -36,6 +36,48 @@
 <!--//menu-->
 <!--header-->
 <div class="header" style="position:fixed;z-index:9999;background:#FFFFFF;width:100%;">
+  <div class="container-fluid" style="background:#F2F3F4;min-height:30px;">
+    <div class="row">
+      <div class="col-md-2 col-xs-12"></div>
+      <div class="col-md-10 col-xs-12">
+        <div class="row">
+          <% if user_signed_in? %>
+            <div class="mydropdown" style="float:right;">
+              <button class="mydropbtn"><span class="glyphicon glyphicon-user"></span> <%= current_user.name%> <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></button>
+              <div class="mydropdown-content">
+                <%= link_to "Home",  root_path%>
+                <%= link_to "Dashboard",  user_dashboard_path(current_user)%>
+                <%= link_to "Logout",  destroy_user_session_path, method: :delete%>
+              </div>
+            </div>
+            <div class="mydropdown" style="float:right;margin-right:1px;">
+              <button class="mydropbtn"><span class="glyphicon glyphicon-bell"></span> Notifications <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></button>
+              <div class="mydropdown-content">
+                <%= link_to "Home",  root_path, style:"text-align:left;width:200%;white-space: pre-wrap;"%>
+              </div>
+            </div>
+            <div class="mydropdown" style="float:right;margin-right:2px;">
+              <button class="mydropbtn"><span class="glyphicon glyphicon-heart"></span> Wish List</button>
+            </div>
+            <div class="mydropdown" style="float:right;margin-right:2px;">
+              <button class="mydropbtn"><span class="glyphicon glyphicon-check"></span> Check Out</button>
+            </div>
+            <div class="mydropdown" style="float:right;margin-right:2px;">
+              <button class="mydropbtn"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</button>
+            </div>
+          <% else %>
+            <div class="mydropdown" style="float:right;">
+              <button class="mydropbtn"><span class="glyphicon glyphicon-user"></span> My Account <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></button>
+              <div class="mydropdown-content">
+                <%= link_to "SIGNUP", new_user_registration_path%>
+                <%= link_to "LOGIN", new_user_session_path%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="header-top">
     <div class="container-fluid">
       <div class="col-md-2 col-xs-12 logo animated wow fadeInLeft" data-wow-delay=".5s">

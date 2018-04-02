@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402104351) do
+ActiveRecord::Schema.define(version: 20180331151006) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,12 +37,6 @@ ActiveRecord::Schema.define(version: 20180402104351) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_carts_on_product_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -93,18 +87,17 @@ ActiveRecord::Schema.define(version: 20180402104351) do
     t.string "category"
     t.integer "total_tickets"
     t.integer "sold_tickets", default: 0
+    t.integer "winner_id", default: 0
     t.text "short_description"
     t.text "long_description"
     t.boolean "approve", default: false
     t.datetime "count_down"
-    t.boolean "hot", default: false
+    t.float "price"
+    t.float "ticket_price"
     t.string "imageable_type"
     t.integer "imageable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "price"
-    t.integer "winner_id"
-    t.float "ticket_price"
     t.index ["imageable_type", "imageable_id"], name: "index_products_on_imageable_type_and_imageable_id"
   end
 
@@ -114,12 +107,12 @@ ActiveRecord::Schema.define(version: 20180402104351) do
     t.text "description"
     t.string "account_number"
     t.string "bank_code"
+    t.string "recipient_code"
+    t.string "paystack_recipient_id"
     t.string "currency", default: "NGN"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "recipient_code"
-    t.string "paystack_recipient_id"
     t.index ["user_id"], name: "index_recipients_on_user_id"
   end
 
@@ -146,11 +139,11 @@ ActiveRecord::Schema.define(version: 20180402104351) do
     t.string "reference"
     t.string "amount"
     t.string "email"
+    t.string "paystack_transaction_id"
+    t.string "access_code"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "paystack_transaction_id"
-    t.string "access_code"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -165,14 +158,10 @@ ActiveRecord::Schema.define(version: 20180402104351) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "authentication_token", limit: 30
     t.string "name"
     t.string "nick_name"
     t.string "gender"
     t.date "dob"
-    t.string "code"
     t.string "number"
     t.string "city"
     t.string "state"
@@ -182,12 +171,16 @@ ActiveRecord::Schema.define(version: 20180402104351) do
     t.string "provider"
     t.string "uid"
     t.string "image_url"
-    t.boolean "approve", default: true
+    t.string "approve", default: "t"
+    t.integer "wallet", default: 0
+    t.string "balance", default: "0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "authentication_token", limit: 30
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "balance"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

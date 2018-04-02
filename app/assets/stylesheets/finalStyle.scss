@@ -1,0 +1,59 @@
+html{
+  font-family: 'Merriweather', serif;
+}
+body{
+  font-family: 'Merriweather', serif;
+}
+.mydropbtn {
+    background-color: #BA4A00;
+    color: white;
+    min-width: 160px;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 13px;
+    border: none;
+    min-height: 40px;
+}
+.mydropbtn:hover{
+  background-color: #BA4A00;
+}
+.mydropdown {
+    position: relative;
+    display: inline-block;
+    min-height: 40px;
+}
+
+.mydropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width:100%;
+}
+
+.mydropdown-content a {
+    padding: 2px 5px;
+    text-decoration: none;
+    display: block;
+    width:100%;
+    font-family: 'Merriweather', serif;
+    font-weight:bold;cursor: pointer;
+    border: 1px solid #BA4A00;background: #FFFFFF;color: #BA4A00;
+    text-align: center;
+    font-size: 12px;
+}
+
+.mydropdown-content a:hover {background-color: #BA4A00; color:#FFFFFF;}
+
+.mydropdown:hover .mydropdown-content {
+    display: block;
+}
+
+.mydropdown:hover .mydropbtn {
+    background-color: #BA4a00;
+}
