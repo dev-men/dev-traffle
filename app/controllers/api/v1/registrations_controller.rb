@@ -31,7 +31,7 @@ class Api::V1::RegistrationsController < ApplicationController
            @u.image_url = params[:image_url]
            @u.name = params[:name]
            if @u.save
-             render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
+             render json: { :user => @u.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
            else
              render json: {:errors => @u.errors.full_messages}, status: 200
            end

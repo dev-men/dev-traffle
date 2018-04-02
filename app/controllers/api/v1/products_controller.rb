@@ -1,5 +1,4 @@
 class Api::V1::ProductsController < ApplicationController
-  skip_before_action :authenticate_user_from_token!, :raise => false
   require 'json'
   def index
     begin
