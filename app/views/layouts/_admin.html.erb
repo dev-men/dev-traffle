@@ -1,68 +1,55 @@
-<!--header-->
-<div class="header" style="position:fixed;z-index:9999;background:#FFFFFF;width:100%;">
-  <div class="header-top">
-    <div class="container">
-      <div class="col-md-4 col-xs-12 logo animated wow fadeInLeft" data-wow-delay=".5s">
-        <h1><a href="/"><span>TRAFFLE</span></a></h1>
-      </div>
-      <div class="col-md-4 col-xs-12 animated wow fadeInRight" data-wow-delay=".5s">
-      </div>
-      <div class="col-md-4 col-xs-12 animated wow fadeInRight" data-wow-delay=".5s">
-        <center>
-          <div class="btn-group" role="group">
-            <% if admin_signed_in? %>
-              <%= link_to "Logout",  destroy_admin_session_path, method: :delete, class:"btn btn-outline-primary"%>
-            <%end%>
-          </div>
-        </center>
-      </div>
-      <div class="clearfix"> </div>
-    </div>
-  </div>
-  <div class="container-fluid" style="background:#F5CBA7;">
-    <div class="head-top">
-      <div class="n-avigation">
-        <nav class="navbar nav_bottom" role="navigation" >
-         <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header nav_2">
-            <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs" style="color:#E67E22;">
-            <span  class="sr-only">Toggle navigation</span>
-            <span  class="icon-bar"></span>
-            <span  class="icon-bar"></span>
-            <span  class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"></a>
-           </div>
-           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-            <ul class="nav navbar-nav nav_1" style="padding:0px;margin:0px;">
-              <li style="padding:0px;margin:0px;"><%= link_to "Dashboard", root_path%></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("All Users", admin_users_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("Blocked Users", all_blocked_users_admin_users_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("All Items",  admin_products_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("Approved Items",  approved_products_admin_products_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("Unapproved Items",  unapproved_products_admin_products_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("Add New Item",  new_admin_product_path) %></li>
-              <li style="padding:0px;margin:0px;"><%= link_to("My Item",  my_products_admin_products_path) %></li>
 
-            </ul>
-           </div><!-- /.navbar-collapse -->
-         </nav>
-       </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="row">
-      <% if notice %>
-        <div id="notice_wrapper" class="my_notice">
-          <center><p class="app_notice"><%= notice %></p></center>
-        </div>
-      <%elsif alert %>
-        <div id="notice_wrapper" class="my_alert">
-          <center><p class="app_alert"><%= alert %></p></center>
-        </div>
-      <% end %>
+<div class="row" style="margin:0px;padding:0px;">
+  <div class="col-md-2 col-x-12">
+    <center>
+      <%= image_tag('logo_128.png', style:"height:55px;", class:"img-responsive")%>
+    </center>
+  </div>
+  <div class="col-md-10 col-x-12">
+    <div class="btn-group" role="group" style="float:right;">
+      <% if admin_signed_in? %>
+        <%= link_to "Logout",  destroy_admin_session_path, method: :delete, class:"btn btn-outline-primary"%>
+      <%end%>
     </div>
   </div>
 </div>
-
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li style="padding:0px;margin:0px;"><%= link_to "Dashboard", root_path%></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("All Users", admin_users_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("Blocked Users", all_blocked_users_admin_users_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("All Items",  admin_products_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("Approved Items",  approved_products_admin_products_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("Unapproved Items",  unapproved_products_admin_products_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("Add New Item",  new_admin_product_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("My Item",  my_products_admin_products_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("Support",  contacts_path) %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<!--banner-->
 <%= yield %>

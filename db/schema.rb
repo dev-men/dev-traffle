@@ -171,9 +171,9 @@ ActiveRecord::Schema.define(version: 20180331151006) do
     t.string "provider"
     t.string "uid"
     t.string "image_url"
-    t.string "approve", default: "t"
+    t.boolean "approve", default: true
     t.integer "wallet", default: 0
-    t.string "balance", default: "0"
+    t.integer "balance", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "authentication_token", limit: 30

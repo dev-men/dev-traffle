@@ -24,6 +24,11 @@ class User::ProductsController < ApplicationController
 
   def update
       @product = Product.find(params[:id])
+      if @product.approve == nil
+        @product.approve = false
+      end
+      @product_total_tickets = params['product']['price'].to_i / params['product']['ticket_price'].to_i
+      @product.total_tickets = @product_total_tickets
       if @product.update(product_params)
          flash[:notice] = "Item has been updated!"
          redirect_to user_products_path
@@ -33,7 +38,6 @@ class User::ProductsController < ApplicationController
   end
 
   def create
-    #debugger
     @product = Product.new(product_params)
     if user_signed_in?
       @product.imageable_id = current_user.id

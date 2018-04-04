@@ -68,7 +68,6 @@ class User::CartsController < ApplicationController
   end
 
   def empty_cart
-    #debugger
     @carts = Cart.where(:user_id => current_user.id)
     @count = @carts.count
     if @count != 0
@@ -84,55 +83,11 @@ class User::CartsController < ApplicationController
   end
 
   def check_out
-    #debugger
     if current_user.customer == nil
       redirect_to new_user_cart_path
     else
       @user_carts = current_user.carts
     end
-
-    # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    # transactions = PaystackTransactions.new(paystackObj)
-    # result = transactions.initializeTransaction(
-    #
-    #   :amount => 300000,
-    #   :email => current_user.email
-    #   )
-    # auth_url = result['data']['authorization_url']
-
-
-    #debugger
-    # user_carts = current_user.carts
-    # user_carts.each do |current_cart|
-    #   #debugger
-    #   product_id =  current_cart.product_id
-    #   product = Product.find(product_id)
-    #
-    #   product.sold_tickets = product.sold_tickets + current_cart.total_price / 100
-    #   product.save
-    #
-    #   no_of_tickets_for_specific_product = current_cart.total_price.to_i / 100
-    #   no_of_tickets_for_specific_product.times{
-    #     tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => 100)
-    #     tickets_purchased.save
-    #   }
-    # end
-    #
-    # if current_user.customer == nil
-    #   redirect_to  new_user_cart_path
-    # else
-    #   debugger
-    #   paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    #   page_number = 1
-    # 	customers = PaystackCustomers.new(paystackObj)
-    # 	result = customers.list(page_number) 	#Optional `page_number` parameter,  50 items per page
-    # 	customers_list = result['data']
-    # end
-    #
-    # @carts = Cart.where(:user_id => current_user.id)
-    # @carts.each do |f|
-    #   f.destroy
-    # end
   end
 
 
@@ -142,8 +97,6 @@ class User::CartsController < ApplicationController
   end
 
   def create
-    #debugger
-
     paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
     paystack_customer = PaystackCustomers.new(paystackObj)
     result = paystack_customer.create(
@@ -156,105 +109,111 @@ class User::CartsController < ApplicationController
     current_user.customer = customer
 
     redirect_to check_out_user_carts_path
-
-    # debugger
-    #   transactions = PaystackTransactions.new(paystackObj)
-    #   result = transactions.initializeTransaction(
-    #     :reference => "1235454657",
-    #     :amount => 300000,
-    #     :email => params[:customer][:email]
-    #     )
-    #   auth_url = result['data']['authorization_url']
-    #
-    #   redirect_to root_path
   end
 
   def pay
-    #debugger
-    paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    amount = params[:amount][:price].to_i
-    amount = amount * 100
-    transactions = PaystackTransactions.new(paystackObj)
-     result = transactions.initializeTransaction(
-         :amount => amount,
-         :email => current_user.customer.email
-       )
-       session['access_code'] = result['data']['access_code']
-       session['reference'] = result['data']['reference']
-    @auth_url = result['data']['authorization_url']
-    #redirect_to move_next_user_carts_path
-    #debugger
-    #1 Required
-    # if current_user.customer
-      #debugger
-       # customer_email = current_user.customer.email
-       # pay_customer = PaystackCustomers.new(paystackObj)
-       # result = pay_customer.get(customer_email)
-       # customer =  result['data']
-       # if customer['email']
-       #Required
-
-       # else
-       #     new_customer = PaystackCustomers.new(paystackObj)
-       #     result = new_customer.create(
-       #       :first_name => current_user.customer.first_name,
-       #       :last_name => current_user.customer.last_name,
-       #       :phone => current_user.customer.phone,
-       #       :email => current_user.customer.email
-       #     )
-       #
-       #     amount = params[:amount][:price] * 100
-       #     transactions = PaystackTransactions.new(paystackObj)
-       #     	trans_result = transactions.initializeTransaction(
-       #       		:amount => amount,
-       #       		:email => current_user.customer.email
-       #     		)
-       #     auth_url = trans_result['data']['authorization_url']
-       # end
-       #Required
-    #end
+    if current_user.carts.count > 0
+      if params[:amount][:price].to_i == 0
+        @carts = current_user.carts
+        @total = 0.0
+        @carts.each do |c|
+          @total = @total + c.total_price
+          product_id =  c.product_id
+          product = Product.find(product_id)
+          @total_tickets = c.total_price / product.ticket_price
+          product.sold_tickets = product.sold_tickets + @total_tickets
+          product.save
+          @total_tickets = @total_tickets.round
+          @total_tickets.times{
+            tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => product.ticket_price)
+            tickets_purchased.save
+          }
+        end
+        current_user.carts.destroy_all
+        @user = User.find(current_user.id)
+        @user.wallet = @user.wallet - @total
+        @user.save
+        redirect_to user_dashboard_path(current_user)
+      else
+        paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+        amount = params[:amount][:price].to_i
+        amount = amount * 100
+        transactions = PaystackTransactions.new(paystackObj)
+         result = transactions.initializeTransaction(
+             :amount => amount,
+             :email => current_user.customer.email
+           )
+           session['access_code'] = result['data']['access_code']
+           session['reference'] = result['data']['reference']
+           session['payment'] = 0
+        @auth_url = result['data']['authorization_url']
+      end
+    else
+      flash[:alert] = "Your Playing cart is empty. Please load Your cart first."
+      redirect_to root_path
+    end
   end
 
   def move_next
-    # paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-    # transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
-  	# transactions = PaystackTransactions.new(paystackObj)
-  	# result = transactions.verify(transaction_reference)
+    if session['payment'] == 1
+      if session['reference'] == params['reference']
+        transaction_reference = params['reference']
+        paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+        transactions = PaystackTransactions.new(paystackObj)
+        result = transactions.verify(transaction_reference)
+        if result['status'] == true && result['data']['status'] == 'success'
+          amount = result['data']['amount'].to_i / 100
+          transaction_history = Transaction.new(:reference => result['data']['reference'], :access_code => session['access_code'], :amount => amount, :paystack_transaction_id => result['data']['id'], :user_id => current_user.id)
+          transaction_history.save
+          @user = User.find(current_user.id)
+          @user.wallet = @user.wallet + amount
+          @user.save
+          flash[:notie] = "Your Transaction is completed!"
+          redirect_to user_dashboard_path(current_user)
+        else
+          flash[:alert] = "Your Transaction is not completed!"
+          redirect_to root_path
+        end
 
-    if session['reference'] == params['reference']
-      transaction_reference = params['reference']
-      paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
-  	  transactions = PaystackTransactions.new(paystackObj)
-  	  result = transactions.verify(transaction_reference)
-      if result['status'] == true && result['data']['status'] == 'success'
-         amount = result['data']['amount'].to_i / 100
-         transaction_history = Transaction.new(:reference => result['data']['reference'], :access_code => session['access_code'], :amount => amount, :paystack_transaction_id => result['data']['id'], :user_id => current_user.id)
-         transaction_history.save
-
-         user_carts = current_user.carts
-         user_carts.each do |current_cart|
-           #debugger
-           product_id =  current_cart.product_id
-           product = Product.find(product_id)
-
-           product.sold_tickets = product.sold_tickets + current_cart.total_price / 100
-           product.save
-
-           no_of_tickets_for_specific_product = current_cart.total_price.to_i / 100
-           no_of_tickets_for_specific_product.times{
-             tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => 100)
-             tickets_purchased.save
-           }
-         end
-
-         @carts = Cart.where(:user_id => current_user.id)
-         @carts.each do |f|
-           f.destroy
-         end
-
-         flash[:notice] = "Your Transaction is successfully committed."
       else
-        flash[:alert] = "Your Transaction is rolled back!"
+        flash[:alert] = "Your Transaction is not completed!"
+        redirect_to root_path
+      end
+    elsif session['payment'] == 0
+      if session['reference'] == params['reference']
+        transaction_reference = params['reference']
+        paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
+    	  transactions = PaystackTransactions.new(paystackObj)
+    	  result = transactions.verify(transaction_reference)
+        debugger
+        if result['status'] == true && result['data']['status'] == 'success'
+           amount = result['data']['amount'].to_i / 100
+           transaction_history = Transaction.new(:reference => result['data']['reference'], :access_code => session['access_code'], :amount => amount, :paystack_transaction_id => result['data']['id'], :user_id => current_user.id)
+           transaction_history.save
+
+           user_carts = current_user.carts
+           user_carts.each do |current_cart|
+
+             product_id =  current_cart.product_id
+             product = Product.find(product_id)
+             @total_tickets = current_cart.total_price / product.ticket_price
+             product.sold_tickets = product.sold_tickets + @total_tickets
+             product.save
+             @total_tickets.times{
+               tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => product.ticket_price)
+               tickets_purchased.save
+             }
+           end
+
+           current_user.carts.destroy_all
+
+           flash[:notice] = "Your Transaction is successfully committed."
+        else
+          flash[:alert] = "Your Transaction is not completed!"
+          redirect_to root_path
+        end
+      else
+        flash[:alert] = "Your Transaction is not completed!"
         redirect_to root_path
       end
     end

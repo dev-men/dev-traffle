@@ -44,9 +44,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :provider
       t.string :uid
       t.string :image_url
-      t.string :approve, default: true
+      t.boolean :approve, default: true
       t.integer :wallet, default: 0
-      t.string :balance, default: 0
+      t.integer :balance, default: 0
 
       t.timestamps null: false
     end

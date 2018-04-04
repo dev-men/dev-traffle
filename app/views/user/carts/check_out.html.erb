@@ -1,74 +1,105 @@
 <% content_for :title, "Check Out | Traffle" %>
-
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
 <!--content-->
-<div class="content" style="padding-top: 10em;">
+<div class="content" style="padding-top: 1em;">
   <div class="container">
     <div class="content-top">
       <div class="jumbotron">
         <div class="row">
           <div class="col-md-12 col-xs-12">
-            <h1><center style="color: #FFA07A;" >Check Out</center>
-            </h1>
+            <h3><center style="color: #FFA07A;" >Check Out</center></h3>
+            <hr style="background:#FFA07A;width:100%;height:2px;">
           </div>
           <% @subtotal = 0 %>
-          <div class="row">
-            <div class="col-md-4">
-              <h3>Details</h3>
-            </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-            </div>
-          </div>
-          <br>
-          <table class="table table-hover">
-            <thead>
+          <table class="table table-hover table-striped table-bordered">
+            <thead style="background:#D7DBDD;">
               <tr>
                 <th>NAME</th>
                 <th>NUMBER OF TICKETS</th>
-                <th>TOTAL TICKET AMOUNT</th>
+                <th>PRICE OF TICKETS</th>
+                <th>TOTAL AMOUNT</th>
               </tr>
             </thead>
             <tbody>
               <% @user_carts.each do |i| %>
                 <tr>
-                  <td><%= i.product.title %></td>
-                  <td><%= i.total_price.to_i / 100 %></td>
-                  <td><%= i.total_price %></td>
+                  <td><label class="admin_value_1"><%= i.product.title %></label></td>
+                  <td><label class="admin_value_1"><%= (i.total_price.to_i) / (i.product.ticket_price) %></label></td>
+                  <td><label class="admin_value_1">₦<%= i.product.ticket_price %></label></td>
+                  <td><label class="admin_value_1">₦<%= i.total_price %></label></td>
                   <% @subtotal = @subtotal + i.total_price %>
                 </tr>
               <%end%>
               <tr>
-                <td>SUBTOTAL</td>
-                <td></td>
-                <td><%= @subtotal %></td>
+                <td><label class="admin_value_1">SUBTOTAL</label></td>
+                <td></td><td></td>
+                <td><label class="admin_value_1">₦<%= @subtotal %></label></td>
               </tr>
               <tr>
-                <td>YOUR WALLET BALANCE</td>
-                <td></td>
-                <td>0.0</td>
+                <td><label class="admin_value_1">YOUR WALLET BALANCE</label></td>
+                <td></td><td></td>
+                <td><label class="admin_value_1">₦<%= current_user.wallet%></label></td>
+              </tr>
+              <% @grand_total = @subtotal - current_user.wallet%>
+              <% if @grand_total < 0%>
+                <%@grand_total = 0.0%>
+              <%end%>
+              <tr>
+                <td><label class="admin_value_1">TOTAL AMOUNT TO PAY</label></td>
+                <td></td><td></td>
+                <td><label class="admin_value_1">₦<%= @grand_total%></label></td>
               </tr>
             </tbody>
           </table>
           <div class="row">
-            <div class="col-md-3" style="margin-top:1em;">
-                <h3>ENTER AMOUNT </h3>
+            <div class="col-md-3">
+                <h4 class="admin_value_1">ENTER AMOUNT </h4>
             </div>
             <%= form_for :amount,  url: pay_user_carts_path do |f| %>
-              <div class="col-md-3 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
+              <div class="col-md-7 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em;">
                 <div class="form-group">
-                  <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
+                  <%=f.number_field :price, class:"form-control  price_field", value: @grand_total, placeholder:"Enter the amount", id:"inputdefault", min: @grand_total, max:@grand_total, required:true%>
                 </div>
               </div>
-              <div class="col-md-1 col-xs-12">
-              </div>
-              <div class="col-md-2 col-xs-12" style="margin-top:1em;">
-                <h3>PAYSTACK</h3>
-              </div>
-              <div class="col-md-1 col-xs-12">
-              </div>
               <div class="col-md-2 col-xs-12" style="padding:0px; margin-top:0.4em;">
-                <%= f.submit "PAY", style:"float-left;width:100%;height:80%;", class:"btn  cart_button" do %>
+                <%= f.submit "PAY", style:"float-left;width:100%;height:80%;", class:"btn btn-block btn-success" do %>
                      <span class="glyphicon glyphicon-shopping-cart"></span>
                 <% end %>
               </div>

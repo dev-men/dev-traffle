@@ -1,8 +1,46 @@
 <% content_for :title, "Winner| Traffle" %>
-<div class="container-fluid my_top_div">
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<div class="container-fluid" style="padding-top:2em;padding-bottom:3em;">
   <div class="row">
-    <div class="col-md-9">
-      <div class="jumbotron" style="padding:2em 0px 0px 0px; margin-left:12em; background:#FFFFFF;">
+    <div class="col-md-12">
+      <div class="jumbotron" style="padding:2em 0px 0px 0px; background:#FFFFFF;">
         <center>
             <p class="title">Winner's Profile</p>
             <%if @winner.avatar.present? %>
@@ -36,7 +74,7 @@
               <div class="col-md-6 col-xs-12">
                 <div class="row">
                   <div class="col-md-12 col-xs-12">
-                    <h4 class="admin_key">Gender: </h4> <h4 class="admin_value"><%= @winner.gender%></h4>
+                    <h4 class="admin_key">Contact Number: </h4> <h4 class="admin_value"><%= @winner.number%></h4>
                   </div>
                 </div>
               </div>

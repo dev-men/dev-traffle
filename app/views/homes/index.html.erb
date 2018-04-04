@@ -1,303 +1,92 @@
 <% content_for :title, "Home | Traffle" %>
-<!--banner-->
-<%@count = 0%>
-<div class="banner my_top_div">
-  <div class="matter-banner">
-    <div class="slider">
-        <div class="callbacks_container">
-          <ul class="rslides" id="slider">
-            <li>
-              <%= image_tag('1.jpg')%>
-              <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                <h2>TRAFFLE</h2>
-                <h3>Sell Anything, Win Everything</h3>
-                <h4>You can buy this item as cheap as 100 Naira</h4>
-                <a href="#">PLAY</a>
-              </div>
-           </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="clearfix"> </div>
-</div>
-<!--//banner-->
-<!--content-->
-<div class="content">
-  <div class="container">
-    <div class="content-top">
-      <div class="content-top1">
-        <div class="col-md-4 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-          <%if @size > (@count)%>
-            <div class="col-md1 simpleCart_shelfItem">
-              <%= link_to home_path(@products[@count].id) do %>
-                <%= image_tag(@products[@count].images[0].avatar, class:"img-responsive")%>
-              <%end%>
-              <% @count_down = @products[@count].count_down%>
-              <h3><a href="#"><%= @products[@count].title %></a></h3>
-              <%= render :partial => 'countdown' %>
-              <div class="col-md-12 col-xs-12">
-                <% @s = @products[@count].sold_tickets * 1.0 %>
-                <% @t = @products[@count].total_tickets*1.0 %>
-                <% @p = @s / @t %>
-                <br>
-                <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
-              </div>
-              <br>
-               <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
-                 <div class="col-md-2 col-xs-12" style="height:4em;">
-                   <label style="font-size:20px; margin-top:0.7em;" > ₦</label>
-                 </div>
-                 <div class="col-md-10">
-                   <div class="row">
-                     <%= form_for :ticket,method: :post,  url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
-                       <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
-                         <div class="form-group">
-                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:@products[@count].ticket_price, step:@products[@count].ticket_price, required:true%>
-                         </div>
-                       </div>
-                       <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
-                         <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn  cart_button" do %>
-                              <span class="glyphicon glyphicon-shopping-cart"></span>
-                         <% end %>
-                       </div>
-                     <%end%>
-                   </div>
-                 </div>
-                 <div class="col-md-12 col-xs-12">
-                   <div class="row">
-                     <div class="col-md-5">
-                     </div>
-                     <div class="col-md-7">
-                       <label style="float:right;">1 ticket = ₦<%= @products[@count].ticket_price %></label>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-              <% @count = @count + 1%>
-            </div>
-          <%end%>
-        </div>
 
-        <div class="col-md-4 animated wow fadeInDown animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
-          <div class="col-md3">
-            <div class="up-t">
-              <h5 style="color:#FFFFFF;">Buy items as cheap as 100 Naira</h5>
-            </div>
-          </div>
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
         </div>
-        <div class="col-md-4 col-md2 animated wow fadeInRight" data-wow-delay=".5s">
-          <%if @size > (@count)%>
-            <div class="col-md1 simpleCart_shelfItem">
-              <%= link_to home_path(@products[@count].id) do %>
-                <%= image_tag(@products[@count].images[0].avatar, class:"img-responsive")%>
-              <%end%>
-              <% @count_down = @products[@count].count_down%>
-              <h3><a href="#"><%= @products[@count].title %></a></h3>
-              <%= render :partial => 'countdown' %>
-              <div class="col-md-12 col-xs-12">
-                <% @s = @products[@count].sold_tickets * 1.0 %>
-                <% @t = @products[@count].total_tickets*1.0 %>
-                <% @p = @s / @t %>
-                <br>
-                <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
-              </div>
-              <br>
-               <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
-                 <div class="col-md-2 col-xs-12" style="height:4em;">
-                   <label style="font-size:20px; margin-top:0.7em;" > ₦</label>
-                 </div>
-                 <div class="col-md-10">
-                   <div class="row">
-                     <%= form_for :ticket, url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
-                       <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
-                         <div class="form-group">
-                           <% @my_ticket_price = @products[@count].ticket_price %>
-                           <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min: @my_ticket_price , step: @my_ticket_price, required:true%>
-                         </div>
-                       </div>
-                       <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
-                         <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn  cart_button" do %>
-                              <span class="glyphicon glyphicon-shopping-cart"></span>
-                         <% end %>
-                       </div>
-                     <%end%>
-                   </div>
-                 </div>
-                 <div class="col-md-12 col-xs-12">
-                   <div class="row">
-                     <div class="col-md-5">
-                     </div>
-                     <div class="col-md-7">
-                       <label style="float:right;">1 ticket = ₦<%= @products[@count].ticket_price %></label>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-              <% @count = @count + 1%>
-            </div>
-          <%end%>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li class="active"><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
         </div>
-        <div class="clearfix"> </div>
-      </div>
-      <div class="content-top1">
-        <% (2..4).each do |i| %>
-            <div class="col-md-4 col-md2 animated wow fadeInRight" data-wow-delay=".5s">
-                <%if @size > (@count)%>
-                  <div class="col-md1 simpleCart_shelfItem">
-                    <%= link_to home_path(@products[@count].id) do %>
-                      <%= image_tag(@products[@count].images[0].avatar, class:"img-responsive")%>
-                    <%end%>
-                    <% @count_down = @products[@count].count_down%>
-                    <h3><a href="#"><%= @products[@count].title %></a></h3>
-                    <%= render :partial => 'countdown' %>
-                    <div class="col-md-12 col-xs-12">
-                      <% @s = @products[@count].sold_tickets * 1.0 %>
-                      <% @t = @products[@count].total_tickets*1.0 %>
-                      <% @p = @s / @t %>
-                      <br>
-                      <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
-                    </div>
-                    <br>
-                     <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
-                       <div class="col-md-2 col-xs-12" style="height:4em;">
-                         <label style="font-size:20px; margin-top:0.7em;" > ₦</label>
-                       </div>
-                       <div class="col-md-10">
-                         <div class="row">
-                           <%= form_for :ticket, url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
-                             <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
-                               <div class="form-group">
-                                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:@products[@count].ticket_price, step:@products[@count].ticket_price, required:true%>
-                               </div>
-                             </div>
-                             <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
-                               <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn  cart_button" do %>
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                               <% end %>
-                             </div>
-                           <%end%>
-                         </div>
-                       </div>
-                       <div class="col-md-12 col-xs-12">
-                         <div class="row">
-                           <div class="col-md-5">
-                           </div>
-                           <div class="col-md-7">
-                             <label style="float:right;">1 ticket = ₦<%= @products[@count].ticket_price %></label>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                    <%@count = @count + 1%>
-                  </div>
-                <%end%>
-            </div>
-        <% end %>
-        <div class="clearfix"> </div>
       </div>
     </div>
   </div>
 </div>
-  <!--//content-->
-  <div class="con-tp">
-    <div class="container">
-      <div class="col-md-4 con-tp-lft animated wow fadeInLeft" data-wow-delay=".5s">
-        <a href="#">
-          <div class="content-grid-effect slow-zoom vertical">
-            <div class="img-box"><%= image_tag('item1.jpg', class:"img-responsive zoom-img", style:"width:400px;height:300px;")%></div>
-            <div class="info-box">
-              <div class="info-content simpleCart_shelfItem">
-                <h4>You can buy items as cheap as 100 Naira</h4>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-4 con-tp-lft animated wow fadeInLeft" data-wow-delay=".5s">
-        <a href="#">
-          <div class="content-grid-effect slow-zoom vertical">
-            <div class="img-box"><%= image_tag('store.jpg', class:"img-responsive zoom-img", style:"width:400px;height:300px;")%></div>
-            <div class="info-box">
-              <div class="info-content simpleCart_shelfItem">
-                <h4>You can buy items as cheap as 100 Naira</h4>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-4 con-tp-lft animated wow fadeInLeft" data-wow-delay=".5s">
-        <a href="#">
-          <div class="content-grid-effect slow-zoom vertical">
-            <div class="img-box"><%= image_tag('3.jpg', class:"img-responsive zoom-img", style:"width:400px;height:300px;")%></div>
-            <div class="info-box">
-              <div class="info-content simpleCart_shelfItem">
-                <h4>You can buy items as cheap as 100 Naira</h4>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="clearfix"></div>
+<div class="row main_row">
+  <h2 class="main_row_text">HOME</h2>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- Start WOWSlider.com BODY section -->
+    <% @num = rand(1..3) %>
+    <div id="wowslider-container1">
+      <center>
+        <div class="ws_images">
+          <ul>
+            <%if @num == 1 %>
+              <li><%= image_tag("6.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("7.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("8.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("12.png", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("13.png", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("14.png", alt:"Columns",  id:"wows1_0")%></li>
+            <%elsif @num == 2%>
+              <li><%= image_tag("15.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("16.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("17.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("18.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("19.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("20.jpg", alt:"Columns",  id:"wows1_0")%></li>
+            <%else%>
+              <li><%= image_tag("9.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("10.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("11.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("23.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("24.jpg", alt:"Columns",  id:"wows1_0")%></li>
+              <li><%= image_tag("25.jpg", alt:"Columns",  id:"wows1_0")%></li>
+            <%end%>
+          </ul>
+        </div>
+      </center>
     </div>
   </div>
-  <div class="c-btm">
-    <div class="container">
+</div>
+<div class="container-fluid" style="padding-top:2em;padding-bottom:2em;">
+  <div class="products">
+		<div class="col-md-12">
       <div class="content-top1">
-        <% (2..4).each do |i| %>
-            <div class="col-md-4 col-md2 animated wow fadeInRight" data-wow-delay=".5s">
-                <%if @size > (@count)%>
-                  <div class="col-md1 simpleCart_shelfItem">
-                    <%= link_to home_path(@products[@count].id) do %>
-                      <%= image_tag(@products[@count].images[0].avatar, class:"img-responsive")%>
-                    <%end%>
-                    <% @count_down = @products[@count].count_down%>
-                    <h3><a href="#"><%= @products[@count].title %></a></h3>
-                    <%= render :partial => 'countdown' %>
-                    <div class="col-md-12 col-xs-12">
-                      <% @s = @products[@count].sold_tickets * 1.0 %>
-                      <% @t = @products[@count].total_tickets*1.0 %>
-                      <% @p = @s / @t %>
-                      <br>
-                      <%= progress_bar @p, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
-                    </div>
-                    <br>
-                     <div class="row" style="border: solid 1px #0000FF; padding:0.7em;height:4em;">
-                       <div class="col-md-2 col-xs-12" style="height:4em;">
-                         <label style="font-size:20px; margin-top:0.7em;" > ₦</label>
-                       </div>
-                       <div class="col-md-10">
-                         <div class="row">
-                           <%= form_for :ticket, url: add_to_cart_user_cart_path(@products[@count].id, key: 1) do |f| %>
-                             <div class="col-md-8 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em">
-                               <div class="form-group">
-                                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:@products[@count].ticket_price, step:@products[@count].ticket_price, required:true%>
-                               </div>
-                             </div>
-                             <div class="col-md-4 col-xs-12" style="padding:0px; margin-top:0.4em;">
-                               <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn  cart_button" do %>
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                               <% end %>
-                             </div>
-                           <%end%>
-                         </div>
-                       </div>
-                       <div class="col-md-12 col-xs-12">
-                         <div class="row">
-                           <div class="col-md-5">
-                           </div>
-                           <div class="col-md-7">
-                             <label style="float:right;">1 ticket = N100.00</label>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                    <%@count = @count + 1%>
-                  </div>
-                <%end%>
-            </div>
+        <% @products.each do |p| %>
+          <div class="col-md-4" style="margin-top:15px;">
+            <%= render :partial => 'item', locals: {p: p} %>
+          </div>
         <% end %>
-        <div class="clearfix"> </div>
       </div>
     </div>
   </div>
+</div>

@@ -1,0 +1,144 @@
+<% content_for :title, "Dashboard | Traffle" %>
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<!--banner-->
+<div class="container-fluid">
+  <div class="row">
+    <center>
+      <div class="container">
+        <div class="modal fade" id="addPhoto">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Header -->
+              <div class="modal-header" style="background: #F5CBA7;">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <center><h4 class="heading_text" style="color:white;">Choose Avatar</h4></center>
+              </div>
+              <!-- Body (form) -->
+              <div class="modal-body">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <center>
+                        <%= form_for :user, url: change_image_user_dashboard_path(current_user.id), html: { multipart: true } do |form| %>
+                        <%if current_user.avatar.present? %>
+                          <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                        <%elsif current_user.image_url != nil%>
+                          <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                        <%else %>
+                          <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                        <%end%>
+                        <%= form.file_field :avatar, id:"post-upload",class: "btn btn-info" %>
+                        <h4 class="heading_text" style="font-style: italic;color:#2DBF7F;font-weight:normal;">Preview</h4>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-3">
+                    <%= form.submit "Save", class:"btn btn-success btn-block" %>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </center>
+  </div>
+  <div class="row">
+    <%= render 'user/user_panel' %>
+    <div class="col-md-9">
+      <div class="jumbotron" style="padding-left:5px;">
+        <h4 class="my_text_color" style="text-align:center;">Notifications</h4>
+        <ul style="list-style-type:none;width:100%:padding:5px;">
+          <%@notifications.each do |n|%>
+            <li style="width:100%;color:#BA4A00;border: 1px solid #BA4A00;background:#FFFFFF;padding:10px;"><%= n.description%></li>
+          <%end%>
+        <ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <!-- *************************** Start Script for Uploading Image in Post ************************* -->
+  <script>
+  	$(document).ready(function() {
+  		$("#post-upload").on('change', function() {
+  			//Get count of selected files
+  			var countFiles = $(this)[0].files.length;
+  			var imgPath = $(this)[0].value;
+  			var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+  			var image_holder = $("#postImage-holder");
+  			image_holder.empty();
+  			if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+  				if (typeof(FileReader) != "undefined") {
+  					//loop for each file selected for uploaded.
+  					for (var i = 0; i < countFiles; i++)
+  					{
+  						var reader = new FileReader();
+  						reader.onload = function(e) {
+  							$('#postimg').attr('src', e.target.result);
+
+  						}
+  						image_holder.show();
+  						reader.readAsDataURL($(this)[0].files[i]);
+  					}
+  				} else {
+  					alert("This browser does not support FileReader.");
+  				}
+  			}else {
+  				alert("Please select only images");
+  			}
+  		});
+  	});
+  </script>
+  <!-- *************************** End Script for Uploading Image in Post ************************* -->

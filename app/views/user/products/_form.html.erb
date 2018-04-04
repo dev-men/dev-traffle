@@ -19,13 +19,12 @@
           <%= f.fields_for :images do |a|%>
             <div class="col-md-3 col-xs-12">
               <center>
-                <%= image_tag('add.jpg', id:"product-"+count.to_s, style:"width:100%;height:13em;", class:"img-responsive img-thumbnail")%>
+                <%= image_tag('add.jpg', id:"product-"+count.to_s, style:"width:100%;height:13em;", class:"img-responsive img-thumbnail product_img")%>
                 <%= a.file_field :avatar,class: "btn btn-info btn-sm", style:"width:100%;display:none;", id:"add-product-"+count.to_s  %>
               </center>
             </div>
             <% count = count + 1%>
           <% end %>
-
         </div>
         <br>
         <div class="row">

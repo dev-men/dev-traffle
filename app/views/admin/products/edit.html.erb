@@ -1,18 +1,25 @@
 <% content_for :title, "Edit Item | Traffle" %>
-<div class="container-fluid my_top_div">
-  <div class="row">
-
-    <div class="col-md-9">
-      <div class="jumbotron" style="padding: 2.5em 0px 0px 0px;background:#11AA99;">
-        <%= form_with(model: @product, url: admin_product_path, method: :patch, local: true, html: {class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
-            <% if @product.errors.any? %>
-              <div class="form-group alert alert-error alert-block" id="error_explanation">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <% @product.errors.full_messages.each do |message| %>
-                  <h6 class="heading_error"><%= message%></h6>
-                <% end %>
-              </div>
+<div class="container-fluid">
+  <div class="col-md-12">
+    <div class="jumbotron" style="padding: 2.5em 0px 0px 0px;background:#FFFFFF;">
+      <%= form_with(model: @product, url: admin_product_path, method: :patch, local: true, html: {class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
+        <% if @product.errors.any? %>
+          <div class="form-group alert alert-error alert-block" id="error_explanation">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <% @product.errors.full_messages.each do |message| %>
+              <h6 class="heading_error"><%= message%></h6>
             <% end %>
+          </div>
+        <% end %>
+        <div class="row">
+          <% @images = @product.images %>
+          <%@images.each do |i|%>
+            <div class="col-md-3 col-xs-12">
+              <%= image_tag(i.avatar, style:"width:100%;height:13em;", class:"img-responsive img-thumbnail product_img")%>
+            </div>
+          <%end%>
+        </div>
+            <br>
             <div class="row">
               <div class="col-md-4 col-xs-12">
                 <%= f.label :category, "Category", class:"label" %><br />
@@ -21,6 +28,31 @@
               <div class="col-md-4 col-xs-12">
                 <%= f.label :title, "Title", class:"label" %><br />
                 <%= f.text_field :title, autofocus: true, placeholder: 'Item Title  (minimum 10 characters)', class: 'form-control', style:"font-size: 1em;", required: true %>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :price, "Price", class:"label" %><br />
+                <%= f.number_field :price, autofocus: true, placeholder: 'Enter the price of Item', class: 'form-control', style:"font-size: 1em;", required: true, min:"1" %>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <%= f.label :ticket_price, "Ticket Price", class:"label" %><br />
+                <%= f.select :ticket_price, options_for_select([ ["₦ 100", 100],["₦ 200", 200],["₦ 300", 300],["₦ 500", 500],["₦ 1000", 1000],["₦ 3000", 3000],["₦ 5000", 5000],["₦ 10000", 10000]  ]),{prompt: "Select Ticket Price"}, {class: 'form-control', style:"font-size: 0.9em;", required: true}%>
+              </div>
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <%= f.label :count_down, class: "label" %>
+                <br>
+                <%= f.datetime_select :count_down, {prompt: true, selected: Date.today, min: 5.days.ago, max: 1.year.from_now}, {class: 'form-control', style:"font-size: 0.8em;width:18.95%;display:inline-block;", required: true}%>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <%= f.label :short_description, "Short Description", class:"label" %><br />
+                <%= f.text_area :short_description, autofocus: true, placeholder: 'Tell people someting about Your item  (minimum 30 characters)', class: 'form-control', size: "4x4", style:"resize: none; font-size: 1em;", required: true %>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <%= f.label :long_description, "Description", class:"label" %><br />
+                <%= f.text_area :long_description, autofocus: true, placeholder: 'Tell people briefly about Your item  (minimum 30 characters)', class: 'form-control', size: "4x4", style:"resize: none; font-size: 1em;", required: true %>
               </div>
             </div>
             <%= f.submit "Save", style:"margin-top:1.2em;"%>

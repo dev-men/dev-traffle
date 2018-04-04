@@ -1,8 +1,49 @@
 <% content_for :title, "Contact Us | Traffle" %>
-  <div class="container-fluid my_top_div">
-    <div class="contact">
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li class="active"><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row main_row">
+  <h2 class="main_row_text">CONTACT US</h2>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<!--banner-->
+  <div class="container-fluid">
+    <div class="contact" style="border: 2px solid #BA4A00; border-radius:9px;margin-top:20px;padding-top:20px;">
       <div class="container">
-        <h3>Contact Us</h3>
         <div class="contact-grids">
           <div class="contact-form">
             <%= form_with(model: contact, local: true) do |form| %>
@@ -14,27 +55,30 @@
                   <% end %>
                 </div>
              <% end %>
-              <div class="contact-bottom">
-                <div class="col-md-4 in-contact">
+              <div class="row">
+                <div class="col-md-4">
                   <span style="color:#BA4A00">Name</span>
                   <%= form.text_field :name, autofocus: true, placeholder: 'Your Name', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
-                <div class="col-md-4 in-contact">
+                <div class="col-md-4">
                   <span style="color:#BA4A00">Email</span>
                   <%= form.email_field :email, autofocus: true, placeholder: 'Your Email', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
-                <div class="col-md-4 in-contact">
+                <div class="col-md-4">
                   <span style="color:#BA4A00">Phonenumber</span>
                   <%= form.number_field :phone_no, autofocus: true, placeholder: 'Your Number', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
                 </div>
                 <div class="clearfix"> </div>
               </div>
 
-              <div class="contact-bottom-top">
+              <div class="col-md-12">
                 <span style="color:#BA4A00">Message</span>
-                <%= form.text_area :message, autofocus: true, placeholder: 'Your Message', class: 'form-control', style:"font-size: 1em;color:#BA4A00;", required: true %>
-                </div>
-              <%= form.submit "Send", style:"float:right;background:#BA4A00;" %>
+                <%= form.text_area :message, autofocus: true, placeholder: 'Your Message', class: 'form-control', style:"resize: none;font-size: 1em;color:#BA4A00;", rows:5, required: true %>
+              </div>
+              <div class="col-md-12" style="margin-top:30px;margin-bottom:30px;">
+                <%= form.submit "Submit", style:"float:right;background:#FFFFFF;min-width:100px;padding:7px;border-radius:20px;color:#BA4A00;border: 2px solid #BA4A00;" %>
+              </div>
+
             </form>
           </div>
           <% end %>

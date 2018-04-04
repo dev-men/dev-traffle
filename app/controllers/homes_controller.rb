@@ -25,17 +25,30 @@ class HomesController < ApplicationController
         end
       end
     end
-    @size = @products.count
   end
 
   def search
+    @cat = params[:home][:category]
+    @search = params[:home][:search]
+    @products = []
+    @p = Product.where("category like ? AND title like ?",
+                  "%#{@cat}%", "%#{@search}%").order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p.each do |pro|
+      if pro.imageable_type == "User"
+        @u = User.find(pro.imageable_id)
+        if @u && @u.approve
+          @products << pro
+        end
+      elsif pro.imageable_type == "Admin"
+        @products << pro
+      end
+    end
   end
 
 
   def play
     @products = []
-    category = "Featured Items";
-    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
+    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
     @p.each do |pro|
       if pro.imageable_type == "User"
         @u = User.find(pro.imageable_id)

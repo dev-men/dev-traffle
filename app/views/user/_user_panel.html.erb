@@ -4,7 +4,7 @@
       <div class="navbar-header">
         <div class="col-md-12" style="padding:0px;">
           <button class="navbar-toggle" data-target="#mainNavCollapse" data-toggle="collapse" type="button">
-            <span class="glyphicon glyphicon-th-large" style="font-size:2em;"></span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
           </button>
           <center>
             <%if current_user.avatar.present? %>
@@ -31,15 +31,19 @@
           <hr style="height:4px;background:#DC7633;">
         </div>
       </div>
-      <div class="collapse navbar-collapse" id="mainNavCollapse">
-        <ul class="navbar-nav navbar-right">
-          <li><%= link_to  "Dashboard", user_dashboard_path(current_user) %></li><br>
-          <li><%= link_to  "My Profile", edit_user_registration_path %></li><br>
-          <li><%= link_to("Sell an Item",  new_user_product_path) %></li><br>
-          <li><%= link_to("My Items",  user_products_path) %></li><br>
-          <li><%= link_to("Approved Items",  approved_user_products_path) %></li><br>
-          <li><%= link_to("Un-Approved Items",  unapproved_user_products_path) %></li><br>
-          <li><%= link_to  "Logout", destroy_user_session_path, method: :delete %></li><br>
+      <div class="navbar-collapse collapse">
+      </div>
+      <div class="collapse navbar-collapse" id="mainNavCollapse" >
+        <ul class="navbar-nav navbar-left" style="list-style-type: none;">
+          <li><%= link_to  "Dashboard", user_dashboard_path(current_user), style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;"%></li><br>
+          <li><%= link_to  "My Profile", edit_user_registration_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;" %></li><br>
+          <li><%= link_to  "Notifications", user_notifications_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;" %></li><br>
+          <li><%= link_to  "Transactions", user_transactions_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;" %></li><br>
+          <li><%= link_to("Sell an Item",  new_user_product_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;") %></li><br>
+          <li><%= link_to("My Items",  user_products_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;") %></li><br>
+          <li><%= link_to("Approved Items",  approved_user_products_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;") %></li><br>
+          <li><%= link_to("Un-Approved Items",  unapproved_user_products_path, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;") %></li><br>
+          <li><%= link_to  "Logout", destroy_user_session_path, method: :delete, style:"text-decoration:none;padding:5px;margin:2px;text-align:left;float:left;" %></li><br>
         </ul>
       </div>
     </div>

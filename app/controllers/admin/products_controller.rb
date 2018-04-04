@@ -23,6 +23,8 @@ class Admin::ProductsController < ApplicationController
       @product.imageable_type = "Admin"
       @product.approve = true
     end
+    @product_total_tickets = params['product']['price'].to_i / params['product']['ticket_price'].to_i
+    @product.total_tickets = @product_total_tickets
     respond_to do |format|
       if @product.save
         format.html { redirect_to admin_products_path(current_user), notice: "Item created Successfully"  }
@@ -41,9 +43,11 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    @product_total_tickets = params['product']['price'].to_i / params['product']['ticket_price'].to_i
+    @product.total_tickets = @product_total_tickets
     if @product.update(product_params)
        flash[:notice] = "Item has been updated!"
-       redirect_to adminatom _products_path
+       redirect_to admin_product_path(@product)
     else
        render 'edit'
     end
@@ -71,7 +75,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def decline_product
-    #debugger
     @product = Product.find(params[:id])
     @product.approve = nil
     if @product.save
@@ -79,7 +82,7 @@ class Admin::ProductsController < ApplicationController
        product_id = @product.id
        user = User.where(:id => user_id).select("name").first
        user_name = user.name
-       set_noti_description =  user_name + " your Product " + @product.title + " has been decline by admin."
+       set_noti_description =  user_name + " your Product " + @product.title + " has been decline by admin. Kindly review Your product and submit again."
 
        set_approve_notification = Notification.new(:user_id => user_id, :product_id => product_id, :category => 5, :description => set_noti_description)
        if set_approve_notification.save
@@ -97,7 +100,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def unapproved_products
-
     @products = Product.where(approve: false).paginate(:page => params[:page], :per_page => 12)
   end
 
@@ -114,7 +116,7 @@ class Admin::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:category, :title, :total_tickets, :sold_tickets, :short_description, :long_description,
+      params.require(:product).permit(:category, :title, :total_tickets, :sold_tickets, :short_description, :long_description, :price, :ticket_price,
                                       :approve, :hot, :count_down, :user_id, :admin_id,
                                       images_attributes: [:id, :avatar, :product_id])
     end

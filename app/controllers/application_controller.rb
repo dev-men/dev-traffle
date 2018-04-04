@@ -31,7 +31,7 @@ use Rack::Cors
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :code, :number, :city, :state, :zip, :address, :country, :price, :avatar, :balance])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :number, :city, :state, :zip, :address, :country, :price, :avatar, :balance])
     end
 
     def set_carts_count
@@ -47,6 +47,7 @@ use Rack::Cors
       end
 
       session[:cart_price] = total_price_in_cart
+      session[:cart_count] = @count
     end
 
     def set_notifications
@@ -59,7 +60,6 @@ use Rack::Cors
              current_product_id = cp.id
              current_user_id = current_user.id
              current_user_name = current_user.name
-             #debugger
              #All tickets are sold and Count down time is over
              if cp.count_down < Time.current && cp.sold_tickets == cp.total_tickets
                if Notification.where("user_id = ? AND product_id = ? AND category = ? ", current_user.id,cp.id,2).first == nil
@@ -75,7 +75,7 @@ use Rack::Cors
                end
              elsif cp.count_down > Time.current && cp.sold_tickets == cp.total_tickets
                if Notification.where("user_id = ? AND product_id = ? AND category = ? ", current_user.id,cp.id,4).first == nil
-                   set_description = current_user_name + " your product " + cp.title + " all tickets are sold. It's time to select a winner or extend the product time."
+                   set_description = current_user_name + " your product " + cp.title + " all tickets are sold. It's time to select a winner."
                    set_notification = Notification.new(:user_id => current_user_id, :product_id => current_product_id, :category => 4, :description => set_description)
                    set_notification.save
                end

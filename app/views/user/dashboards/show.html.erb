@@ -1,9 +1,48 @@
 <% content_for :title, "Dashboard | Traffle" %>
-<div class="container-fluid my_top_div">
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<!--banner-->
+<div class="container-fluid">
   <div class="row">
     <center>
       <div class="container">
-        <div class="modal fade" id="addPhoto" style="margin-top:10em;">
+        <div class="modal fade" id="addPhoto">
           <div class="modal-dialog">
             <div class="modal-content">
               <!-- Header -->
@@ -55,143 +94,77 @@
     <%= render 'user/user_panel' %>
     <div class="col-md-9">
       <div class="jumbotron">
-        <h3><center>User Dashboard</center></h3>
         <div class="row" style="margin-top:1em;">
-          <div class="col-md-6" >
-            <div class="row jumbotron" style="background-color:#234565">
+          <div class="col-md-6 col-xs-12">
+            <div class="row" style="background-color:#FFFFFF;padding:15px;border-radius:5px;">
               <div class="col-md-12 col-xs-12">
-                <h4>My Wallet</h4>
-                <hr style="height:2px;background:#000000; margin-right:1em;">
+                <h4 class="my_text_color">My Wallet</h4>
+                <hr style="height:2px;background:#BA4A00;">
               </div>
               <div class="col-md-6 col-xs-12">
                 <div class="row">
                   <div class="col-md-12 col-xs-12">
-                    <label>Balance</label>
-                  </div>
-                  <div class="col-md-12 col-xs-12">
-                    <label>₦ <span>0</span></label>
+                    <label class="my_text_color">₦ <span><%= current_user.wallet%></span></label>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-xs-12">
-                <button class="btn btn-info" style="float:right;">Recharge</button>
-              </div>
-              <div class="col-md-12 col-xs-12">
-                <br>
-                <label>Transactions</label>
-              </div>
-              <div class="col-md-12 col-xs-12">
-                <br>
-                <h5>No Transactions found</label>
+                <%= link_to "Recharge", wallet_charge_user_dashboard_path, class:"btn wallet", style:"float:right;margin-bottom:1em;"%>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-             <div class="row jumbotron" style="background-color: #654321; padding-bottom: 7.5em;">
+          <div class="col-md-6 col-xs-12">
+             <div class="row" style="background-color:#FFFFFF;padding:15px;border-radius:5px;margin-bottom:1em;">
                <div class="col-md-12 col-xs-12">
-                 <h4>Cash Redemption</h4>
-                 <hr style="height:2px;background:#000000; margin-right:1em;">
+                 <h4 class="my_text_color">Cash Redemption</h4>
+                 <hr style="height:2px;background:#BA4A00;">
                </div>
-               <div class="col-md-12">
+               <div class="col-md-6 col-xs-12">
+                 <div class="row">
+                   <div class="col-md-12 col-xs-12">
+                     <label class="my_text_color">₦ <span><%= current_user.balance%></span></label>
+                   </div>
+                 </div>
                </div>
-               <div class="col-md-12 col-xs-12">
-                 <center><h3>No Available CASH Prizes</h3></center>
-               </div>
-               <div class="col-md-12 col-xs-12">
-                 <center><%= link_to("Request For withdraw", request_for_withdraw_user_withdraws_path, class:"btn btn-success")%></center>
+               <div class="col-md-6 col-xs-12">
+                 <%if current_user.balance > 0%>
+                  <%= link_to("Withdraw", request_for_withdraw_user_withdraws_path, style:"float:right;margin-bottom:1em;", class:"btn wallet")%>
+                <%end%>
                </div>
              </div>
           </div>
-          <div class="col-md-12">
-          </div>
-          <div class="col-md-12">
-             <div class="row jumbotron" style="background-color: #789456; padding-bottom: 7.5em;">
+        </div>
+        <br><br>
+        <div class="row" style="margin-top:2em;">
+          <div class="col-md-6 col-xs-12">
+             <div class="row" style="background-color:#FFFFFF;padding:15px;border-radius:5px;margin-bottom:1em;">
                <div class="col-md-12 col-xs-12">
-                 <h4>My Transactions</h4>
-                 <hr style="height:2px;background:#000000; margin-right:1em;">
+                 <h4 class="my_text_color">Draw History</h4>
+                 <hr style="height:2px;background:#BA4A00;">
                </div>
-               <div class="col-md-12">
+               <div class="col-md-6 col-xs-12">
+                 <h5 class="my_text_color">Draws Entered</h5>
                </div>
-               <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Transaction Detail</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @all_transactions.each do |n| %>
-                    <tr>
-                      <% @t = n.created_at.to_s%>
-                      <% @t = @t[0..18]%>
-                      <td>You commited a transaction of amount <bold><%= n.amount %> <label>₦ </label></bold> at <%= @t %></td>
-                    </tr>
-                  <% end  %>
-                </tbody>
-              </table>
-               <div class="col-md-12 col-xs-12">
-                 <center></center>
+               <div class="col-md-6 col-xs-12">
+                 <h5 class="my_text_color">Draws Won</h5>
+               </div>
+               <div class="col-md-6 col-xs-12">
+                 <h5 class="my_text_color"><span><%= @e%></span></h5>
+               </div>
+               <div class="col-md-6 col-xs-12">
+                 <h5 class="my_text_color"><span><%= @p%></span></h5>
                </div>
              </div>
           </div>
-          <div class="col-md-12">
-             <div class="row jumbotron" style="background-color: #789456; padding-bottom: 7.5em;">
+          <div class="col-md-6 col-xs-12">
+             <div class="row" style="background-color:#FFFFFF;padding:15px;border-radius:5px;margin-bottom:1em;">
                <div class="col-md-12 col-xs-12">
-                 <h4>Notifications</h4>
-                 <hr style="height:2px;background:#000000; margin-right:1em;">
-                 <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @all_notifications.each do |n| %>
-                      <tr>
-                        <td><%= n.description %></td>
-                      </tr>
-                    <% end  %>
-                  </tbody>
-                </table>
+                 <h4 class="my_text_color">Play History</h4>
+                 <hr style="height:2px;background:#BA4A00;">
                </div>
-             </div>
-          </div>
-          <div class="col-md-6">
-             <div class="row jumbotron" style="background-color: #789456; padding-bottom: 7.5em;">
                <div class="col-md-12 col-xs-12">
-                 <h4>Draw History</h4>
-                 <hr style="height:2px;background:#000000; margin-right:1em;">
+                 <h5 class="my_text_color">Tickets Purchased: <%= @t%></h5>
                </div>
-               <div class="col-md-12">
-               </div>
-               <div class="col-md-6 col-xs-12">
-                 <h5>Draws Entered</h5>
-               </div>
-               <div class="col-md-6 col-xs-12">
-                 <h5>Draws Won</h5>
-               </div>
-               <div class="col-md-6 col-xs-12">
-                 <h5><span>0</span></h5>
-               </div>
-               <div class="col-md-6 col-xs-12">
-                 <h5><span>0</span></h5>
-               </div>
-             </div>
-          </div>
-          <div class="col-md-6">
-             <div class="row jumbotron" style="background-color: #789456; padding-bottom: 7.5em;">
-               <div class="col-md-12 col-xs-12">
-                 <h4>Play History</h4>
-                 <hr style="height:2px;background:#000000; margin-right:1em;">
-               </div>
-               <div class="col-md-12">
-               </div>
-               <div class="col-md-6 col-xs-12">
-                 <h5>Tickets Purchased:</h5>
-               </div>
-               <div class="col-md-6 col-xs-12">
-                 <h5>0</h5>
-               </div>
-
              </div>
           </div>
         </div>

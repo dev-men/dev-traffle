@@ -1,86 +1,107 @@
 <% content_for :title, "Un-approved Items | Traffle" %>
-<div class="container-fluid my_top_div">
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<!--banner-->
+<div class="container-fluid">
   <div class="row">
-    <%= render 'user/user_panel'%>
-    <div class="row">
-      <center>
-        <div class="container">
-          <div class="modal fade" id="addPhoto" style="margin-top:10em;">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <!-- Header -->
-                <div class="modal-header" style="background: #F5CBA7;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <center><h4 class="heading_text" style="color:white;">Choose Avatar</h4></center>
-                </div>
-                <!-- Body (form) -->
-                <div class="modal-body">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <center>
-                          <%= form_for :user, url: change_image_user_dashboard_path(current_user.id), html: { multipart: true } do |form| %>
-                          <%if current_user.avatar.present? %>
-                          <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
-                          <%elsif current_user.image_url != nil%>
-                          <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
-                          <%else %>
-                          <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
-                          <%end%>
-                          <%= form.file_field :avatar, id:"post-upload",class: "btn btn-info" %>
-                          <h4 class="heading_text" style="font-style: italic;color:#2DBF7F;font-weight:normal;">Preview</h4>
-                        </center>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
+    <center>
+      <div class="container">
+        <div class="modal fade" id="addPhoto">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Header -->
+              <div class="modal-header" style="background: #F5CBA7;">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <center><h4 class="heading_text" style="color:white;">Choose Avatar</h4></center>
+              </div>
+              <!-- Body (form) -->
+              <div class="modal-body">
+                <div class="form-group">
                   <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-                      <%= form.submit "Save", class:"btn btn-success btn-block" %>
+                    <div class="col-md-12">
+                      <center>
+                        <%= form_for :user, url: change_image_user_dashboard_path(current_user.id), html: { multipart: true } do |form| %>
+                        <%if current_user.avatar.present? %>
+                          <%= image_tag (current_user.avatar(:original)),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                        <%elsif current_user.image_url != nil%>
+                          <%= image_tag (current_user.image_url),id: 'postimg',class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                        <%else %>
+                          <%= image_tag ("user.png"),id: 'postimg', class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                        <%end%>
+                        <%= form.file_field :avatar, id:"post-upload",class: "btn btn-info" %>
+                        <h4 class="heading_text" style="font-style: italic;color:#2DBF7F;font-weight:normal;">Preview</h4>
+                      </center>
                     </div>
-                    <div class="col-md-3">
-                      <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
-                    </div>
-                    <div class="col-md-3"></div>
                   </div>
-                <% end %>
                 </div>
+              </div>
+              <div class="modal-footer">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-3">
+                    <%= form.submit "Save", class:"btn btn-success btn-block" %>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              <% end %>
               </div>
             </div>
           </div>
         </div>
-      </center>
-    </div>
+      </div>
+    </center>
+  </div>
+  <div class="row">
+    <%= render 'user/user_panel'%>
     <div class="col-md-9">
       <div class="products">
-    		<h2>Un-approved Items</h2>
+    		<h2 style="text-align:center;">Un-approved Items</h2>
         <hr style="background:#BA4A00;height:2px;">
         <div class="col-md-12">
-          <% @products.each do |p|%>
-            <div class="col-md-4 col-md4" style="margin-bottom:1em;">
-              <div class="col-md1 simpleCart_shelfItem">
-                <% if p.images[0] %>
-                  <%= link_to user_product_path(p.id) do %>
-                    <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
-                  <%end%>
-                <%else%>
-
-                <%end%>
-                <h3><a href="#"><%= p.title%></a></h3>
-                <div class="row">
-                  <div class="col-md-4">
-                  </div>
-                  <div class="col-md-4">
-                    <%= link_to("Edit", edit_user_product_path(p.id), class:"btn btn-md btn-info") %>
-                  </div>
-                  <div class="col-md-4">
-                  </div>
-                </div>
-              </div>
+          <% @products.each do |p| %>
+            <div class="col-md-6" style="margin-top:15px;">
+              <%= render :partial => 'item', locals: {p: p} %>
             </div>
-          <%end%>
+          <% end %>
         </div>
         <center>
           <%= will_paginate @product, renderer: BootstrapPagination::Rails %>

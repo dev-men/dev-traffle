@@ -1,0 +1,64 @@
+<!-- Modal -->
+<center>
+  <div id="my_item<%=p.id%>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background:#BA4A00;color:#FFFFFF;">
+          <button type="button" class="close" data-dismiss="modal" style="color:#FFFFFF;font-size:20px;font-weight:bold;">&times;</button>
+          <h4 class="modal-title"><%= p.title%></h4>
+        </div>
+        <div class="modal-body">
+          <% @images = p.images%>
+          <div class="row">
+            <% @images.each do |i|%>
+              <div class="col-md-3 col-xs-6">
+                <%= image_tag(i.avatar, class:"img-responsive img-thumbnail", style:"width:100%;height:150px;")%>
+              </div>
+            <%end%>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-xs-12">
+              <h4 class="admin_key">Item ID: </h4> <h4 class="admin_value"><%= p.id%></h4>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <h4 class="admin_key">Item Category: </h4> <h4 class="admin_value"><%=p.category%></h4>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h4 class="admin_key">Total Tickets: </h4> <h4 class="admin_value"><%= p.total_tickets %></h4>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h4 class="admin_key">Sold Tickets: </h4> <h4 class="admin_value"><%= p.sold_tickets %></h4>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12 col-xs-12">
+            </div>
+            <br>
+            <div class="col-md-12">
+              <h4 class="admin_value_1" style="margin:0px; word-break: normal;"><%= p.short_description %></h4>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12">
+              <h4 class="admin_value_1" style="margin:0px; word-break: normal;"><%= p.long_description %></h4>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <%= link_to("Edit Product", edit_user_product_path(p.id), class:"btn btn-info")%>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
+<div class="simpleCart_shelfItem">
+  <a class="product_title_display" data-toggle="modal" data-target="#my_item<%=p.id%>">
+    <%= image_tag(p.images[0].avatar, class:"img-responsive display_image")%>
+    <h4 style="margin-left:7px;"><%= p.title%></h4>
+    <h5 style="margin-left:7px;">‎₦<%= p.ticket_price%></h5>
+  </a>
+</div>

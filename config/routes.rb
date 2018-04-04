@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   resources :contacts, :only => [:index, :show, :new, :create, :destroy]
   namespace :api, defaults: {format: :json} do
        namespace :v1 do
@@ -30,9 +32,12 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :profiles
+    resources :transactions, :only=> [:index]
     resources :dashboards do
       member do
         post :change_image
+        get :wallet_charge
+        post :add
       end
     end
     resources :products do
@@ -61,6 +66,7 @@ Rails.application.routes.draw do
       member do
         get :select_winner
         get :select_one_option
+        get :received
       end
     end
     resources :withdraws do

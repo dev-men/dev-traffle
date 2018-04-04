@@ -15,9 +15,13 @@
           <div class="col-md-5 grid col-xs-12">
         		<div class="flexslider">
               <ul class="slides">
-                <% if @user.provider != nil %>
-                  <div class="thumb-image"> <%= image_tag(@user.image_url, data: { 'imagezoom' => true}, class:"img-responsive")%></div>
-                <% end %>
+                <%if @user.avatar.present? %>
+                  <%= image_tag (@user.avatar(:original)), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                <%elsif @user.image_url != nil%>
+                  <%= image_tag (@user.image_url), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                <%else %>
+                  <%= image_tag ("user.png"), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+                <%end%>
               </ul>
         		</div>
         	</div>
@@ -70,14 +74,14 @@
                 </div>
                 <% if @user.approve == true %>
                   <div class="col-md-3 col-xs-12">
-                    <%= link_to("Block", block_user_admin_user_path(@user.id), class:"btn btn-block block_decline_button")%>
+                    <%= link_to("Block", block_user_admin_user_path(@user.id), class:"btn btn-block btn-danger")%>
                   </div>
                   <div class="col-md-3 col-xs-12">
-                    <%= link_to("Delete", remove_user_admin_user_path(@user.id), class:"btn btn-block block_decline_button")%>
+                    <%= link_to("Delete", remove_user_admin_user_path(@user.id), class:"btn btn-block btn-danger")%>
                   </div>
                 <% else %>
                   <div class="col-md-6 col-xs-12">
-                    <%=  link_to("UnBlock", unblock_user_admin_user_path(@user.id), class:"btn btn-block show_button") %>
+                    <%=  link_to("Unblock", unblock_user_admin_user_path(@user.id), class:"btn btn-block btn-success") %>
                   </div>
                 <% end %>
 

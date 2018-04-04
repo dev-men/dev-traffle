@@ -1,0 +1,81 @@
+ul.navbar-nav li a{
+ color:#BA4A00;font-size:14px;padding:20px
+}
+.mainmenu-area ul.navbar-nav li:hover a,.mainmenu-area ul.navbar-nav li.active a{
+ background:#BA4A00;color:#fff
+}
+.mainmenu-area .nav>li>a:focus{
+ color:#fff
+}
+.slider-area{
+ width:80%;position:relative;margin:0 auto;padding:5px
+}.block-slider{border:0;width:100%}
+.block-slider ul li{
+ list-style:none
+}
+.block-slider .bx-pager{
+ display:none
+}
+.block-slider .bx-prev,.block-slider .bx-next{
+ width:32px;height:32px;border:1px solid
+}
+a.add-to-cart-link {
+ top:32%
+}
+.single-product:hover .product-hover a.view-details-link{
+ bottom:32%
+}
+.single-product:hover .product-hover:after{
+  left:0
+}
+.product-carousel{
+  padding-top:40px
+}
+.latest-product .owl-nav{
+  position:absolute;right:0;top:0
+}
+.latest-product .owl-nav div,.related-products-wrapper .owl-nav div{
+  background:salmon;color:#fff;display:inline-block;margin-left:15px;padding:1px 10px
+}
+.latest-product .owl-nav div:hover,.brand-wrapper .owl-nav div:hover,.related-products-wrapper .owl-nav div:hover{
+  color:#fff;background:#f95f5f
+}
+.brand-list{
+  padding-top:40px
+}
+.brand-list .owl-nav{
+  position:absolute;right:0;top:0
+}
+.brand-wrapper .owl-nav div{
+  border:1px solid #fff;color:#fff;display:inline-block;margin-left:15px;padding:1px 10px
+}
+.brand-wrapper .owl-nav div{
+  background:salmon;color:#fff;display:inline-block;margin-left:15px;padding:1px
+}
+.single-wid-product h2 a:hover,.single-product h2 a:hover{
+  color:#5a88ca;
+}
+.wid-view-more{
+  background:none repeat scroll 0 0 #5a88ca;color:#fff;padding:3px 15px;position:absolute;right:10px;top:3px;
+}
+.wid-view-more:hover{
+  color:#fff;background-color:#222;text-decoration:none;
+}
+.single-product-widget{
+  position:relative
+}
+.product-widget-area{
+  padding-bottom:30px;padding-top:30px
+}
+.product-widget-area .zigzag-bottom{
+  background:#f4f4f4
+}
+.footer-top-area .zigzag-bottom{
+  background:#f4f4f4
+}
+.footer-top-area{
+  background:none repeat scroll 0 0 #333;color:#999;padding:35px 0 180px
+}
+.owl-nav{
+  position:absolute;right:0;top:-56px
+}

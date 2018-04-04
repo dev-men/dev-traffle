@@ -1,6 +1,7 @@
 .admin_heading{
   color: #BA4A00;
   font-weight:bold;font-family: 'Merriweather', serif;cursor: pointer;
+  font-size: 19px;
 }
 .admin_border{
   border: 3px solid #BA4A00;
@@ -12,6 +13,10 @@
   font-family: 'Merriweather', serif;cursor: pointer;
 }
 .admin_value{
+  color: #BA4A00;text-align: right;float: right;margin-left: 10px;margin-top: 10px;
+  font-family: 'Merriweather', serif;cursor: pointer;
+}
+.admin_value_1{
   color: #BA4A00;text-align: left;float: left;margin-left: 10px;margin-top: 10px;
-  font-weight:bold;font-family: 'Merriweather', serif;cursor: pointer;
+  font-family: 'Merriweather', serif;cursor: pointer;margin-bottom: 15px;
 }

@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.order("id DESC").paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /contacts/1
@@ -29,7 +29,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to root_path, notice: 'Contact was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Your request is submitted successfully.' }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }

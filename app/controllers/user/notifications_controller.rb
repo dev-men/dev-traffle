@@ -1,7 +1,9 @@
 class User::NotificationsController < ApplicationController
   before_action :authenticate_user!
+  def index
+    @notifications = current_user.notifications.order("id DESC")
+  end
   def update
-    #debugger
     if params[:key].to_i == 1
       update_notification_obj = Notification.find_by_id(params[:id])
       update_notification_obj.read = true
@@ -44,24 +46,33 @@ class User::NotificationsController < ApplicationController
 
      @notification.read = true
      @notification.save
-     # product_total_tickets.time{
-     #
-     #
-     # }
   end
 
   def select_one_option
-  #  debugger
     @notification_id = params[:id]
     @notification = Notification.find_by_id(params[:id])
     @notification.read = true
     @notification.save
     @product_id = @notification.product_id
-
   end
 
   def show
+    @notification = Notification.find(params[:id])
+    @product = Product.find(@notification.product_id)
+  end
+
+  def received
     #debugger
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:pid])
+    @owner = User.find(@product.imageable_id)
+    @total = @product.sold_tickets * @product.ticket_price
+    @admin_revenue = @total*0.1
+    @owner_revenue = @total - @admin_revenue
+    @owner.balance = @owner.balance + @owner_revenue
+    @owner.save
+    @notification = Notification.find(params[:nid])
+    @notification.read = true
+    @notification.save
+    redirect_to root_path
   end
 end

@@ -1,21 +1,22 @@
 <% content_for :title, "Approved Items | Traffle" %>
-<div class="container-fluid" style="padding-top:5em;padding-bottom:2em;">
+<div class="container-fluid" style="padding-bottom:5em;">
   <div class="row">
     <div class="col-md-12">
       <div class="products">
-        <h2>All Approved Items</h2>
+        <h2 style="text-align:center;">All Approved Items</h2>
         <hr style="background:#BA4A00;height:2px;">
         <div class="col-md-12">
           <% @products.each do |p|%>
-            <div class="col-md-4 col-md4" style="margin-bottom:1em;">
+            <div class="col-md-4 col-md4">
               <div class="col-md1 simpleCart_shelfItem">
                 <% if p.images[0] %>
-                  <%= link_to admin_product_path(p.id) do %>
-                    <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
+                  <%= link_to admin_product_path(p.id), class:"product_title_display" do %>
+                    <%= image_tag(p.images[0].avatar, class:"img-responsive display_image")%>
+                    <h4 style="margin-left:7px;"><%= p.title%></h4>
+                    <h5 style="margin-left:7px;"><%= p.category%></h5>
+                    <h5 style="margin-left:7px;">‎₦<%= p.ticket_price%></h5>
                   <%end%>
                 <%end%>
-                <h3><a href="#"><%= p.title%></a></h3>
-                <h3><a href="#"><%= p.category%></a></h3>
               </div>
             </div>
           <%end%>

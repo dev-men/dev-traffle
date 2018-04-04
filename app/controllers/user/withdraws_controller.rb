@@ -8,6 +8,9 @@ class User::WithdrawsController < ApplicationController
       desc = current_user.name + " has requested his funds for withdraw. His balance is: " + current_user.balance.to_s
       @request = Request.new(:user_id => current_user.id, :description => desc, :status => false)
       @request.save
+      @user = User.find(current_user.id)
+      @user.balance = 0.0
+      @user.save
       flash[:notice] = "Your request for withdraw balance is send to admin!"
       redirect_to user_dashboard_path(current_user.id)
     end
@@ -38,8 +41,13 @@ class User::WithdrawsController < ApplicationController
     desc = current_user.name + " has requested his funds for withdraw. His balance is: " + current_user.balance.to_s
     @request = Request.new(:user_id => current_user.id, :description => desc, :status => false)
     @request.save
+    @user = User.find(current_user.id)
+    @user.balance = 0.0
+    @user.save
     flash[:notice] = "Your request for withdraw balance is send to admin!"
     redirect_to user_dashboard_path(current_user.id)
+
+
 
   end
 

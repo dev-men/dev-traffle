@@ -13,13 +13,9 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require datatables
-//= require zoomimage
-//= require flexsliderjquery
-//= require magnifixpopup
-//= require meme
-//= require trafflecart
-//= require wow.min
 //= require custom
+//= require slider
+//= require script
 
 //= require rails-ujs
 //= require turbolinks
