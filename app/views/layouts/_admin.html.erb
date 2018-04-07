@@ -1,4 +1,3 @@
-
 <div class="row" style="margin:0px;padding:0px;">
   <div class="col-md-2 col-x-12">
     <center>
@@ -26,13 +25,29 @@
         <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
           <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
             <li style="padding:0px;margin:0px;"><%= link_to "Dashboard", root_path%></li>
-            <li style="padding:0px;margin:0px;"><%= link_to("All Users", admin_users_path) %></li>
-            <li style="padding:0px;margin:0px;"><%= link_to("Blocked Users", all_blocked_users_admin_users_path) %></li>
-            <li style="padding:0px;margin:0px;"><%= link_to("All Items",  admin_products_path) %></li>
-            <li style="padding:0px;margin:0px;"><%= link_to("Approved Items",  approved_products_admin_products_path) %></li>
-            <li style="padding:0px;margin:0px;"><%= link_to("Unapproved Items",  unapproved_products_admin_products_path) %></li>
+            <li>
+              <div class="adminmydropdown">
+                <a class="adminmydropbtn">Traffle Users <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></a>
+                <div class="adminmydropdown-content">
+                  <%= link_to("All Users", admin_users_path) %>
+                  <%= link_to("Blocked Users", all_blocked_users_admin_users_path) %>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="adminmydropdown">
+                <a class="adminmydropbtn">Traffle Items <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></a>
+                <div class="adminmydropdown-content">
+                  <%= link_to("All Items",  admin_products_path) %>
+                  <%= link_to("Approved Items",  approved_products_admin_products_path) %>
+                  <%= link_to("Unapproved Items",  unapproved_products_admin_products_path) %>
+                </div>
+              </div>
+            </li>
+
             <li style="padding:0px;margin:0px;"><%= link_to("Add New Item",  new_admin_product_path) %></li>
             <li style="padding:0px;margin:0px;"><%= link_to("My Item",  my_products_admin_products_path) %></li>
+            <li style="padding:0px;margin:0px;"><%= link_to("Withdraw Requests",  admin_requests_path) %></li>
             <li style="padding:0px;margin:0px;"><%= link_to("Support",  contacts_path) %></li>
           </ul>
         </div>

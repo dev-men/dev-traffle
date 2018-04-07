@@ -7,7 +7,6 @@ class Admin::UsersController < ApplicationController
     @users = User.where(approve: true)
   end
 
-
   def show
     @user_products = @user.products
   end
@@ -27,7 +26,6 @@ class Admin::UsersController < ApplicationController
 
   def all_blocked_users
     @users = User.where(approve: false)
-    #debugger
   end
 
   def unblock_user

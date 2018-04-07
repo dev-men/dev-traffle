@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20180331151006) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.boolean "status"
+    t.boolean "status", default: false
     t.string "description"
     t.integer "user_id"
     t.datetime "created_at", null: false

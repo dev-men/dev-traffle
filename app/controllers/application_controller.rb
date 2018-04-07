@@ -82,7 +82,7 @@ use Rack::Cors
              end
            end
          end
-         @current_user_notifications = current_user.notifications.where(:read => false)
+         @current_user_notifications = current_user.notifications.where(:read => false).order("id DESC")
       end
     end
 

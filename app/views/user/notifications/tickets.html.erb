@@ -1,4 +1,4 @@
-<% content_for :title, "Start Playing | Traffle" %>
+<% content_for :title, "Select Winner| Traffle" %>
 <div class="container-fluid" style="background:#F5CBA7;">
   <div class="mainmenu-area">
     <div class="container-fluid">
@@ -26,9 +26,6 @@
     </div>
   </div>
 </div>
-<div class="row main_row">
-  <h2 class="main_row_text">PLAY NOW</h2>
-</div>
 <div class="row" >
   <% if notice %>
     <div id="notice_wrapper" class="my_notice">
@@ -40,19 +37,59 @@
     </div>
   <% end %>
 </div>
-<div class="container-fluid" style="padding-top:2em;padding-bottom:2em;">
-  <div class="products">
-		<div class="col-md-12">
-      <div class="content-top1">
-        <% @products.each do |p| %>
-          <div class="col-md-4" style="margin-top:15px;">
-            <%= render :partial => 'item', locals: {p: p} %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+<br><br>
+<div class="row" style="margin-top:3em;">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
     <center>
-      <%= will_paginate @p, renderer: BootstrapPagination::Rails %>
+      <h4 style="color:#BA4A00;"><%= @notification.description%></h4>
+      <br><br>
     </center>
   </div>
+  <div class="col-md-1"></div>
+</div>
+<div class="row">
+  <div class="jumbotron" style="background-color:rgba(255,255,255,1);padding-top:1em;padding-bottom:1em;border-radius:0px 0px 0px 0px;">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 table-responsive">
+        <center>
+          <br>
+          <table class="table table-bordered table-striped">
+            <thead class="table_header">
+              <tr>
+                <th style="font-size:1.2em;">
+                  <h4 style="text-align:center;color:#BA4A00;">DETAIL</h4>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @tickets.each do |t| %>
+                <tr>
+                  <td>
+                    <% @str = t.created_at.to_s %>
+                    <% @str = @str.tr('UTC', '')%>
+                    <p style="color:#BA4A00;text-align:left;font-size:15px;"><%= t.user.name %> bought ticket for this product at <%= @str%></p>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+        </center>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row" style="margin-top:3em;">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <center>
+      <%= link_to "Ready for DRAW?", select_winner_user_notification_path(@notification.id, key: @notification.category), class:"btn btn-block btn-success", style:"padding:20px;font-size:20px;"%>
+      <br><br><br><br>
+    </center>
+  </div>
+  <div class="col-md-1"></div>
 </div>

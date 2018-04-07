@@ -22,7 +22,7 @@
               <% @s = p.sold_tickets * 1.0 %>
               <% @t = p.total_tickets*1.0 %>
               <% @a  = @s / @t %>
-              <%= progress_bar @a, label: true, alternative: 'info', active: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px" %>
+                <%= progress_bar @a, alternative: 'success', label: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px;" %>
             </div>
           </div>
           <div class="row">
@@ -115,7 +115,7 @@
       <% @s = p.sold_tickets * 1.0 %>
       <% @t = p.total_tickets*1.0 %>
       <% @a  = @s / @t %>
-      <%= progress_bar @a, label: true, alternative: 'info', active: true, style: "color:#BA4A00;height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px"  %>
+      <%= progress_bar @a, alternative: 'success', label: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px;" %>
     </div>
 
     <div class="col-md-1 col-xs-1" style="height:4em;">

@@ -16,11 +16,13 @@
               <div class="mydropdown-content" style="width:255%;">
                 <% @current_user_notifications.each do |i| %>
                   <% if i.category == 2 || i.category == 4%>
-                    <%= link_to i.description, select_winner_user_notification_path(i.id, key: i.category) %>
-                    <% elsif i.category == 3 %>
-                      <%= link_to i.description, select_one_option_user_notification_path(i.id, key: i.category) %>
+                    <%= link_to i.description, tickets_user_notification_path(i.id, key: i.category) %>
+                  <% elsif i.category == 3 %>
+                      <%= link_to i.description, tickets_user_notifications_path(i.id, key: i.category) %>
                   <% elsif i.category == 6 %>
                     <%= link_to i.description, user_notification_path(i.id) %>
+                  <% elsif i.category == 7 %>
+                    <%= link_to i.description, read_user_notification_path(i.id) %>
                   <% else %>
                     <%= link_to i.description, user_notification_path(i.id, key: i.category), method: :patch %>
                   <%end%>
@@ -113,7 +115,7 @@
               <% if user_signed_in? %>
                 <p class="text-shopping-cart cart-total-full" style="font-size:11px;color:#85929E;"><%= session[:cart_count]%> item(s) - ₦ <%=session[:cart_price]%> </p>
               <%else%>
-                <p class="text-shopping-cart cart-total-full" style="font-size:11px;color:#85929E;">0 item - ₦ 0%> </p>
+                <p class="text-shopping-cart cart-total-full" style="font-size:11px;color:#85929E;">0 item - ₦ 0 </p>
               <%end%>
             </div>
           </div>

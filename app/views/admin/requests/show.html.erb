@@ -1,13 +1,6 @@
-<script>
- $(document).ready(function() {
-   $('.flexslider').flexslider({
-     animation: "slide",
-     controlNav: "thumbnails"
-   });
- });
-</script>
-<% content_for :title, "Item | Traffle" %>
-<div class="container-fluid" style="padding-bottom:3em;">
+<% content_for :title, "Withdraw Request | Traffle" %>
+<div class="container">
+  <br><br><br>
   <div class="row">
     <div class="col-md-12">
       <div class="single">
@@ -24,6 +17,48 @@
                 <%end%>
               </ul>
         		</div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                  <h1 class="admin_heading">Account's Details</h1>
+                  <br>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Name: </h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_value_1"><%= @user.recipient.name%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Account Number: </h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_value_1"><%= @user.recipient.account_number%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Bank Code: </h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_value_1"><%= @user.recipient.bank_code%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">PayStack Recipient Code: </h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_value_1"><%= @user.recipient.recipient_code%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">PayStack Recipient ID: </h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_value_1"><%= @user.recipient.paystack_recipient_id%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Description: </h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_value_1"><%= @user.recipient.description%></h4>
+              </div>
+            </div>
         	</div>
 
           <div class="col-md-7 col-xs-12">
@@ -76,22 +111,16 @@
             </div>
               <br><br>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                 </div>
-                <% if @user.approve == true %>
-                  <div class="col-md-3 col-xs-12">
-                    <%= link_to("Block", block_user_admin_user_path(@user.id), class:"btn btn-block btn-danger")%>
-                  </div>
-                  <div class="col-md-3 col-xs-12">
-                    <%= link_to("Delete", remove_user_admin_user_path(@user.id), class:"btn btn-block btn-danger")%>
-                  </div>
-                <% else %>
-                  <div class="col-md-6 col-xs-12">
-                    <%=  link_to("Unblock", unblock_user_admin_user_path(@user.id), class:"btn btn-block btn-success") %>
-                  </div>
-                <% end %>
-
-                <div class="col-md-3">
+                <div class="col-md-8">
+                  <center>
+                    <%= link_to("Funds Transfered",  transfer_admin_request_path(@request), class:"btn btn-block btn-success") %>
+                    <br>
+                    <p style="color:#BA4A00;">Press this button after transfering funds from Your PAYSTACK ADMIN PANEL</p>
+                  </center>
+                </div>
+                <div class="col-md-2">
                 </div>
               </div>
           </div>
@@ -99,29 +128,5 @@
       </div>
     </div>
   </div>
-</div>
-<div class="container-fluid" style="padding-top:5em;padding-bottom:2em;">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="products">
-        <h2>User's Items</h2>
-        <hr style="background:#BA4A00;height:2px;">
-        <div class="col-md-12">
-          <% @user_products.each do |p|%>
-            <div class="col-md-4 col-md4" style="margin-bottom:1em;">
-              <div class="col-md1 simpleCart_shelfItem">
-                <% if p.images[0] %>
-                  <%= link_to product_detail_admin_user_path(p.id) do %>
-                    <%= image_tag(p.images[0].avatar, class:"img-responsive")%>
-                  <%end%>
-                <%end%>
-                <h3><a href="#"><%= p.title%></a></h3>
-                <h3><a href="#"><%= p.category%></a></h3>
-              </div>
-            </div>
-          <%end%>
-        </div>
-      </div>
-    </div>
-  </div>
+</br></br></br></br>
 </div>

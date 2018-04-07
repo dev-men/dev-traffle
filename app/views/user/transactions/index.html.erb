@@ -100,7 +100,7 @@
             <% @t = n.created_at.to_s%>
             <% @t = @t[0..18]%>
             <li style="width:100%;color:#BA4A00;border: 1px solid #BA4A00;background:#FFFFFF;padding:10px;">
-              You commited a transaction of amount <bold><%= n.amount %> <label>₦ </label></bold> at <%= @t %>
+              You commited a transaction of amount: <b>₦<%= n.amount %></b> at <%= @t%>. Your Paystack Reference Number is: <b><%= n.reference%></b> and Paystack Transaction ID is: <b><%= n.paystack_transaction_id%></b>
             </li>
           <%end%>
         <ul>

@@ -1,6 +1,14 @@
 <% content_for :title, "Home | Traffle" %>
 <div class="container" style="padding-top:2em;">
   <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <div class="jumbotron" style="padding:5px;">
+        <center>
+          <h4 class="admin_heading">Total Account Balance:</h4>
+          <h3 class="admin_heading">₦ <%= @account_balance%></h3>
+        </center>
+      </div>
+    </div>
     <div class="col-md-4 col-xs-12">
       <div class="jumbotron" style="padding:5px;">
         <center>
@@ -44,6 +52,12 @@
       </div>
     </div>
     <div class="col-md-4 col-xs-12">
+      <div class="jumbotron" style="padding:5px;">
+        <center>
+          <h4 class="admin_heading">Total Withdraw Request By Users:</h4>
+          <h3 class="admin_heading"><%= @requests %></h3>
+        </center>
+      </div>
     </div>
   </div>
   <div class="row">

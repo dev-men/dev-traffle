@@ -42,6 +42,10 @@
     <div class="col-md-12">
       <div class="jumbotron" style="padding:2em 0px 0px 0px; background:#FFFFFF;">
         <center>
+            <div class="row">
+              <h5 style="font-size:16px;color:#BA4A00;">Kindly ship the product to winner as soon as possible to get Your revenue.</h5>
+            </div>
+            <br>
             <p class="title">Winner's Profile</p>
             <%if @winner.avatar.present? %>
               <%= image_tag (@winner.avatar(:original)), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
@@ -81,7 +85,7 @@
               <div class="col-md-6 col-xs-12">
                 <div class="row">
                   <div class="col-md-12 col-xs-12">
-                    <h4 class="admin_key">DOB: </h4> <h4 class="admin_value"><%= @winner.dob%></h4>
+                    <h4 class="admin_key">Email: </h4> <h4 class="admin_value"><%= @winner.email%></h4>
                   </div>
                 </div>
               </div>
@@ -123,7 +127,7 @@
               </div>
               <div class="col-md-12 col-xs-12">
                 <div class="row">
-                  <div class="col-md-12 col-xs-12"><h4 class="admin_key">Country: </h4> <h4 class="admin_value"><%= @winner.country%></h4><h4 class="admin_key">Zip: </h4> <h4 class="admin_value"><%= @winner.zip%></h4>
+                  <div class="col-md-12 col-xs-12"><h4 class="admin_key">Country: </h4> <h4 class="admin_value"><%= @winner.country%></h4></h4>
                   </div>
                 </div>
               </div>

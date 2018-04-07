@@ -67,6 +67,8 @@ Rails.application.routes.draw do
         get :select_winner
         get :select_one_option
         get :received
+        get :tickets
+        get :read
       end
     end
     resources :withdraws do
@@ -79,6 +81,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :homes
+    resources :requests do
+      member do
+        get :transfer
+      end
+    end
     resources :users do
       collection do
         get :all_blocked_users

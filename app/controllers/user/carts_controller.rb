@@ -139,13 +139,13 @@ class User::CartsController < ApplicationController
         amount = params[:amount][:price].to_i
         amount = amount * 100
         transactions = PaystackTransactions.new(paystackObj)
-         result = transactions.initializeTransaction(
-             :amount => amount,
-             :email => current_user.customer.email
-           )
-           session['access_code'] = result['data']['access_code']
-           session['reference'] = result['data']['reference']
-           session['payment'] = 0
+        result = transactions.initializeTransaction(
+         :amount => amount,
+         :email => current_user.customer.email
+        )
+        session['access_code'] = result['data']['access_code']
+        session['reference'] = result['data']['reference']
+        session['payment'] = 0
         @auth_url = result['data']['authorization_url']
       end
     else
@@ -185,29 +185,30 @@ class User::CartsController < ApplicationController
         paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
     	  transactions = PaystackTransactions.new(paystackObj)
     	  result = transactions.verify(transaction_reference)
-        debugger
         if result['status'] == true && result['data']['status'] == 'success'
            amount = result['data']['amount'].to_i / 100
            transaction_history = Transaction.new(:reference => result['data']['reference'], :access_code => session['access_code'], :amount => amount, :paystack_transaction_id => result['data']['id'], :user_id => current_user.id)
            transaction_history.save
-
            user_carts = current_user.carts
            user_carts.each do |current_cart|
-
              product_id =  current_cart.product_id
              product = Product.find(product_id)
              @total_tickets = current_cart.total_price / product.ticket_price
              product.sold_tickets = product.sold_tickets + @total_tickets
+             @total_tickets.round
              product.save
-             @total_tickets.times{
+             @total_tickets.to_i.times{
                tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => product.ticket_price)
                tickets_purchased.save
              }
            end
-
+           @user = User.find(current_user.id)
+           @user.wallet = 0
+           @user.save
            current_user.carts.destroy_all
 
            flash[:notice] = "Your Transaction is successfully committed."
+           redirect_to user_dashboard_path(current_user)
         else
           flash[:alert] = "Your Transaction is not completed!"
           redirect_to root_path

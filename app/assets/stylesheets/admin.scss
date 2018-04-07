@@ -20,3 +20,64 @@
   color: #BA4A00;text-align: left;float: left;margin-left: 10px;margin-top: 10px;
   font-family: 'Merriweather', serif;cursor: pointer;margin-bottom: 15px;
 }
+
+
+
+.adminmydropbtn {
+    background-color: #F5CBA7;
+    color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 13px;
+    border: none;
+    min-height: 40px;
+    text-align: center;
+    text-decoration: none;
+}
+.adminmydropbtn:hover{
+  background-color: #BA4A00;
+  color:#FFFFFF;
+  text-decoration: none;
+}
+.adminmydropdown {
+    margin-top: 20px;
+    display: inline-block;
+    min-height: 40px;
+}
+
+.adminmydropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width:100%;
+}
+
+.adminmydropdown-content > a {
+    text-decoration: none;
+    display: block;
+    width:100%;
+    font-family: 'Merriweather', serif;
+    font-weight:bold;
+    cursor: pointer;
+    border: 1px solid #BA4A00;
+    background: #FFFFFF;
+    color: #BA4A00;
+    text-align: center;
+    font-size: 12px;
+}
+
+.adminmydropdown-content a:hover {background-color: #BA4A00; color:#FFFFFF;}
+
+.adminmydropdown:hover .adminmydropdown-content {
+    display: block;
+}
+
+.adminmydropdown:hover .adminmydropbtn {
+    background-color: #BA4a00;
+    color:#FFFFFF;
+}

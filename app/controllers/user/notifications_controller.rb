@@ -22,6 +22,12 @@ class User::NotificationsController < ApplicationController
     end
   end
 
+  def tickets
+    @notification = Notification.find_by_id(params[:id])
+    @product = Product.find(@notification.product_id)
+    @tickets = @product.tickets
+  end
+
   def select_winner
      @notification = Notification.find_by_id(params[:id])
      product_id = @notification.product_id
@@ -40,7 +46,7 @@ class User::NotificationsController < ApplicationController
      update_notification_obj.read = true
      update_notification_obj.save
 
-     set_description_of_notification = @winner.name + " you have won the prize"
+     set_description_of_notification = @winner.name + " you WON the prize"
      @notification_to_winner = Notification.new(:user_id => @winner_id, :product_id => product_id, :category => 6, :description => set_description_of_notification)
      @notification_to_winner.save
 
@@ -62,7 +68,6 @@ class User::NotificationsController < ApplicationController
   end
 
   def received
-    #debugger
     @product = Product.find(params[:pid])
     @owner = User.find(@product.imageable_id)
     @total = @product.sold_tickets * @product.ticket_price
@@ -74,5 +79,12 @@ class User::NotificationsController < ApplicationController
     @notification.read = true
     @notification.save
     redirect_to root_path
+  end
+
+  def read
+    @notification = Notification.find(params[:id])
+    @notification.read = true
+    @notification.save
+    redirect_to user_dashboard_path
   end
 end

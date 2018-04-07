@@ -15,7 +15,7 @@ class Api::V1::CustomersController < ApplicationController
         @customer = Customer.new(:first_name => params[:first_name], :last_name => params[:last_name], :email => params[:email], :phone => params[:phone])
         @customer.user_id = @user.id
         if @customer.save
-          render json: {:customer => @customer.as_json()}, status: 200
+          render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
         else
           render json: {:errors => @customer.errors.full_messages}, status: 200
         end

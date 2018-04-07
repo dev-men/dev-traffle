@@ -5,7 +5,7 @@ class User::WithdrawsController < ApplicationController
     if current_user.recipient == nil
       redirect_to new_user_withdraw_path
     else
-      desc = current_user.name + " has requested his funds for withdraw. His balance is: " + current_user.balance.to_s
+      desc = current_user.name + " has requested his funds for withdraw. His balance is: ₦" + current_user.balance.to_s
       @request = Request.new(:user_id => current_user.id, :description => desc, :status => false)
       @request.save
       @user = User.find(current_user.id)
@@ -21,7 +21,6 @@ class User::WithdrawsController < ApplicationController
   end
 
   def create
-    #debugger
     paystackObj = Paystack.new(ENV['PAYSTACK_PUBLIC_KEY'], ENV['PAYSTACK_PRIVATE_KEY'])
     recipient = PaystackRecipients.new(paystackObj)
     result = recipient.create(
@@ -38,7 +37,7 @@ class User::WithdrawsController < ApplicationController
 
     @recipient.save
 
-    desc = current_user.name + " has requested his funds for withdraw. His balance is: " + current_user.balance.to_s
+    desc = current_user.name + " has requested his funds for withdraw. His balance is: ₦" + current_user.balance.to_s
     @request = Request.new(:user_id => current_user.id, :description => desc, :status => false)
     @request.save
     @user = User.find(current_user.id)
