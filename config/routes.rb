@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-
   resources :contacts, :only => [:index, :show, :new, :create, :destroy]
+
   namespace :api, defaults: {format: :json} do
        namespace :v1 do
-         resources :transactions
+         resources :transactions do
+           collection do
+             post :verify
+           end
+         end
          resources :carts
          resources :customers
          resources :contacts, :only => [:create]
