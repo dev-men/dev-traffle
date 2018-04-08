@@ -221,7 +221,7 @@ class User::CartsController < ApplicationController
         end
       end
     else
-      sleep(15)
+      redirect_to root_path
     end
   end
 
