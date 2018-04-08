@@ -10,7 +10,7 @@ Devise.setup do |config|
                     site: 'https://graph.facebook.com/v2.11',
                     authorize_url: "https://www.facebook.com/v2.11/dialog/oauth"
                   }
-  config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']          
+  config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -255,7 +255,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = [:delete, :get]
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
