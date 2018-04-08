@@ -10,6 +10,7 @@ Rails.application.routes.draw do
            end
          end
          resources :carts
+         resources :notifications
          resources :customers
          resources :contacts, :only => [:create]
          resources :registrations do
@@ -128,6 +129,7 @@ Rails.application.routes.draw do
       get :automobiles
       get :featured_items
       get :promoted_items
+      get :terms
     end
   end
 

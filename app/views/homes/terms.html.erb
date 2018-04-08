@@ -1,0 +1,1059 @@
+<% content_for :title, "Terms and Services | Traffle" %>
+
+<div class="container-fluid" style="background:#F5CBA7;">
+  <div class="mainmenu-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify" style="font-size:33px;color:#BA4A00;"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+            <li class="active"><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Contact Us",  new_contact_path, class:"my_nav_bar")%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <% if notice %>
+    <div id="notice_wrapper" class="my_notice">
+      <center><p class="app_notice"><%= notice %></p></center>
+    </div>
+  <%elsif alert %>
+    <div id="notice_wrapper" class="my_alert">
+      <center><p class="app_alert"><%= alert %></p></center>
+    </div>
+  <% end %>
+</div>
+<div class="container">
+  <div class="row">
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Terms of Use</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			Welcome to <b style="color:#BA4A00;">traffle.ng</b> ‎(together with its sub-domains,
+  			Content, Marks and
+  			Services, the “Site”). Please read the following Terms of ‎Use (“Terms”) carefully
+  			before using this Site so that you are aware of your legal rights and obligations
+  			with ‎respect to <b style="color:#BA4A00;">Traffle Nigeria Limited ("Traffle", "we",
+  			"our" or "us").</b>
+  		</p>
+  	</div>
+
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Background.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			1.1. <b style="color:#BA4A00;">traffle.ng</b> is an associated brand of
+  			<b style="color:#BA4A00;">Traffle Nigeria Limited</b>, which is officially
+  			licensed by the Corporate Affairs Commission (Registration Number).
+  			Address: No 4 Mambolo  close, Wuse zone 2, Abuja.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			1.2. The Site (i) provides information about leading worldwide official lotteries
+  			(each a "Lottery") that are provided by independent official lottery operators
+  			(each a "Lottery Operator"), (ii) enables registered Site users ("Users") to
+  			purchase lottery tickets for specific and separate Lottery draws
+  			(each a "Lottery Draw") by means of the Site’s messenger services
+  			(“the Messenger Service”); and (iii) offers Services (defined below) to Users,
+  			all subject to and in accordance with these Terms. A complete list of the Lotteries
+  			in connection therewith we offer our Messenger services, and the schedule for each
+  			Lottery Draw, is displayed on the Site.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Consent, Modification, and Language.</h3>
+  	</div>
+
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			2.1. By accessing or using the Site, including without limitation viewing the
+  			Content (as defined below), you signify your assent to (i) these Terms;
+  			(ii) our Privacy Policy (defined below); and (iii) any other legal notices
+  			published by us on the Site (collectively the "Site Terms"). The Site Terms
+  			apply to all visitors and users of the Site. If you do not agree to the Site Terms,
+  			then please do not access or use the Site.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			2.2. We reserve the right, at our discretion, to change the Site Terms at any time;
+  			if we do so we will post the revised Terms on the Site. Any such change shall become
+  			effective ten (10) days following the publication of the revised Terms on the Site
+  			and your continued use of the Site thereafter means that you accept those changes
+  		</p>
+  	</div>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			2.3. If you are reading a translation of any Site Terms in a language other than
+  			English, you acknowledge and agree that (i) the English version is the official
+  			version; (ii) the non-English version is provided for your convenience only and
+  			the translation will not be valid as an agreement; and (iii) in the event of any
+  			inconsistency between the English and a non-English version of any Site Terms,
+  			the English version will prevail and govern
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Ability to Accept Terms.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			3.1 .The Site is not intended for individuals under the age of eighteen (18).
+  			Therefore, if you are under 18 years, you are prohibited from registering an
+  			Account (defined below) and using the Services (defined below). If it comes to
+  			our attention through reliable means that a User is under the age of 18 years
+  			we may, to the extent applicable, cancel that User's Account and/or access to
+  			the Site.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Site Access and Use.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			4.1. We hereby grant you permission to access and use the Site, provided that you
+  			comply with these Terms and applicable law and do not: (i) copy, distribute or
+  			modify any part of the Site without our prior written authorization; (ii) use,
+  			modify, create derivative works of, transfer (by sale, resale, license, sublicense,
+  			download or otherwise), reproduce, distribute, display or disclose Content, except
+  			as expressly authorized herein; (iii) disrupt servers or networks connected to the
+  			Site; (iv) use or launch any automated system (including without limitation,
+  			"robots" and "spiders") to access and/or use the Site; (v) use the communications
+  			systems provided by the Site to send unsolicited or unauthorized commercial
+  			communications; (vi) use the Site for fraudulent or deceptive purposes;
+  			and/or (vii) circumvent, disable or otherwise interfere with security-related
+  			features of the Site or features that prevent or restrict use or copying of any
+  			Content or that enforce limitations on use of the Site. We reserve all rights
+  			not expressly granted in and to the Site.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Services.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			5.1 .Subject to applicable registration requirements, and your compliance with these
+  			Terms, we offer certain services in connection with the Site ("Services"), including,
+  			without limitation: the Lottery Ticket Service (see Section 8), See Your Ticket
+  			Service (see Section 8.8), Syndicate Play Service (see Section 9), Prize Collection
+  			Service (see Section 13), Category Service (see Section 14), Subscription Service
+  			(see Section 15), Alert Service (see Section 16), Tell-A-Friend Service
+  			(see Section 19), Charity Service (see Section 24), and the Support Service
+  			(see Section 30).
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Account.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			6.1. General. In order to use some of the Services, it is necessary to first create
+  			an account (an "Account") and submit certain mandatory information to us in
+  			connection with your Account. You reserve the right to decide whether to submit any
+  			information to us, however, if you choose not to submit mandatory information you
+  			may be unable to register an Account and use and participate in certain Services.
+  			You may only register one Account for your own personal use. You agree not to create
+  			an Account for anyone else or use the Account of another. When creating your Account,
+  			you must provide accurate and complete information. You are solely responsible for
+  			the activity that occurs in your Account, and you must keep your Account password
+  			secure. You must notify <b style="color:#BA4A00;">traffle</b> immediately of any breach of security or
+  			unauthorized use of your Account. You can stop using, and may delete, your Account
+  			at any time by using the tools that are available on the Site ("Site Tools").
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			6.2. Account Restrictions. If you are an (i) employee, director, officer, or Agent
+  			(defined below) of <b style="color:#BA4A00;">traffle</b>, or (ii) entity or person that is connected with the
+  			management or operation of a Lottery Draw, including each Lottery Operator and its
+  			employees; or (iii) a spouse, de facto partner, parent, sibling, child or close
+  			family member of any of the persons mentioned in (i) and (ii) above, then you are
+  			prohibited from registering an Account and participating in any Services. "Agent"
+  			means any third party service provider (and its employees) that we engage to perform
+  			Site management tasks on our behalf.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Lottery Draws.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			7.1. Each Lottery Draw is performed by the Lottery Operator. Your participation in
+  			each Lottery Draw is subject to the terms and conditions of the related Lottery
+  			Operator ("Lottery Operator Rules"), which you agree to independently review and
+  			comply with.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">The Lottery Ticket Service.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.1. General. We (i) make certain tools available on the Site so that Users can
+  			complete and submit online orders in connection with the Messenger Services offered
+  			by us with respect to Lottery Draws ("Orders"); (ii) engage local representatives to
+  			locally purchase a Lottery ticket on our Users' behalf with Lottery Operators in
+  			accordance with the User's Order (respectively - "Local Representative";
+  			"Lottery Ticket"); (iii) display the results of Lottery Draws on the Site;
+  			(iv) if applicable, collect the winnings from the Lottery Operators and credit the
+  			Account (defined below) of an eligible User; and/or (v) if applicable, facilitate
+  			the hand-delivery of a Winning Lottery Ticket (defined below) to eligible Users
+  			(collectively, the "Lottery Ticket Service").
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.2. Participation in the Lottery Ticket Service. In order to participate in
+  			the Lottery Ticket Service you must (i) have registered a valid, and maintain
+  			an active, Account; and (ii) comply with these Terms. A user satisfying these
+  			terms and lawfully purchasing a Lottery Ticket through our Messenger Services
+  			accordingly shall be the owner of the purchased Lottery Ticket at any stage from
+  			the purchase of the Lottery Ticket on the User’s behalf.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.3. Completion, Submission and paying for Orders. If you wish to use our Messenger
+  			Service to participate in a Lottery Draw, you must use the Site Tools to
+  			(i) complete an Order by choosing the type of lottery form and inserting your
+  			numbers into each line; (ii) submit the completed Order; and (iii) pay the price
+  			for submitting the Order ("Order Price"). Completion, submission and paying for an
+  			Order as detailed in this clause shall hereinafter collectively be referred to as
+  			”Placing an Order”.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.4. Order Price. The Order Price (i) is the amount displayed on the Site at the time
+  			you submit the Order; (ii) includes our service fee and therefore may be higher than
+  			the participation price you would pay if you paid to submit an equivalent lottery
+  			form directly to the Lottery Operator; (iii) is subject to change from time to time,
+  			as displayed on the Site; and (iv) is subject to the quantity of lines and numbers
+  			in the Order that you choose to submit and the number of lottery games you choose to
+  			participate in. Payment of the Order Price will be made in your Designated Currency
+  			(defined below).
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<div class="row">
+  			<div class="col-md-12">
+  		<h6 style="color:#BA4A00;text-align:left;">8.5. Confirmation of Order Price Payment.</h6>
+  			</div>
+  		</div>
+  			<div class="col-md-12">
+  				<p style="#797D7F;text-align:left;font-size:15px;">
+  					(a) Confirmed Payments. Upon our receipt of the Order Price, we will send
+  					you an email payment confirmation. You may also view information about your
+  					participation, including your payment details and the name and date of the
+  					related Lottery Draw, in Your Account.
+  				</p>
+  			</div>
+  			<div class="col-md-12">
+  				<p style="#797D7F;text-align:left;font-size:15px;">
+  					(b) Pending Payments. In the unlikely event that there is a delay
+  					(for example, due to technical issues in the processing of a transaction)
+  					between your submission of an Order and payment of the Order Price and our
+  					receipt of payment, then the status of the transaction will be pending until
+  					such time as we receive the Order Price
+  				</p>
+  			</div>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.6. Cut-off Time. We stop to accept the submission of Orders a certain number of
+  			hours prior to the performance of the related Lottery Draw by its Lottery Operator
+  			("Cut-Off Time"). We display on the site the amount of time that is remaining until
+  			the Cut-Off Time for each Lottery Draw on the Site. We retain the right in our sole
+  			discretion to determine the length of the Cut-Off Time. Please be aware that once
+  			the Cut-Off Time for a particular Lottery Draw has expired, you will no longer be
+  			able to submit an Order for it.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.7. Local Submission of Orders and Local Representatives. Following our receipt of
+  			an Order and Order Price, we engage a Local Representative to purchase on the User's
+  			behalf the related Lottery Ticket from the Lottery Operator. We use commercially
+  			reasonable efforts to ensure that each Lottery Ticket complies, and is lodged in
+  			accordance, with the time-frames set forth in the related Lottery Operator Rules.
+  			You acknowledge that since Lottery Tickets are purchased locally immediately
+  			following your submission of the Order, there is no option of timely cancellation
+  			and you agree that your submission of an Order and payment of the related Order
+  			Price is final, non-cancel able, and non-refundable (except as expressly set forth
+  			in these Terms). In the event of any inconsistency between the numbers appearing
+  			on an Order and a Lottery Ticket, the numbers on the Lottery Ticket will prevail.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			8.8. See Your Ticket Service. You may view scanned copies of your Lottery Tickets
+  			in your Account (the "See Your Ticket Service"). You acknowledge that it takes time
+  			to upload scanned copies of Lottery Tickets, and there may be a delay between the
+  			time that the Lottery Ticket is purchased and the time that a copy is made available
+  			for you to view.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Play Service.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.1 Each item is displayed for a specific period, to be determined by the operator.
+  			Registered users who purchase stakes and automatically partake in the prize draw,
+  			where a winner emerges, can win the displayed items
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.2 Purchasing of stakes begin as soon as the operator publishes a product/item to
+  			be won on the site. The number of stakes to be purchased for each item is dependent
+  			on the price of the item along with shipping costs. The number of stakes available
+  			for sale on a particular item is to be decided by the operator.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.3 Only registered and logged in users can purchase stakes and win on the service
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.4 Users purchase stakes on the service by selecting the desired number of stakes
+  			to be purchased, and clicking on the "purchase" button on the ‘item’ page.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.5 As users purchase stakes, the number of available stakes for the purchase of the
+  			items to be won decreases accordingly
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.6 Purchasing stakes increases the user’s chance of being randomly selected from
+  			the prize draw. The greater the number of stakes purchased by the user, the greater
+  			the probability of being selected as the winner.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			9.7 It should be emphasized that the purchase of single or multiple stakes by a user,
+  			does not in any way guarantee the user, winning the products/items played for.
+  			The operator posits that the central themes on which a lottery business operates on,
+  			are ‘chance’ and ‘probability’, and thus there can only be one winner per prize draw.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Performance of the Lottery Draw and Results.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			10.1. Following each Lottery Draw, the Lottery Operator publishes the related final
+  			and conclusive winning numbers ("Winning Numbers"). To the extent that a Lottery
+  			Ticket includes Winning Numbers you may be entitled to a cash prize to be paid by
+  			the Lottery Operator ("Prizes"). The number of Winning Numbers that you need to
+  			obtain to be entitled to Winnings in connection with a Lottery Draw, as well as the
+  			amount of a Prize, is determined solely by the Lottery Operator. We use commercially
+  			reasonable efforts to publish the official Lottery Draw results, including the
+  			Winning Numbers and Prizes, on the Site as soon as possible following official
+  			publication thereof by the related Lottery Operator. If your Lottery Ticket is a
+  			winning ticket ("Winning Lottery Ticket") then we will send an email to your
+  			designated email account and (if you have chosen to participate in our Alert Service)
+  			an SMS to your designated mobile phone number, notifying you that the Lottery Ticket
+  			is a Winning Lottery Ticket.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Winning.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.1 Following the purchase of all the available stakes for an item by participating
+  			users, the draw will be closed, and a winner randomly selected.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.2 The operator will exercise no control or influence over the process and outcome
+  			of the winner selection process.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.3 Every purchased stake number will stand a fair chance of winning the prize.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.4 The operator undertakes no liability for loss, damage or loss of profits from
+  			reliance on potential winnings.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.5 The winner will be notified via email and/or SMS, depending on the information
+  			provided by the user during registration
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.6 The winner will be required to go through the prize claims process to redeem
+  			prize(s) won.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.7 Kindly note that every user will be required to undertake an age verification
+  			procedure, prior to prize redemption. Customers will be required to provide proof of
+  			age, by providing a valid, verifiable means of identification, including but not
+  			limited to a drivers licence, birth certificate, international passport and voters
+  			card.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.8 The operator undertakes to use all reasonably practicable measures to contact
+  			and deliver prizes to all winners.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.9 However, following the expiration of 180 days from the end of any prize draw,
+  			all unclaimed prizes shall be retained or disbursed subject to the discretion of the
+  			operator.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  		</p>
+  			11.10 All legitimate claims of winners in respect of prizes unclaimed after 180 days
+  			can be approved or refused subject to the operator’s discretion.
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.11 The winner will be required to provide a correct address for the delivery of
+  			prizes if the delivery option is chosen by the winner during the prize claim process.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.12 Following the completion and approval of the prize claims process,
+  			the operator will make effort to deliver goods within estimated time scale for
+  			delivery defined for that prize draw.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.13 The user agrees not to hold the operator liable for any delay or failure to
+  			deliver products or otherwise perform any obligation as specified in these Terms
+  			and Conditions, if the same is wholly or partly caused whether directly or
+  			indirectly by circumstances beyond our reasonable control.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.14 The operator reserves the right to take personal information, photographs or
+  			videos of prize winners to be used in online or offline promotion activities for the
+  			sole purpose of marketing alone. The user will be notified before such promotion
+  			activities are undertaken
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			11.15 Note that each prize draw comes with its own specific terms and conditions
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Direct Prize Collections.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			12.1.General. If you are required, or choose to, personally collect your Prize
+  			directly from the related Lottery Operator, we will arrange for one of our
+  			representatives to meet you at our offices (or another location of our choice)
+  			in the country of the Lottery Operator ("Territory") and hand-deliver your prize
+  			to you. You agree to cooperate with <b style="color:#BA4A00;">traffle</b>,
+  			or its representative, to facilitate you taking possession of the prize. You agree
+  			that prior to you taking possession of your prize you must first sign a legal waiver
+  			and release stating that you
+  			(i) have taken, or are taking, possession of the prize;
+  			(ii) are personally responsible for collecting the Prize; and
+  			(iii) and you waive any legal or equitable claims, rights or remedies you may have
+  			against <b style="color:#BA4A00;">traffle</b>, and the Local Representative, with
+  			respect to your collection,or non-collection, of the Prize. Under no circumstances
+  			shall <b style="color:#BA4A00;">traffle</b> have any obligation to pay you an amount
+  			equal to what a Lottery Operator may fail to pay you in connection with any Prize.
+  		</p>
+  	</div>
+  			<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">12.2.Travel and Travel Costs.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			If you are not located in the Territory, then you acknowledge that you may need to
+  			travel to the Territory to personally collect your Prize ("Travel"). You are solely
+  			responsible and liable for your Travel to and from the Territory, and all of your
+  			related costs and expenses, including, without limitation, travel, accommodation
+  			and subsistence costs.
+  		</p>
+  	</div>
+  			<div class="col-md-12">
+  		<h6 style="color:#BA4A00;text-align:left;">12.3.Preconditions and Waiver of Claims.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			If you Travel to collect your Prize, then you agree that you remain solely
+  			responsible and liable for, and shall: (i) obtain all necessary visas and permits
+  			that are necessary to enter the Territory; (ii) secure travel insurance
+  			(which must cover you for medical, personal injury and property claims)
+  			; (iii) obtain all medical inoculations, approvals and/or consents; and
+  			(iv) comply with any Lottery Operator Rules that require the completion and
+  			submission of specific forms, paperwork or documentation prior to collecting a
+  			Prize (collectively, "Travel Requirements"). You acknowledge that your failure
+  			to obtain or comply with certain Travel Requirements may preclude you from
+  			collecting your Prize. You undertake all Travel at your own risk. You hereby
+  			waive any legal or equitable claims, rights or remedies you may have against
+  			<b style="color:#BA4A00;">traffle</b> with respect to
+  			(a) any Travel, including without limitation Travel-related incidents, injuries,
+  			illnesses, or losses that you may suffer or incur; and
+  			(b) your failure to obtain or comply with any Travel Requirements, including if you
+  			are unable to collect your Prize as a result.
+
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Alert and Services.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			13.1. General. We offer certain alert services in connection with the Site whereby
+  			we provide Users with the opportunity to receive updates and alerts about Lotteries,
+  			Prizes, and the results of Lottery Draws (collectively, the "Alert Service").
+  			The Alert Service may provide Users with the opportunity to choose whether to receive
+  			certain notifications by email ("Email Alerts") or SMS ("SMS Alerts"). If you choose
+  			to use the Alert Service, you may stop to use it at any time by using the Site Tools
+  			or by sending us an opt-out request in accordance with our Privacy Policy. Please note
+  			that in addition to the Alert Service, we may anyway send you email notifications of
+  			Prizes as well as certain email or SMS advertisements, all in accordance with our
+  			Privacy Policy.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			13.2. Valid Email Address and Mobile Phone Number. In order to use the Alert Service
+  			you must (i) have registered a valid, and maintain an active, Account; (ii)
+  			comply with these Terms; and (iii) if you wish to receive Email Alerts and/or SMS
+  			Alerts, maintain (as applicable) an active external email account ("Email Address")
+  			and/or mobile phone number ("Mobile Phone Number"). You may elect to use any part
+  			of the Alert Service by using the Site Tools to provide us your Email Address and/or
+  			Mobile Phone Number and to designate information about Lottery Draws, Prizes,
+  			or the Services that you would like to receive (collectively, "Notifications").
+  			You agree
+  			(a) that, depending on your designated method for receiving Notifications,
+  			we will send you Notifications to your Email Address and/or Mobile Phone Number;
+  			(b) to only provide accurate and current contact details for yourself, and to update
+  			your Email Address and/or Mobile Phone Number by using the Site Tools if either of
+  			them changes; and
+  			(c) that you will continue to receive Notifications from us until such time as you
+  			use the Site Tools to suspend your participation in the Alert Service, or change
+  			the Notifications that you wish to receive, both of which you may do at any time.
+
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">13.3 Costs.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			 We do not currently charge for using our Alert Service. However, some third party
+  			 service providers charge a fee for you to receive SMS messages. If you choose to
+  			 receive SMS Alerts (or otherwise choose to receive an advertising-related SMS from
+  			 us), you acknowledge and agree that you may be charged your telecommunications
+  			 carrier's or Internet provider's messaging, data, Internet access and other rates
+  			 and fees for receiving the SMS.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Promotions.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			14.1. To the extent that we offer certain promotions on the Site, you agree that
+  			your participation in said promotions is subject to these Terms. Details of our
+  			then-current promotions are displayed on the Site, as updated from time to time.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Tell-A-Friend Service.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			15.1. General. The Site includes an invitation service that enables you to invite
+  			your friends and contacts (each a "Friend") to register a Site account and use our
+  			Services, subject to these Terms ("Tell-A-Friend Service"). In order to participate
+  			in the Tell-A-Friend Service you must (i) have registered a valid, and maintain an
+  			active, Account; and (ii) comply with these Terms. If you choose to participate in
+  			the Tell-A-Friend Service, you agree
+  			(a) to only send invitations to your friends and contacts that you know; and
+  			(b) not to misrepresent your relationship with <b style="color:#BA4A00;">traffle</b> to any third party or make
+  			any warranty or representation on behalf of <b style="color:#BA4A00;">traffle</b>.
+
+  		</p>
+  	</div>
+  			<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">15.2. Invitation Email and Invitation Link.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			 Based on the contact information that you provide us for your Friend(s), we will
+  			 send your Friend(s) an invitation email inviting them to visit the Site, register
+  			 an account, and use the Services ("Invitation Email"). The Invitation Email will
+  			 include a link to the Site ("Invitation Link"). We use the Invitation Link to
+  			 verify that a Friend has been referred to the Site by you via the Tell-A-Friend
+  			 Service. You acknowledge that failure to register a Site account via the Invitation
+  			 Link will mean that we cannot trace the referral and we will not credit you any
+  			 Referral Bonus, even if your Friend registers a Site account independently of the
+  			 Invitation Link.
+  		</p>
+  	</div>
+  			<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">15.3. Referral Bonus.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			If you refer a Friend to the Site and he/she registers an Account via the Invitation
+  			Link and Places an Order for a Lottery Draw, then you may be eligible to receive a
+  			Referral Bonus from us, which will be credited to your Account as Bonus Money
+  			(defined below), for you to use in connection with the Site ("Referral Bonus").
+  			The amount of the Referral Bonus is published on the Site. The Referral Bonus will
+  			be credited to your Account within three (3) days of the date upon which your Friend
+  			first Places an Order and participates in a Lottery Draw. Please note that you will
+  			not be entitled to a Referral Bonus if you and your Friend share the same IP address
+  			Bonus Money deposited into customer's accounts will be valid for the period of six
+  			(6) months from the date of deposit. At the end of this period, the Bonus Money will
+  			be removed from the customer’s account with prior email notification.
+  		</p>
+  	</div>
+  			<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">15.4. Referred Present.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			 If you are referred to the Site via the Tell-A-Friend Service, then you may be
+  			 eligible to receive a certain amount of credit from us, which will be credited
+  			 to your Account as Bonus Money, for you to use in connection with the Site
+  			 ("Referred Present"). The amount of the Referred Present is published on the Site.
+  			 The Referred Present will be credited to your Account within three (3) days of the
+  			 date upon which you first Place an Order and participate in a Lottery Draw.
+  			 Please note that you will not be entitled to a Referred Present if you and the
+  			 friend that referred you share the same IP address. Bonus Money deposited into
+  			 customers’ accounts will be valid for the period of six (6) months from the date
+  			 of deposit. At the end of this period, the Bonus Money will be removed from the
+  			 customer’s account with prior email notification.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Welcome Bonus.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			16.1. If you are a new User to the Site and you register an Account and Place an
+  			Order, then you may be eligible to receive a certain amount of welcome credit from
+  			us, which will be credited to your Account as Bonus Money, for you to use in
+  			connection with the Site ("Welcome Bonus"). The amount of Welcome Bonus is
+  			published on the Site. The Welcome Bonus will be credited to your Account
+  			shortly after the first time that you place an Order and participate in your first
+  			Lottery Draw. Bonus Money deposited into customers’ accounts will be valid for the
+  			period of six (6) months from the date of deposit. At the end of this period,
+  			the Bonus Money will be removed from the customer’s account with prior email
+  			notification.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Payments by You to
+  		<b style="color:#BA4A00;">Traffle</b></h3>
+  	</div>
+  			<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">17.1. Orders.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			You acknowledge and agree that if (i) you choose to make a transaction on the Site
+  			(for example, by paying the Order Price) with your credit card; or
+  			(ii) there are insufficient funds in your Account to pay for a transaction that
+  			you have entered into, then <b style="color:#BA4A00;">Traffle</b> may charge that
+  			credit card or the credit card that you designate in your Account, and you hereby
+  			authorize the charging of that credit card (or any replacement card).
+  		</p>
+  	</div>
+  			<div class="col-md-12">
+  				<h6 style="color:#BA4A00;text-align:left;">17.2. Restrictions and Acknowledgment.</h6>
+  			</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			 You agree: (i) to only provide valid and current credit card and billing
+  			 information for yourself; (ii) that we may use the tools, software or services
+  			 of third party service providers to process transactions on our behalf;
+  			 (iii) that you shall be liable for any card issuer processing fees in connection
+  			 with payments and recurring payments; (iv) except as expressly set forth herein,
+  			 all purchases are final and non-cancelable or non-refundable;
+  			 (v) if payment is not received by us for any reason from your card issuer,
+  			 you agree to promptly pay all amounts due to us upon demand and, if applicable,
+  			 <b style="color:#BA4A00;">Traffle</b> may charge a reasonable rejected payment
+  			 fee; and(vi) any failure or inability by <b style="color:#BA4A00;">Traffle</b>
+  			 to process any payment hereunder does not relieve you from your payment obligations.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Refund Policy</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			18.1. Except as expressly stated in these Terms, you acknowledge and agree that any
+  			Order Prices and fees and/or payments paid by you to
+  			<b style="color:#BA4A00;">Traffle</b>
+  			in connection with your use of the Site and any Services are non-refundable.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			18.2. If you reasonably believe that you have been wrongfully charged an amount by
+  			us you may notify us and request a refund. The tools within your Account should
+  			provide you with the means to do so, and in any event, you may contact us via our
+  			Support Service. Please be aware that we will not consider any such refund request
+  			unless you include full details of the disputed transaction, including the relevant
+  			dates, payment details, and a short explanation as to why the amount is disputed.
+  			If we, in our sole discretion, find that an amount has been wrongfully charged we
+  			will, as your sole remedy, refund you that amount.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Intellectual Property Rights</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			19.1. The content on the Site, including without limitation, the text, documents,
+  			descriptions, products, technology, software, graphics, photos, sounds, videos,
+  			interactive features, and services (collectively, the "Content") and the trademarks,
+  			service marks and logos contained therein ("Marks"), are the property of
+  			<b style="color:#BA4A00;">Traffle</b>
+  			and/or its licensors and may be protected by applicable copyright, trademark,
+  			patent or other intellectual property laws and treaties. Content may include
+  			information about lotteries in general, Lottery Draws and the results and prize
+  			money in connection with the foregoing, and information regarding the odds of
+  			winning a Lottery Draw. We reserve all rights not expressly granted in and to the
+  			Site and the Content. Content on the Site is provided to you "AS IS" for your
+  			information and personal use only and may not be used, modified, copied,
+  			distributed, transmitted, broadcast, displayed, sold, licensed, de-compiled,
+  			or otherwise exploited for any other purposes whatsoever without our prior
+  			written consent. If you download or print a copy of the Content for personal use,
+  			you must retain all copyright and other proprietary notices contained therein.
+  			“<b style="color:#BA4A00;">Traffle</b>", <b style="color:#BA4A00;">Traffle</b> logo,
+  			and other marks are Marks of <b style="color:#BA4A00;">Traffle</b> or its affiliates.
+  			All other trademarks, service marks, and logos used on the Site are the trademarks,
+  			service marks, or logos of their respective owners.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Disclosure.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			20.1. We reserve the right to access, read, preserve, and disclose any information
+  			that we obtain in connection with the Site, and your use thereof, as we reasonably
+  			believe is necessary to (i) satisfy any applicable law, regulation, legal process,
+  			subpoena or governmental request, (ii) enforce the Site Terms, including to
+  			investigate potential violations of them, (iii) detect, prevent, or otherwise
+  			address fraud, security or technical issues, (iv) respond to User support requests,
+  			or (v) protect the rights, property or safety of
+  			<b style="color:#BA4A00;">Traffle</b>,
+  			its users or the public Links.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			21.1. The Site may contain links to third party websites that are not owned or
+  			controlled by <b style="color:#BA4A00;">Traffle</b>. We are not affiliated with,
+  			have no control over, and assume no responsibility for the content, privacy
+  			policies, or practices of any third party websites. You expressly release
+  			<b style="color:#BA4A00;">Traffle</b> from any and all liability
+  			arising from your use of any third party website. Accordingly, we encourage you
+  			to read the terms and conditions and privacy policy of each third party website
+  			that you may choose to visit.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			21.2. <b style="color:#BA4A00;">Traffle</b> permits you to link to the
+  			Site provided that
+  			(i) you link to but do not replicate any page on this Site;
+  			(ii) the hyperlink text shall accurately describe the Content as it appears on
+  			the Site; (iii) you shall not misrepresent your relationship with
+  			<b style="color:#BA4A00;">Traffle</b> or
+  			present any false information about <b style="color:#BA4A00;">traffle</b>
+  			and shall not imply in any way that
+  			we are endorsing any services or products, unless we have given you our express
+  			prior consent; (iv) you shall not link from a website that you do not own;
+  			(v) your website, and domain name, does not contain content that
+  			(a) is offensive or controversial (both at our sole discretion), or
+  			(b) infringes any intellectual property, privacy rights, or other rights of any
+  			person or entity; and (vi) you, and your website, comply with these Terms and
+  			applicable law.
+
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Information Description.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			22.1. We attempt to be as accurate as possible. However, we cannot and do not
+  			warrant that the Content available on the Site is accurate, complete, reliable,
+  			current, or error-free. We reserve the right to make changes in or to the Content,
+  			or any part thereof, in our sole judgment, without the requirement of giving any
+  			notice prior to or after making such changes to the Content. Your use of the
+  			Content, or any part thereof, is made solely at your own risk and responsibility.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Privacy.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			23.1. You agree that any of your personal information that we may collect or obtain
+  			in connection with the Site and Services shall be subject to, and may be used in
+  			accordance with, our privacy policy which is available here ("Privacy Policy").
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  	<h3 style="color:#BA4A00;text-align:center;">Support Service, Questions, and Complaints.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			24.1. If you have any questions or complaints regarding the Site, including with
+  			respect to our Services and/or any payments, you may (i) email us,
+  			(ii) submit an inquiry to us by using the 'Contact Us' option that is provided on
+  			the Site; (iii) chat with us via the online tool that we provide on the Site;
+  			and/or (iv) call us (at your own cost) to the support telephone number that we
+  			display on the Site (collectively, the "Support Service"). We use commercially
+  			reasonable efforts to respond as quickly as possible. If you have a complaint,
+  			you agree to provide full details of your complaint so that we can clearly identify
+  			the issue of concern. We may use the tools, software or services of third party
+  			service providers in connection with the Support Service.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Warranty Disclaimers.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.1. This section applies whether or not the Services provided under the Site are
+  			for payment. Applicable law may not allow the exclusion of certain warranties,
+  			so to that extent certain exclusions set forth herein may not apply.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.2. THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, AND WITHOUT
+  			WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TRAFFLE HEREBY DISCLAIMS ALL
+  			WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES
+  			OF MERCHANTABILITY, TITLE, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT,
+  			AND THOSE ARISING BY STATUTE OR FROM A COURSE OF DEALING OR USAGE OF TRADE.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.3. TRAFFLE DOES NOT GUARANTEE THAT THE SITE WILL BE FREE OF BUGS, SECURITY
+  			BREACHES, OR VIRUS ATTACKS. THE SITE MAY OCCASIONALLY BE UNAVAILABLE FOR ROUTINE
+  			MAINTENANCE, UPGRADING, OR OTHER REASONS. YOU AGREE THAT TRAFFLE WILL NOT BE HELD
+  			RESPONSIBLE FOR ANY CONSEQUENCES TO YOU OR ANY THIRD PARTY THAT MAY RESULT FROM
+  			TECHNICAL PROBLEMS OF THE INTERNET, SLOW CONNECTIONS, TRAFFIC CONGESTION, OVERLOAD
+  			OF OUR OR OTHER SERVERS, DELAY OR FAILURE IN TRANSMISSION, OR ANY ALTERATION OR
+  			DISTORTION OF DATA.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.4. WE DO NOT WARRANT, ENDORSE OR GUARANTEE ANY CONTENT, PRODUCT, OR SERVICE THAT
+  			IS FEATURED OR ADVERTISED ON THE SITE BY A THIRD PARTY.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.5. YOU AGREE THAT TRAFFLE SHALL NOT BE LIABLE FOR ANY LOST LOTTERY TICKET OR
+  			FAILURE TO LODGE A FORM OR PURCHASE A LOTTERY TICKET, OR FOR ANY CLERICAL ERRORS
+  			THAT MAY BE INCLUDED IN A LOTTERY TICKET, WHETHER SUCH FAILURE OR ERROR ARISES
+  			FROM OUR, OR ONE OF OUR SERVICE PROVIDER'S SYSTEMS, OR FROM OUR, OR ONE OF OUR
+  			SERVICE PROVIDER'S, HUMAN ERROR (EACH AN "INCIDENT"). TO THE EXTENT THAT ANY
+  			INCIDENT ARISES, OR WE BECOME AWARE OF ANY INCIDENT, WE RESERVE THE RIGHT TO
+  			CANCEL A LOTTERY TICKET AND OUR SOLE LIABILITY TO YOU, AND YOUR SOLE REMEDY,
+  			SHALL BE A REFUND OF THE RELATED ORDER PRICE.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.6. YOU ACKNOWLEDGE THAT CONTENT REGARDING A LOTTERY DRAW, INCLUDING THE OFFICIAL
+  			RESULTS OF ANY LOTTERY DRAW (COLLECTIVELY, "LOTTERY OPERATOR DATA"), IS BASED ON
+  			INFORMATION THAT WE OBTAIN FROM LOTTERY OPERATORS AND SUCH CONTENT MAY BE INCORRECT,
+  			INCOMPLETE, AND SUBJECT TO CHANGE. WE DO NOT WARRANT, ENDORSE OR GUARANTEE THE
+  			ACCURACY, CURRENCY, OR COMPLETENESS OF ANY LOTTERY OPERATOR DATA AND YOU AGREE TO
+  			VERIFY LOTTERY OPERATOR DATA VIA THE WEBSITE OR OFFICIAL PUBLICATIONS OF THE
+  			RELEVANT LOTTERY OPERATOR.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.7. WE DO NOT MAKE ANY REPRESENTATION OR WARRANTY REGARDING YOUR CHANCE OF
+  			OBTAINING WINNING NUMBERS OR OF BEING ENTITLED TO A PRIZE.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			25.8. EXCEPT AS EXPRESSLY STATED IN OUR PRIVACY POLICY, TRAFFLE DOES NOT MAKE ANY
+  			REPRESENTATIONS, WARRANTIES OR CONDITIONS OF ANY KIND, EXPRESS OR IMPLIED, AS TO
+  			THE SECURITY OF ANY INFORMATION YOU MAY PROVIDE OR ACTIVITIES YOU ENGAGE IN DURING
+  			THE COURSE OF YOUR USE OF THE SITE.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Limitation of Liability.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			26.1. UNDER NO CIRCUMSTANCES SHALL TRAFFLE, OR OUR AFFILIATES, AND OUR RESPECTIVE
+  			OFFICERS, DIRECTORS, EMPLOYEES, LICENSORS, ASSIGNS AND/OR AGENTS BE LIABLE FOR ANY
+  			LOSS OF MONEY, GOODWILL, REPUTATION, SPECIAL, INDIRECT, DIRECT, INCIDENTAL, PUNITIVE
+  			OR CONSEQUENTIAL DAMAGES OF ANY KIND THAT ARISES UNDER THESE TERMS OR THAT RESULTS
+  			FROM THE USE OF, OR THE INABILITY TO USE, THE SITE EVEN IF TRAFFLE HAS BEEN ADVISED
+  			OF THE POSSIBILITY OF SUCH DAMAGES. SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION
+  			OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE
+  			LIMITATIONS MAY NOT APPLY TO YOU.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			26.2. UNDER NO CIRCUMSTANCES SHALL TRAFFLE'S, OR OUR AFFILIATES', AND OUR RESPECTIVE
+  			OFFICER'S, DIRECTOR'S, EMPLOYEE'S, LICENSOR'S, ASSIGN'S AND/OR AGENT'S TOTAL
+  			AGGREGATE LIABILITY UNDER THESE TERMS EXCEED THE GREATER OF (I) THE AMOUNT (IF ANY)
+  			PAID BY YOU TO TRAFFLE FOR USING THE SITE WITHIN THE THREE (3) MONTHS PRECEDING THE
+  			DATE GIVING RISE TO SAID CLAIM.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Indemnity.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			27.1. You agree to defend, indemnify and hold harmless
+  			<b style="color:#BA4A00;">Traffle</b> and our affiliates,
+  			and our respective officers, directors, employees and agents, from and against any
+  			and all claims, damages, obligations, losses, liabilities, costs and expenses
+  			(including but not limited to attorney's fees) arising from:
+  			(i) your use of, or inability to use, the Site; (ii) any dispute between you and
+  			another User or Lottery Operator; or (iii) your violation of the Site Terms.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Responsible Gaming Policy.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			28.1. <b style="color:#BA4A00;">Traffle</b> encourages a responsible attitude
+  			towards betting and gaming, and in this regard we: (i) prohibit anyone under
+  			the age of 18 years from registering an Account and using our Services;
+  			(ii) recommend that all Users establish limits for participating in Lottery Draws;
+  			and (iii) do not recommend that Users turn to Lotteries as a source of income or
+  			as a way to recoup debt. If you feel that you are using our Services in an
+  			irresponsible way we encourage you to stop using and close your Account by using
+  			the Site Tools that we make available on the Site to do so.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Term and Termination.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			29.1. These Terms are effective until terminated by
+  			<b style="color:#BA4A00;">Traffle</b>
+  			. <b style="color:#BA4A00;">Traffle</b>, in its sole discretion, has the right to
+  			terminate your access to the Site, or any part thereof, immediately at any time
+  			(including, without any limitation, for a breach of the Site Terms).
+  			<b style="color:#BA4A00;">Traffle</b>
+  			shall not be liable to you or any third party for termination of the Site, or any
+  			part thereof. If you object to any term or condition of the Site Terms, or any
+  			subsequent modifications thereto, or become dissatisfied with the Site in any way,
+  			your only recourse is to immediately discontinue use of the Site. Upon termination
+  			of these Terms, you shall cease all use of the Site. This Section 29
+  			(Term and Termination) and Sections 2.3 (Language), 17.2
+  			(Restrictions and Acknowledgments), 19 (Intellectual Property Rights), 20
+  			(Disclosure), 23 (Privacy), 25 (Warranty Disclaimers), 26 (Limitation of Liability)
+  			and 27 (Indemnity), 32 (Applicable Law & Jurisdiction), and 32 (General)),
+  			and any provision which by its nature should survive, shall survive termination
+  			of these Terms.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Assignment.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			30.1. These Terms, and any rights and licenses granted hereunder, may not be
+  			transferred or assigned by you but may be assigned by
+  			<b style="color:#BA4A00;">Traffle</b> without restriction or notification to you.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">Applicable Law & Jurisdiction.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			31.1   These Terms and Conditions shall be interpreted and governed by the laws in
+  			force in the Federal Republic of Nigeria. Each party hereby agrees to submit to the
+  			jurisdiction of the courts of Nigeria and to waive any objections based upon venue.
+  		</p>
+  	</div>
+  	<div class="col-md-12">
+  		<h3 style="color:#BA4A00;text-align:center;">General.</h3>
+  	</div>
+  	<div class="col-md-12">
+  		<p style="#797D7F;text-align:left;font-size:15px;">
+  			32.1. <b style="color:#BA4A00;">Traffle</b> reserves the right to discontinue or
+  			modify any aspect of the Site at any time. The Site Terms and the relationship
+  			between you and <b style="color:#BA4A00;">Traffle</b> shall be governed by and
+  			construed in accordance with the laws of Nigeria, without regard to its principles
+  			of conflict of laws. You hereby waive the right to a trial or to participate in a
+  			class action. The Site Terms shall constitute the entire agreement between you and
+  			<b style="color:#BA4A00;">Traffle</b> concerning the Site. If any provision of
+  			these Terms is deemed invalid by
+  			a court of competent jurisdiction, the invalidity of such provision shall not
+  			affect the validity of the remaining provisions of these Terms, which shall remain
+  			in full force and effect. No waiver of any term of these Terms shall be deemed a
+  			further or continuing waiver of such term or any other term, and a party's failure
+  			to assert any right or provision under these Terms shall not constitute a waiver
+  			of such right or provision. YOU AGREE THAT ANY CAUSE OF ACTION THAT YOU MAY HAVE
+  			ARISING OUT OF OR RELATED TO THE SITE MUST COMMENCE WITHIN THREE
+  			(3) MONTHS AFTER THE CAUSE OF ACTION ACCRUES. OTHERWISE, SUCH CAUSE OF ACTION IS
+  			PERMANENTLY BARRED.
+  		</p>
+  	</div>
+  </div>
+</div>
+<br><br><br><br><br>

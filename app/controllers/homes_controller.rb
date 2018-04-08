@@ -27,6 +27,9 @@ class HomesController < ApplicationController
     end
   end
 
+  def terms
+  end
+  
   def search
     @cat = params[:home][:category]
     @search = params[:home][:search]
