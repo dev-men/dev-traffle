@@ -1,6 +1,6 @@
 class User::CartsController < ApplicationController
   skip_before_action :authenticate_user_from_token!, :only => [:move_next], :raise => false
-  before_action :authenticate_user! :except => [:move_next]
+  before_action :authenticate_user!, :except => [:move_next]
   def index
     @carts = Cart.where(:user_id => current_user.id)
     @no_of_prizes = @carts.count
