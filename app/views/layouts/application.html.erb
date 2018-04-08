@@ -21,11 +21,83 @@
 
   <body>
     <% if admin_signed_in? %>
-      <body>
         <%= render 'layouts/admin' %>
-      </body>
     <% else%>
         <%= render 'layouts/home' %>
+
+        <!--Footer-->
+        <footer class="page-footer font-small stylish-color-dark pt-4 mt-4" style="background:#BA4A00;">
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <h5 style="color:#FFFFFF;text-align:left;">EMAIL:  support@traffle.ng</h5>
+            </div>
+            <div class="col-md-4 col-xs-12" style="padding-top:8px;">
+              <center>
+                <%= link_to "Home", root_path, style:"color:#FFFFFF;text-decoration:none;width:100%;text-align:center;"%>
+              </center>
+            </div>
+            <div class="col-md-4 col-xs-12" style="padding-top:8px;">
+                <%= link_to "Terms and Conditions", terms_homes_path, style:"color:#FFFFFF;text-decoration:none;width:100%;text-align:right;float:right;"%>
+            </div>
+          </div>
+          <hr>
+          <!--Call to action-->
+          <div class="text-center py-3">
+              <ul class="list-unstyled list-inline mb-0">
+                  <li class="list-inline-item">
+                      <h5 class="mb-1" style="color:#FFFFFF;">If You have any issue, Let Us know.</h5>
+                  </li>
+                  <li class="list-inline-item">
+                      <%= link_to "Conact Us", new_contact_path, class:"btn btn-success"%>
+                  </li>
+              </ul>
+          </div>
+          <!--/.Call to action-->
+          <hr>
+          <div class="row">
+            <div class="col-md-6 col-xs-12">
+              <div class="row">
+                <%= image_tag('logo_128.png', style:"height:55px;float:left;", class:"img-responsive")%>
+              </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <!--Social buttons-->
+              <div class="text-center">
+                  <ul class="list-unstyled list-inline">
+                      <li class="list-inline-item">
+                          <a class="btn-floating btn-sm btn-fb mx-1">
+                              <i class="fa fa-facebook"> </i>
+                          </a>
+                      </li>
+                      <li class="list-inline-item">
+                          <a class="btn-floating btn-sm btn-tw mx-1">
+                              <i class="fa fa-twitter"> </i>
+                          </a>
+                      </li>
+                      <li class="list-inline-item">
+                          <a class="btn-floating btn-sm btn-gplus mx-1">
+                              <i class="fa fa-google-plus"> </i>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+              <!--/.Social buttons-->
+
+              <!--Copyright-->
+              <div class="footer-copyright py-3 text-center" style="color:#FFFFFF;">
+                  © 2018 Copyright:
+                  <a href="/" style="text-decoration:none;color:#FFFFFF;"> Traffle.ng </a>
+              </div>
+              <!--/.Copyright-->
+            </div>
+          </div>
+          <hr>
+          <br><br>
+        </footer>
+        <!--/.Footer-->
+
+
     <% end %>
   </body>
 </html>
