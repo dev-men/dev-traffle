@@ -88,7 +88,7 @@
     <div class="row" style="width:100%;margin:0px;padding-top:5px;">
       <%= form_for :home, url: search_homes_path do |f|%>
         <div class="col-md-3 col-xs-12" style="padding:0px;margin:0px;min-height:42px;max-height:42px;">
-          <%= f.select :category, options_for_select(["Real Estate", "Electronics", "Phones and Tablets", "Automobiles", "Featured Items", "Promoted Items"]),{prompt: "All Categories"}, {class: 'search_select'}%>
+          <%= f.select :category, options_for_select(["Real Estate", "Electronics", "Phones and Tablets", "Automobiles", "Featured Items"]),{prompt: "All Categories"}, {class: 'search_select'}%>
         </div>
         <div class="col-md-8 col-xs-12" style="padding:0px;margin:0px;min-height:42px;max-height:42px;">
           <%= f.text_field :search, placeholder:"Search", required: true, class:"form-control", style:"margin:0px!important;border: 1px solid #e5e5e5;box-shadow:none;border-radius:0px;min-height:42px;max-height:42px;color:#BA4A00;"%>
