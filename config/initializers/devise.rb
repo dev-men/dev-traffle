@@ -23,6 +23,10 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+
+  # Configure the class responsible to send e-mails.
+  config.mailer = 'MyMailer'#'Devise::Mailer'
+
   config.scoped_views = true
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

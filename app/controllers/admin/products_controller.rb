@@ -108,6 +108,32 @@ class Admin::ProductsController < ApplicationController
   end
 
 
+  def select_raffle_items
+    @products = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").paginate(:page => params[:page], :per_page => 12)
+  end
+
+  def mark_raffle
+    @product = Product.find(params[:id])
+  end
+
+  def marked_raffle
+    @current_raffle_count = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND raffle = ?", Time.current, true, true).count
+    @product = Product.find(params[:id])
+    if @current_raffle_count < 4
+     @product.raffle = true
+     @product.save
+      flash[:notice] = "The Item is marked as Raffle Successfully!"
+     redirect_to select_raffle_items_admin_products_path
+   else
+     flash[:notice] = "This Item can not be marked Raffle as already 4 items are Raffled"
+     redirect_to select_raffle_items_admin_products_path
+   end
+  end
+
+  def all_raffle_items
+    @products = Product.where(:raffle => true)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

@@ -1,5 +1,39 @@
-<p>Welcome <%= @email %>!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700|Merriweather:700" rel="stylesheet">
+    <style>
+      .heading_text{color:#F5CBA7;font-size: 30px;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;margin-bottom:5px;}
+      .heading_text a{color:#F5CBA7;text-decoration: none;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;}
+      .heading_text_1{color:#F5CBA7;font-size: 25px;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;margin-bottom:5px;}
+      .heading_text_1 a{color:#F5CBA7;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;padding-bottom: 10px;}
+    </style>
+  </head>
 
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <body>
+    <div class="container" style="padding-bottom:10px;">
+      <div class="row" style="background:rgb(186, 74, 0);">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="">
+          <div class="jumbotron">
+            <div class="col-md-12" style="padding-bottom:10px;">
+              <br/>
+              <center>
+                <a href="https://dev-traffle.herokuapp.com/">
+                   <img src="<%= attachments['logo_128.png'].url %>" width="100" class="image"/>
+                </a>
+                <h3 class="heading_text" style="margin-bottom:5px;font-size: 35px;">TRAFFLE</h3>
+                <h5 class="heading_text">Hey <%= @email %>!!!</h5>
+                <h5 class="heading_text">Traffle wamrly welcome You on Our website.</h5>
+                <p class="heading_text_1">You can confirm your account through the link below:</p>
+                <p class="heading_text_1"><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class: "btn btn-outline btn-primary signup" %></p>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </body>
+</html>

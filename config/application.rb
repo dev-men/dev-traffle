@@ -20,5 +20,15 @@ module Traffle
         resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :delete, :options]
       end
     end
+    #Mailer configuration
+    ActionMailer::Base.smtp_settings = {
+      :address => 'smtp.gmail.com',
+      :domain => 'mail.google.com',
+      :port => 587,
+      :user_name => ENV['ID'],
+      :password => ENV['PASS'],
+      :authentication => 'login',
+      :enable_starttls_auto => true
+    }
   end
 end

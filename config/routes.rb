@@ -107,10 +107,14 @@ Rails.application.routes.draw do
         get :approved_products
         get :unapproved_products
         get :my_products
+        get :select_raffle_items
+        get :all_raffle_items
       end
       member do
         get :approve_product
         get :decline_product
+        get :mark_raffle
+        get :marked_raffle
       end
     end
   end

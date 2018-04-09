@@ -1,0 +1,94 @@
+<% content_for :title, "Item | Traffle" %>
+<div class="container-fluid" style="padding-bottom:5em;padding-top:3em;">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="single">
+        <div class="col-md-12">
+          <div class="col-md-5 grid col-xs-12">
+        		<div class="flexslider">
+        			  <ul class="slides">
+                  <% @images = @product.images%>
+                  <% @images.each do |i|%>
+                    <li>
+                      <%= image_tag(i.avatar, class:"img-responsive")%>
+                    </li>
+                  <%end%>
+        			  </ul>
+        		</div>
+        	</div>
+
+          <div class="col-md-7 col-xs-12">
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <center>
+                  <h1 class="admin_heading"><%= @product.title%></h1>
+                </center>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Item ID: </h4> <h4 class="admin_value"><%= @product.id%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <% @str = @product.created_at.to_s %>
+                <% @str = @str.tr('UTC', '')%>
+                <h4 class="admin_key">Item Created At: </h4> <h4 class="admin_value"><%= @str %></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <% @str1 = @product.count_down.to_s %>
+                <% @str1 = @str1.tr('UTC', '')%>
+                <h4 class="admin_key">Item Valid till: </h4> <h4 class="admin_value"><%= @str1%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Item Category: </h4> <h4 class="admin_value"><%= @product.category%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Item Original Price: </h4> <h4 class="admin_value">₦<%= @product.price%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Item Ticket Price: </h4> <h4 class="admin_value">₦<%= @product.ticket_price%></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Total Tickets: </h4> <h4 class="admin_value"><%= @product.total_tickets %></h4>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <h4 class="admin_key">Sold Tickets: </h4> <h4 class="admin_value"><%= @product.sold_tickets %></h4>
+              </div>
+              <br><br>
+              <div class="col-md-12">
+                <h4 class="admin_key">Item Description: </h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_value_1" style="margin:0px;"><%= @product.short_description %></h4>
+              </div>
+              <br><br>
+              <div class="col-md-12">
+                <h4 class="admin_key">Brief Description: </h4>
+              </div>
+              <div class="col-md-12">
+                <h4 class="admin_value_1" style="margin:0px;"><%= @product.long_description %></h4>
+              </div>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="col-md-4">
+
+              </div>
+              <div class="col-md-4">
+                 <%if @product.raffle == false %>
+                    <%= link_to("Raffle It", marked_raffle_admin_product_path(@product.id), class:"btn btn-block btn-success")%>
+                 <% end %>
+              </div>
+              <div class="col-md-4">
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

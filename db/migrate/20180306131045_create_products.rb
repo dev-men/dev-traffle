@@ -12,6 +12,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.datetime :count_down
       t.float :price
       t.float :ticket_price
+      t.boolean :raffle, :default => false
       t.references :imageable, polymorphic: true, index: true
 
       t.timestamps

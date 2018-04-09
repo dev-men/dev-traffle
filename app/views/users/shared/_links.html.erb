@@ -4,7 +4,7 @@
   <div class="col-md-8 col-xs-12">
       <br>
       <%- if controller_name != 'sessions' %>
-        <center><%= link_to "Log in", new_session_path(resource_name), class: "btn btn-block login_button"%></center><br>
+        <center><%= link_to "Log in", new_session_path(resource_name), class: "btn btn-block login_button"%></center>
       <% end -%>
   </div>
   <div class="col-md-2">
@@ -29,7 +29,7 @@
   </div>
   <div class="col-md-8 col-xs-12">
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-block login_button" %><br />
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-block login_button" %>
     <% end -%>
   </div>
   <div class="col-md-2">
@@ -37,10 +37,22 @@
 </div>
 
 
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8 col-xs-12">
+      <br>
+      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+        <center><%= link_to "Didn't receive confirmation?", new_confirmation_path(resource_name), class: "btn btn-block login_button"  %></center>
+      <% end -%>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end -%>
+
+
+
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
