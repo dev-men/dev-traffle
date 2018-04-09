@@ -39,6 +39,7 @@ class User < ApplicationRecord
         user.name = auth.extra.raw_info.first_name + " " + auth.extra.raw_info.last_name
         user.gender = auth.extra.raw_info.gender
         user.image_url = auth.info.image + "?height=500"
+        user.skip_confirmation!
         user.save!
       end
     else
@@ -47,6 +48,7 @@ class User < ApplicationRecord
       @u.name = auth.extra.raw_info.first_name + " " + auth.extra.raw_info.last_name
       @u.gender = auth.extra.raw_info.gender
       @u.image_url = auth.info.image + "?height=500"
+      @u.skip_confirmation!
       @u.save!
       return @u
     end
@@ -62,6 +64,7 @@ class User < ApplicationRecord
         user.provider = auth.provider
         user.name = auth.info.name
         user.image_url = auth.info.image
+        user.skip_confirmation!
         user.save!
       end
     else
@@ -69,6 +72,7 @@ class User < ApplicationRecord
       @u.uid = auth.uid
       @u.name = auth.info.name
       @u.image_url = auth.info.image
+      @u.skip_confirmation!
       @u.save!
       return @u
     end
