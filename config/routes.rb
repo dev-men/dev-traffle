@@ -117,11 +117,13 @@ Rails.application.routes.draw do
         get :marked_raffle
       end
     end
+    resources :promotions
   end
 
   devise_for :users, path: 'users', controllers: { registrations: 'user/registrations', sessions: 'user/sessions', omniauth_callbacks: 'user/omniauth_callbacks' } #omniauth_callbacks: 'users/omniauth_callbacks'}
   devise_for :admins, path: 'traffle-auth-admins'
 
+  resources :newsletters
   resources :homes do
     collection do
       post :search
