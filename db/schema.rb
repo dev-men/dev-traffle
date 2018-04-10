@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331151006) do
+ActiveRecord::Schema.define(version: 20180410134113) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -70,6 +70,14 @@ ActiveRecord::Schema.define(version: 20180331151006) do
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
+  create_table "news_letters", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.boolean "status", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.text "description"
     t.integer "category"
@@ -100,6 +108,13 @@ ActiveRecord::Schema.define(version: 20180331151006) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_products_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subject"
   end
 
   create_table "recipients", force: :cascade do |t|
@@ -186,6 +201,7 @@ ActiveRecord::Schema.define(version: 20180331151006) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean "status", default: true
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -204,6 +204,8 @@ class User::CartsController < ApplicationController
                  tickets_purchased.save
                }
              end
+
+
              @user = User.find(current_user.id)
              @user.wallet = 0
              @user.save
