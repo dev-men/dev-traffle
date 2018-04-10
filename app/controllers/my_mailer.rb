@@ -4,7 +4,17 @@ class MyMailer < Devise::Mailer
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
   def confirmation_instructions(record, token, opts={})
-    attachments.inline['logo_128.png'] = File.read('app/assets/images/logo_128.png')
-  super
+    attachments.inline['logo_512.png'] = File.read('app/assets/images/logo_128.png')
+    super
+  end
+
+  def reset_password_instructions(record, token, opts={})
+    attachments.inline['logo_512.png'] = File.read('app/assets/images/logo_128.png')
+    super
+  end
+
+  def password_changed(record, token, opts={})
+    attachments.inline['logo_512.png'] = File.read('app/assets/images/logo_128.png')
+    super
   end
 end
