@@ -6,12 +6,16 @@ class Api::V1::SessionsController < ApplicationController
       @user = User.find_by_email(params[:email])
       user_password = params[:password]
       if @user && @user.valid_password?(user_password)
-        if @user.approve
-          @user.authentication_token = nil
-          @user.save
-          render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
+        if @user.confirmed?
+          if @user.approve
+            @user.authentication_token = nil
+            @user.save
+            render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
+          else
+            render json:  "0", status: 200
+          end
         else
-          render json:  "0", status: 200
+          render json:  "-3", status: 200
         end
       else
         render json:  "-1", status: 200
