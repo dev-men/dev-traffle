@@ -29,6 +29,7 @@ class User::NotificationsController < ApplicationController
   end
 
   def select_winner
+    #debugger
      @notification = Notification.find_by_id(params[:id])
      product_id = @notification.product_id
      @product = Product.find_by_id(product_id)
@@ -49,6 +50,11 @@ class User::NotificationsController < ApplicationController
      set_description_of_notification = @winner.name + " you WON the prize"
      @notification_to_winner = Notification.new(:user_id => @winner_id, :product_id => product_id, :category => 6, :description => set_description_of_notification)
      @notification_to_winner.save
+
+     #Mailer configuration for Winner
+     @winner_profile = User.find_by_id(@winner_id)
+     @drawn_product = Product.find_by_id(product_id)
+     WinnerMailer.send_mail_to_winner(@winner_profile, @drawn_product).deliver_now
 
      @notification.read = true
      @notification.save

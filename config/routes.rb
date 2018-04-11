@@ -136,6 +136,7 @@ Rails.application.routes.draw do
       get :featured_items
       get :promoted_items
       get :terms
+      get :raffle_items
     end
   end
 
