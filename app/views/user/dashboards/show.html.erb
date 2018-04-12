@@ -108,7 +108,7 @@
                 </div>
               </div>
               <div class="col-md-6 col-xs-12">
-                <%= link_to "Recharge", wallet_charge_user_dashboard_path, class:"btn wallet", style:"float:right;margin-bottom:1em;"%>
+                <%= link_to "Recharge", wallet_charge_user_dashboard_path(current_user.id), class:"btn wallet", style:"float:right;margin-bottom:1em;"%>
               </div>
             </div>
           </div>
