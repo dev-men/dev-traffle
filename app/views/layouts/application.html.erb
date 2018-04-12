@@ -61,10 +61,10 @@
             </div>
             <%= form_with(model: @news_letter, url: newsletters_path, local: true) do |f| %>
               <div class="col-md-5 col-xs-12">
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true %>
+                <%= f.email_field :email, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true %>
               </div>
               <div class="col-md-5 col-xs-12">
-                <%= f.text_field :name, autofocus: true, placeholder: 'Your Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+                <%= f.text_field :name, placeholder: 'Your Name', class: 'form-control', style:"font-size: 1em;", required: true %>
               </div>
               <div class="col-md-2 col-xs-12">
                 <%= f.submit "Subscribe", type: "submit", class: "btn btn-block btn-success" %>
