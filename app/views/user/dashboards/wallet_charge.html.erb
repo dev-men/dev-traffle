@@ -44,7 +44,7 @@
           <div class="col-md-4">
               <h5 class="admin_value_1" style="margin-top:1.1em;">ENTER AMOUNT </h5>
           </div>
-          <%= form_for :amount,  url: add_user_dashboard_path do |f| %>
+          <%= form_for :amount,  url: add_user_dashboard_path(current_user.id) do |f| %>
             <div class="col-md-6 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em;">
               <div class="form-group">
                 <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min:"100", step:"100", required:true%>
