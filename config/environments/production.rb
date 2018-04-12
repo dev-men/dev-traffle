@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  Rails.application.routes.default_url_options[:host] = "dev-traffle.herokuapp.com"
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -90,7 +90,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #Mailer Configurations Code
-  config.action_mailer.default_url_options = {:host => 'dev-traffle.herokuapp.com', :protocol => 'https'} #I've also tried it without ":protocol => 'http'"
+  config.action_mailer.default_url_options = {:host => 'dev-traffle.herokuapp.com', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
