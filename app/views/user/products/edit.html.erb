@@ -93,7 +93,7 @@
     <%= render 'user/user_panel'%>
     <div class="col-md-9">
       <div class="jumbotron" style="padding: 2.5em 0px 0px 0px;background:#FFFFFF;">
-        <%= form_with(model: @product, url: user_product_path, method: :patch, local: true, html: { multipart: true, class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
+        <%= form_with(model: @product, url: user_product_path(@product.id), method: :patch, local: true, html: { multipart: true, class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
           <% if controller.action_name == "new" %>
               <p class="title" style="text-align:center;">Add New Item</p>
             <% elsif controller.action_name == "edit" %>
