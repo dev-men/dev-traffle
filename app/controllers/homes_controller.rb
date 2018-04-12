@@ -179,4 +179,14 @@ class HomesController < ApplicationController
     end
   end
 
+  def raffle_items
+    @raffle_products = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND raffle = ?", Time.current, true, true)
+    @products = Product.where("winner_id > 0").order("updated_at DESC").limit(4)
+    @winners_profile = []
+    @products.each do |p|
+      @user = User.find_by_id(p.winner_id)
+      @winners_profile << @user
+    end
+  end
+
 end

@@ -109,7 +109,7 @@ class Admin::ProductsController < ApplicationController
 
 
   def select_raffle_items
-    @products = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ?", Time.current, true).order("count_down ASC").paginate(:page => params[:page], :per_page => 12)
+    @products = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND raffle = ?", Time.current, true, false).order("count_down ASC").paginate(:page => params[:page], :per_page => 12)
   end
 
   def mark_raffle

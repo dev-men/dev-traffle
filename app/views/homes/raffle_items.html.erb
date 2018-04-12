@@ -1,4 +1,4 @@
-<% content_for :title, "Real Estate | Traffle" %>
+<% content_for :title, "Raffle Items | Traffle" %>
 <div class="container-fluid" style="background:#F5CBA7;">
   <div class="mainmenu-area">
     <div class="container-fluid">
@@ -12,13 +12,13 @@
         <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
           <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
             <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
-            <li class="active"><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
+            <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
             <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Promoted Items",  promoted_items_homes_path, class:"my_nav_bar")%></li>
-            <li><%= link_to("Raffle Items",  raffle_items_homes_path, class:"my_nav_bar")%></li>
+            <li class="active"><%= link_to("Raffle Items",  raffle_items_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
           </ul>
         </div>
@@ -27,7 +27,7 @@
   </div>
 </div>
 <div class="row main_row">
-  <h2 class="main_row_text">REAL ESTATE</h2>
+  <h2 class="main_row_text">RAFFLE ITEMS</h2>
 </div>
 <div class="row" >
   <% if notice %>
@@ -44,15 +44,42 @@
   <div class="products">
 		<div class="col-md-12">
       <div class="content-top1">
-        <% @products.each do |p| %>
+        <% @raffle_products.each do |p| %>
           <div class="col-md-4" style="margin-top:15px;">
             <%= render :partial => 'item', locals: {p: p} %>
           </div>
         <% end %>
       </div>
     </div>
-    <center>
-      <%= will_paginate @p, renderer: BootstrapPagination::Rails %>
-    </center>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <br>
+      <center><h1>Recent Winners</h1></center>
+    </div>
+  </div>
+  <div class="products">
+    <div class="col-md-12">
+      <div class="content-top1">
+        <% @winners_profile.each do |p| %>
+          <div class="col-md-3" style="padding:0px;margin:0px;border: 1px solid #BA4A00;">
+            <%if p.avatar.present? %>
+              <%= image_tag (p.avatar(:original)), class: 'img-responsive  img-thumbnail', style:"width:100%;height:200px;" %>
+            <%elsif p.image_url != nil%>
+              <%= image_tag (p.image_url), class: 'img-responsive  img-thumbnail', style:"width:100%;height:200px;" %>
+            <%else %>
+              <%= image_tag ("user.png"), class: 'img-responsive  img-thumbnail', style:"width:100%;height:200px;" %>
+            <%end%>
+            <center>
+              <div class="col-md-12 col-xs-12">
+                <h4 style="margin-left:7px;"><%= p.name%>  wins
+                <% @product = Product.where(:winner_id => p.id).select("title") %>
+                <%= @product[0].title %> </h4>
+              </div>
+            </center>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
