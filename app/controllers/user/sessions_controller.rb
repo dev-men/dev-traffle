@@ -1,4 +1,9 @@
 class User::SessionsController < Devise::SessionsController
+  before_action :auth_user
+  # GET /resource/sign_in
+  def new
+    super
+  end
 
   def create
     super

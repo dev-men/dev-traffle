@@ -24,7 +24,7 @@
         <%= render 'layouts/admin' %>
     <% else%>
         <%= render 'layouts/home' %>
-
+        <br><br>
         <!--Footer-->
         <footer class="page-footer font-small stylish-color-dark pt-4 mt-4" style="background:#BA4A00;">
           <br>
@@ -56,32 +56,20 @@
           <!--/.Call to action-->
           <hr>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12 col-xs-12">
+              <p style="color:white;">New to TRAFFLE? Subscribe to our newsletter to receive special offers and latest news.</p>
             </div>
-            <div class="col-md-5">
-              <div class="row">
-                <div class="col-md-12 col-xs-12">
-                  <p style="color:white;">New to TRAFFLE?</p>
-                </div>
-                <div class="col-md-12 col-xs-12">
-                  <p style="color:white;">Subscribe to our newsletter to receive special offers and latest news. </p>
-                </div>
-                <%= form_with(model: @news_letter, url: newsletters_path, local: true) do |f| %>
-                  <div class="col-md-6 col-xs-12">
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true %>
-                  </div>
-                  <div class="col-md-6 col-xs-12">
-                    <%= f.text_field :name, autofocus: true, placeholder: 'Your Name', class: 'form-control', style:"font-size: 1em;", required: true %>
-                  </div>
-                  <div class="col-md-9">
-                  </div>
-                  <div class="col-md-3 col-xs-12">
-                    <br>
-                    <%= f.submit "Subscribe", type: "submit", class: "btn btn-md btn-success" %>
-                  </div>
-                <%end %>
+            <%= form_with(model: @news_letter, url: newsletters_path, local: true) do |f| %>
+              <div class="col-md-5 col-xs-12">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true %>
               </div>
-            </div>
+              <div class="col-md-5 col-xs-12">
+                <%= f.text_field :name, autofocus: true, placeholder: 'Your Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+              </div>
+              <div class="col-md-2 col-xs-12">
+                <%= f.submit "Subscribe", type: "submit", class: "btn btn-block btn-success" %>
+              </div>
+            <%end %>
           </div>
           <hr>
           <div class="row">

@@ -1,4 +1,4 @@
-<% content_for :title, "Resend confirmation | Traffle" %>
+<% content_for :title, "TRAFFLE" %>
 <div class="container-fluid" style="background:#F5CBA7;">
   <div class="mainmenu-area">
     <div class="container-fluid">
@@ -35,36 +35,17 @@
     </div>
   <% end %>
 </div>
-<!--banner-->
 <div class="container-fluid signup_login_bg" style="padding-bottom:2em;">
   <br><br>
-  <div class="row">
-    <div class="col-md-6 col-xs-12"  style="margin-bottom: 3em;">
-      <center>
-        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :class => "login" }) do |f| %>
-          <p class="title">Resend confirmation instructions</p>
-          <%= devise_error_messages! %>
-          <div class="form-group">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Your Email', class: 'form-control', required: true,  value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-          </div>
-
-          <div class="form-group">
-            <%= f.submit "Resend confirmation instructions" %>
-          </div>
-        <% end %>
-      </center>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <div class="jumbotron" style="background: #FFFFFF;">
-        <h2 class="heading_sign">SIGN UP / SIGN IN</h2>
-        <br>
-        <h3 class="text_sign">Registration is required for new users who wish to play for an
-          item or want to sell an item on the TRAFFLE. Signing up is easy and free of
-          charge, simply provide an email address and
-          you are good to go. Afterwards, proceed to setting up your
-          profile to provide a detailed information of yourself. We would
-          love to know more about you.</h3>
-        <%= render "users/shared/links"%>
+  <div class="jumbotron" style="margin:0px;padding:0px;background:rgba(0,0,0,0);">
+    <div class="row">
+      <div class="col-md-12" style="color:#BA4A00;font-weight:bold;padding:20px;margin:20px;">
+        <center>
+          <h2>OOPS</h2>
+          <h2>ERROR</h2>
+          <h2>404</h2>
+          <h2>Sorry ! the page you are looking for can't be found</h2>
+        </center>
       </div>
     </div>
   </div>

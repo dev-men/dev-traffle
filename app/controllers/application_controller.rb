@@ -29,6 +29,20 @@ use Rack::Cors
   before_action :set_user_tickets_count
 
   protected
+    def auth_admin
+      if user_signed_in?
+        redirect_to  errors_path
+        flash[:alert] = nil
+        flash[:notice] = nil
+      end
+    end
+    def auth_user
+      if admin_signed_in?
+        redirect_to root_path
+        flash[:alert] = nil
+        flash[:notice] = nil
+      end
+    end
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :nick_name, :gender, :dob, :number, :city, :state, :zip, :address, :country, :price, :avatar, :balance])

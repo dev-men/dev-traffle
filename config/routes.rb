@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :contacts, :only => [:index, :show, :new, :create, :destroy]
+  resources :errors, :only => [:index]
 
   namespace :api, defaults: {format: :json} do
        namespace :v1 do
@@ -121,7 +122,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, path: 'users', controllers: { registrations: 'user/registrations', sessions: 'user/sessions', omniauth_callbacks: 'user/omniauth_callbacks' } #omniauth_callbacks: 'users/omniauth_callbacks'}
-  devise_for :admins, path: 'traffle-auth-admins'
+  devise_for :admins, path: 'traffle-auth-admins', controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations'}
 
   resources :newsletters
   resources :homes do

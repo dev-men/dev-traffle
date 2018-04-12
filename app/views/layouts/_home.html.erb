@@ -51,7 +51,6 @@
                 <span class="glyphicon glyphicon-check"></span> Check Out
               <%end%>
             </button>
-
           </div>
           <div class="mydropdown" style="float:right;">
             <button class="mydropbtn">
@@ -107,10 +106,10 @@
       <div id="cart" class="btn-group btn-shopping-cart">
         <%= link_to user_carts_path, style:"padding:0px!important;margin:0px!important;", class:"top_cart dropdown-toggle" do%>
           <div class="row" style="padding-top:10px;margin-top:5px;">
-            <div class="col-md-2 col-xs-3">
+            <div class="col-md-3 col-xs-3">
               <span class="glyphicon glyphicon-shopping-cart" style="font-size:30px;color:#BA4A00;"></span>
             </div>
-            <div class="col-md-10 col-xs-9">
+            <div class="col-md-9 col-xs-9">
               <span class="title" style="font-size:14px;color:#273746;">My cart</span>
               <% if user_signed_in? %>
                 <p class="text-shopping-cart cart-total-full" style="font-size:11px;color:#85929E;"><%= session[:cart_count]%> item(s) - ₦ <%=session[:cart_price]%> </p>
