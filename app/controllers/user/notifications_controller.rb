@@ -29,35 +29,45 @@ class User::NotificationsController < ApplicationController
   end
 
   def select_winner
-    #debugger
      @notification = Notification.find_by_id(params[:id])
      product_id = @notification.product_id
      @product = Product.find_by_id(product_id)
-     @product_sold_tickets = @product.sold_tickets
-     @tickets = Ticket.where(:product_id => product_id)
-     num = Random.new
-     @ran = num.rand(0..@product_sold_tickets-1)
-     @winner = @tickets[@ran].user
+     if @product.winner_id == 0
+       @product_sold_tickets = @product.sold_tickets
+       @tickets = Ticket.where(:product_id => product_id)
+       num = Random.new
+       @ran = num.rand(0..@product_sold_tickets-1)
+       @winner = @tickets[@ran].user
 
-     @winner_id = @winner.id
-     @product.winner_id = @winner_id
-     @product.save
+       @winner_id = @winner.id
+       @product.winner_id = @winner_id
+       @product.save
 
-     update_notification_obj = Notification.find_by_id(params[:id])
-     update_notification_obj.read = true
-     update_notification_obj.save
+       update_notification_obj = Notification.find_by_id(params[:id])
+       update_notification_obj.read = true
+       update_notification_obj.save
 
-     set_description_of_notification = @winner.name + " you WON the prize"
-     @notification_to_winner = Notification.new(:user_id => @winner_id, :product_id => product_id, :category => 6, :description => set_description_of_notification)
-     @notification_to_winner.save
+       set_description_of_notification = @winner.name + " you WON the prize"
+       @notification_to_winner = Notification.new(:user_id => @winner_id, :product_id => product_id, :category => 6, :description => set_description_of_notification)
+       @notification_to_winner.save
 
-     #Mailer configuration for Winner
-     @winner_profile = User.find_by_id(@winner_id)
-     @drawn_product = Product.find_by_id(product_id)
-     WinnerMailer.send_mail_to_winner(@winner_profile, @drawn_product).deliver_now
+       #Mailer configuration for Winner
+       @winner_profile = User.find_by_id(@winner_id)
+       @drawn_product = Product.find_by_id(product_id)
+       WinnerMailer.send_mail_to_winner(@winner_profile, @drawn_product).deliver_now
 
-     @notification.read = true
-     @notification.save
+       @tickets = @product.tickets
+       @tickets.each do |t|
+         @user = t.user
+         OthersMailer.send_to_product_other(@user, @drawn_product, @winner_profile).deliver_later!(wait: 1.minute)
+       end
+       @notification.read = true
+       @notification.save
+       flash[:notice] = "winner selected Successfully"
+     else
+       flash[:alert] = "winner for this product is already selected"
+       redirect_to root_path
+     end
   end
 
   def select_one_option

@@ -203,8 +203,11 @@ class User::CartsController < ApplicationController
                  tickets_purchased = Ticket.new(:user_id => current_user.id, :product_id => product_id, :price => product.ticket_price)
                  tickets_purchased.save
                }
+               if product.sold_tickets == product.total_tickets
+                 @user = User.find(product.user_id)
+                 SoldTicketMailer.mail_send_to_product_owner(@user, product).deliver_later!(wait: 1.minute)
+               end
              end
-
 
              @user = User.find(current_user.id)
              @user.wallet = 0
@@ -226,5 +229,4 @@ class User::CartsController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

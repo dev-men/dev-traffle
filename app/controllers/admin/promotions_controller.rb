@@ -19,7 +19,7 @@ class Admin::PromotionsController < ApplicationController
       flash[:notice] = "Promotion is send to all the Subscribers!"
       redirect_to root_path
     else
-      flash[:notice] = "Promotion is not send to the Subscribers!"
+      flash[:alert] = "Promotion is not send to the Subscribers!"
       render 'new'
     end
   end

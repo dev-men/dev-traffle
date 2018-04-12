@@ -17,6 +17,7 @@
             <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
+            <li><%= link_to("Raffle Items",  raffle_items_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
           </ul>
         </div>
@@ -90,7 +91,7 @@
             <div class="col-md-3">
                 <h4 class="admin_value_1">ENTER AMOUNT </h4>
             </div>
-            <%= form_for :amount,  url: pay_user_carts_path do |f| %>
+            <%= form_for :amount, url: pay_user_carts_path do |f| %>
               <div class="col-md-7 col-xs-12" style="height:4em;padding:0px;margin-top:0.5em;">
                 <div class="form-group">
                   <%=f.number_field :price, class:"form-control  price_field", value: @grand_total, placeholder:"Enter the amount", id:"inputdefault", min: @grand_total, max:@grand_total, required:true%>

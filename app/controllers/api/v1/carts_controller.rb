@@ -12,6 +12,10 @@ class Api::V1::CartsController < ApplicationController
           @user.save
           @product.sold_tickets = @product.sold_tickets + @number
           @product.save
+          if @product.sold_tickets == @product.total_tickets
+            @u = User.find(@product.user_id)
+            SoldTicketMailer.mail_send_to_product_owner(@u, @product).deliver_later!(wait: 1.minute)
+          end
           render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
         else
           render json:  "0", status: 200
