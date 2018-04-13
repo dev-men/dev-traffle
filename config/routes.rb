@@ -75,6 +75,7 @@ Rails.application.routes.draw do
         get :received
         get :tickets
         get :read
+        get :update_notification
       end
     end
     resources :withdraws do

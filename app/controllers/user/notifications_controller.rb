@@ -5,6 +5,25 @@ class User::NotificationsController < ApplicationController
     @notifications = current_user.notifications.order("id DESC")
   end
 
+  def update_notification
+    if params[:key].to_i == 1
+      update_notification_obj = Notification.find_by_id(params[:id])
+      update_notification_obj.read = true
+      if update_notification_obj.save
+        redirect_to user_product_path(update_notification_obj.product_id)
+      end
+    elsif params[:key].to_i == 5
+      update_notification_obj = Notification.find_by_id(params[:id])
+      update_notification_obj.read = true
+      if update_notification_obj.save
+        redirect_to user_product_path(update_notification_obj.product_id)
+      end
+    elsif params[:key].to_i == 6
+       update_notification_obj = Notification.find_by_id(params[:id])
+       redirect_to user_notification_path(update_notification_obj.product_id)
+    end
+  end
+
   def update
     if params[:key].to_i == 1
       update_notification_obj = Notification.find_by_id(params[:id])

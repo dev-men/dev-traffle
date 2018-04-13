@@ -24,7 +24,7 @@
                   <% elsif i.category == 7 %>
                     <%= link_to i.description, read_user_notification_path(id: i.id) %>
                   <% else %>
-                    <%= link_to i.description, user_notifications_path(id: i.id, key: i.category), method: :patch %>
+                    <%= link_to i.description, update_notification_user_notification_path(id: i.id, key: i.category)%>
                   <%end%>
                 <% end %>
               </div>
