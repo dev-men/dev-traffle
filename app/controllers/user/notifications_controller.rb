@@ -1,8 +1,10 @@
 class User::NotificationsController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @notifications = current_user.notifications.order("id DESC")
   end
+
   def update
     if params[:key].to_i == 1
       update_notification_obj = Notification.find_by_id(params[:id])

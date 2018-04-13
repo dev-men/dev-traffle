@@ -16,15 +16,15 @@
               <div class="mydropdown-content" style="width:255%;">
                 <% @current_user_notifications.each do |i| %>
                   <% if i.category == 2 || i.category == 4%>
-                    <%= link_to i.description, tickets_user_notification_path(i.id, key: i.category) %>
+                    <%= link_to i.description, tickets_user_notification_path(id: i.id, key: i.category) %>
                   <% elsif i.category == 3 %>
-                      <%= link_to i.description, tickets_user_notification_path(i.id, key: i.category) %>
+                      <%= link_to i.description, tickets_user_notification_path(id: i.id, key: i.category) %>
                   <% elsif i.category == 6 %>
-                    <%= link_to i.description, user_notification_path(i.id) %>
+                    <%= link_to i.description, user_notification_path(id: i.id) %>
                   <% elsif i.category == 7 %>
-                    <%= link_to i.description, read_user_notification_path(i.id) %>
+                    <%= link_to i.description, read_user_notification_path(id: i.id) %>
                   <% else %>
-                    <%= link_to i.description, user_notification_path(i.id, key: i.category), method: :patch %>
+                    <%= link_to i.description, user_notification_path(id: i.id, key: i.category), method: :patch %>
                   <%end%>
                 <% end %>
               </div>
@@ -79,7 +79,7 @@
 <div class="row" style="margin:0px;padding:0px;">
   <div class="col-md-2 col-x-12">
     <center>
-      <%= image_tag('logo_128.png', style:"height:55px;", class:"img-responsive")%>
+      <%= image_tag('logo_128.png', style:"height:55px;margin-top:-15px;", class:"img-responsive")%>
     </center>
   </div>
   <div class="col-md-7 col-x-12">

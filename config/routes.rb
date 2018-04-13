@@ -138,6 +138,7 @@ Rails.application.routes.draw do
       get :promoted_items
       get :terms
       get :raffle_items
+      get :recent_winners
     end
   end
 

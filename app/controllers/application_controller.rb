@@ -75,19 +75,19 @@ use Rack::Cors
              current_user_id = current_user.id
              current_user_name = current_user.name
              #All tickets are sold and Count down time is over
-             if cp.count_down < Time.current && cp.sold_tickets == cp.total_tickets
+             if cp.approve && cp.count_down < Time.current && cp.sold_tickets == cp.total_tickets
                if Notification.where("user_id = ? AND product_id = ? AND category = ? ", current_user.id,cp.id,2).first == nil
                    set_description = current_user_name + " your product " + cp.title + " all tickets are sold and time is over. It's time to select a winner"
                    set_notification = Notification.new(:user_id => current_user_id, :product_id => current_product_id, :category => 2, :description => set_description)
                    set_notification.save
                end
-             elsif cp.count_down < Time.current && cp.sold_tickets < cp.total_tickets
+             elsif cp.approve && cp.count_down < Time.current && cp.sold_tickets < cp.total_tickets
                if Notification.where("user_id = ? AND product_id = ? AND category = ? ", current_user.id,cp.id,3).first == nil
                    set_description = current_user_name + " your product " + cp.title + " all tickets are not sold yet. But time is over. It's time to select a winner or extend the product time."
                    set_notification = Notification.new(:user_id => current_user_id, :product_id => current_product_id, :category => 3, :description => set_description)
                    set_notification.save
                end
-             elsif cp.count_down > Time.current && cp.sold_tickets == cp.total_tickets
+             elsif cp.approve && cp.count_down > Time.current && cp.sold_tickets == cp.total_tickets
                if Notification.where("user_id = ? AND product_id = ? AND category = ? ", current_user.id,cp.id,4).first == nil
                    set_description = current_user_name + " your product " + cp.title + " all tickets are sold. It's time to select a winner."
                    set_notification = Notification.new(:user_id => current_user_id, :product_id => current_product_id, :category => 4, :description => set_description)
