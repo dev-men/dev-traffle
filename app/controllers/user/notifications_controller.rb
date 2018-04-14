@@ -80,7 +80,9 @@ class User::NotificationsController < ApplicationController
        @tickets = @product.tickets
        @tickets.each do |t|
          @user = t.user
-         OthersMailer.send_to_product_other(@user, @drawn_product, @winner_profile).deliver_later!(wait: 1.minute)
+         if @user.id != @winner_profile.id
+           OthersMailer.send_to_product_other(@user, @drawn_product, @winner_profile).deliver_later!(wait: 1.minute)
+         end
        end
        @notification.read = true
        @notification.save
