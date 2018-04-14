@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700|Merriweather:700" rel="stylesheet">
+    <style>
+      .heading_text{color:#F5CBA7;font-size: 30px;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;margin-bottom:5px;}
+      .my_text{color:#F5CBA7;font-size: 16px;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;margin-bottom:5px;}
+      .my_text a{color:#F5CBA7;font-size: 16px;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;margin-bottom:5px;background: #229954; border: 2px solid #FFFFFF; border-radius: 10px; padding: 10px;}
+      .heading_text a{color:#F5CBA7;text-decoration: none;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;}
+      .heading_text_1{color:#F5CBA7;font-size: 25px;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;margin-bottom:5px;}
+      .heading_text_1 a{color:#F5CBA7;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;padding-bottom: 10px;}
+      .row {width:100%;margin:0px;padding:5px;}
+      .social_link {font-size: 15px;text-align: center;float: center;color: #F5CBA7;font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <div class="container" style="padding-bottom:10px;">
+      <div class="row" style="background:rgb(186, 74, 0);">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="">
+          <div class="jumbotron">
+            <div class="col-md-12" style="padding-bottom:10px;">
+              <br/>
+              <center>
+                <a href="https://dev-traffle.herokuapp.com/">
+                   <img src="<%= attachments['logo_512.png'].url %>" width="100" class="image"/>
+                </a>
+                <h3 class="heading_text" style="margin-bottom:5px;font-size: 35px;">TRAFFLE</h3>
+                <h2 class="heading_text">Hello, <%= @user.name %></h2>
+                <h3 class="heading_text_1">Sorry, You lose the draw for item <%= @product.title %>.</h3>
+                <h3 class="heading_text_1">And the WINNER is <%= @winner.name %>.</h3>
+
+                <p class="my_text">
+                  Logon to the site to purchase tickets for more items and win exciting Prizes: <%= link_to("Traffle", root_path)%>
+                </p>
+                <p class="my_text">Thanks for joining and have a great day!</p>
+                <br><br><br><br><br><br>
+              </center>
+              <div class="row">
+                <center><h4 style="color:#F5CBA7;">Folow Us on</h4></center>
+              </div>
+              <div class="row" style="background:#3B5998;">
+                <center>
+                  <a href="https://www.facebook.com/TraffleNG" class="social_link" target="_blank">FACEBOOK </a>
+                </center>
+              </div>
+              <div class="row" style="background:#55ACEE;">
+                <center>
+                  <a href="https://www.twitter.com/TraffleNG" class="social_link" target="_blank">TWITTER </a>
+                </center>
+              </div>
+              <div class="row" style="background:#125688;">
+                <center>
+                  <a href="https://www.instagram.com/TraffleNG" class="social_link" target="_blank">INSTAGRAM</a>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </body>
+</html>

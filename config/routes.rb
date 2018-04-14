@@ -87,6 +87,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :admin_notifications do
+      member do
+        get :show_all
+        get :select_winner
+      end
+    end
     resources :homes
     resources :requests do
       member do

@@ -1,0 +1,102 @@
+<% content_for :title, "Winner| Traffle" %>
+<div class="container" style="padding-top:2em;padding-bottom:3em;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron" style="padding:2em 0px 0px 0px; background:#FFFFFF;">
+        <center>
+            <div class="row">
+              <h5 style="font-size:16px;color:#BA4A00;">Kindly ship the product to winner as soon as possible to get Your revenue.</h5>
+            </div>
+            <br>
+            <p class="title">Winner's Profile</p>
+            <%if @winner.avatar.present? %>
+              <%= image_tag (@winner.avatar(:original)), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+            <%elsif @winner.image_url != nil%>
+              <%= image_tag (@winner.image_url), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+            <%else %>
+              <%= image_tag ("user.png"), class: 'img-responsive img-circle img-thumbnail profile-img', style:"width:200px;height:200px;" %>
+            <%end%>
+            <div class="row">
+              <div class="col-md-12">
+                <p class="accurate" style="font-size:1.1em;"><center>Person's Detail</center></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">Name: </h4> <h4 class="admin_value"><%= @winner.name%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">Nick Name: </h4> <h4 class="admin_value"><%= @winner.nick_name%></h4>
+                    <br>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">Contact Number: </h4> <h4 class="admin_value"><%= @winner.number%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">Email: </h4> <h4 class="admin_value"><%= @winner.email%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <br>
+                    <p class="accurate" style="font-size:1.1em;"><center>Address Detail</center></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">Address: </h4> <h4 class="admin_value"><%= @winner.address%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">City: </h4> <h4 class="admin_value"><%= @winner.city%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <h4 class="admin_key">State: </h4> <h4 class="admin_value"><%= @winner.state%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                      <h4 class="admin_key">Zip: </h4> <h4 class="admin_value"><%= @winner.zip%></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12"><h4 class="admin_key">Country: </h4> <h4 class="admin_value"><%= @winner.country%></h4></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </center>
+      </div>
+    </div>
+  </div>
+
+</div>

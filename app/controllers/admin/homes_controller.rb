@@ -8,6 +8,7 @@ class Admin::HomesController < ApplicationController
   	result = balance.get
   	@account_balance = result['data'][0]['balance']
     @account_balance = @account_balance / 100
+
     @prodcuts = 0
     @approved = 0
     @unapproved = 0

@@ -1,14 +1,19 @@
 <div class="row" style="margin:0px;padding:0px;">
-  <div class="col-md-2 col-x-12">
-    <center>
-      <%= image_tag('logo_128.png', style:"height:55px;", class:"img-responsive")%>
-    </center>
-  </div>
-  <div class="col-md-10 col-x-12">
-    <div class="btn-group" role="group" style="float:right;">
-      <% if admin_signed_in? %>
-        <%= link_to "Logout",  destroy_admin_session_path, method: :delete, class:"btn btn-outline-primary"%>
-      <%end%>
+  <div class="col-md-12 col-x-12">
+    <div class="mydropdown" style="float:right;">
+      <button class="mydropbtn"><span class="glyphicon glyphicon-user"></span> <%= current_admin.email%> <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></button>
+      <div class="mydropdown-content">
+        <%= link_to "Logout",  destroy_admin_session_path, method: :delete%>
+      </div>
+    </div>
+    <div class="mydropdown" style="float:right;">
+      <button class="mydropbtn"><span class="glyphicon glyphicon-bell"></span> Notifications <%= @notifications.count%> <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></button>
+      <div class="mydropdown-content" style="width:150%;z-index:99999;">
+        <% @notifications.each do |i| %>
+          <%= link_to i.description, show_all_admin_admin_notification_path(id: i.id) %>
+        <% end %>
+        <%= link_to "Show All Notifications", admin_admin_notifications_path %>
+      </div>
     </div>
   </div>
 </div>

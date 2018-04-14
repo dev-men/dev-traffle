@@ -47,9 +47,9 @@ class User::CartsController < ApplicationController
           elsif params[:key].to_i == 6
             redirect_to featured_items_homes_path
           elsif params[:key].to_i == 7
-            redirect_to promoted_items_homes_path
+            redirect_to root_path
           elsif params[:key].to_i == 8
-            redirect_to items_by_location_homes_path
+            redirect_to root_path
           end
         end
      end

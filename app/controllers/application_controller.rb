@@ -66,7 +66,6 @@ use Rack::Cors
 
     def set_notifications
       if user_signed_in?
-
          @current_user_products = current_user.products
          @count = @current_user_products.count
          if @count > 0
@@ -97,6 +96,30 @@ use Rack::Cors
            end
          end
          @current_user_notifications = current_user.notifications.where(:read => false).order("id DESC")
+      elsif admin_signed_in?
+        @products = current_admin.products
+        @count = @products.count
+        if @count > 0
+          @products.each do |cp|
+            current_product_id = cp.id
+            current_admin_id = current_admin.id
+            current_admin_name = "Hey Admin!!"
+            if cp.count_down < Time.current && cp.sold_tickets == cp.total_tickets
+              if AdminNotification.where("admin_id = ? AND product_id = ? AND category = ? ", current_admin_id, current_product_id, 1).first == nil
+                  set_description = current_admin_name + " your product " + cp.title + " all tickets are sold and time is over. It's time to select a winner"
+                  set_notification = AdminNotification.new(:admin_id => current_admin_id, :product_id => current_product_id, :category => 1, :description => set_description)
+                  set_notification.save
+              end
+            elsif cp.count_down > Time.current && cp.sold_tickets == cp.total_tickets
+              if AdminNotification.where("admin_id = ? AND product_id = ? AND category = ? ", current_admin_id, current_product_id, 2).first == nil
+                  set_description = current_admin_name + " your product " + cp.title + " all tickets are sold. It's time to select a winner."
+                  set_notification = AdminNotification.new(:admin_id => current_admin_id, :product_id => current_product_id, :category => 2, :description => set_description)
+                  set_notification.save
+              end
+            end
+          end
+        end
+        @notifications = current_admin.admin_notifications.where(:read => false).order("id DESC")
       end
     end
 

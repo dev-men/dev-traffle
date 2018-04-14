@@ -13,7 +13,7 @@
             </div>
             <div class="mydropdown" style="float:right;">
               <button class="mydropbtn"><span class="glyphicon glyphicon-bell"></span> Notifications <%= @current_user_notifications.size%> <span style="font-size:12px;" class="glyphicon glyphicon-menu-down"></span></button>
-              <div class="mydropdown-content" style="width:255%;">
+              <div class="mydropdown-content" style="width:155%;z-index:99999;">
                 <% @current_user_notifications.each do |i| %>
                   <% if i.category == 2 || i.category == 4%>
                     <%= link_to i.description, tickets_user_notification_path(id: i.id, key: i.category) %>

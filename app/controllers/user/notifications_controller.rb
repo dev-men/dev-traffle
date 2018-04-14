@@ -81,7 +81,7 @@ class User::NotificationsController < ApplicationController
        @tickets.each do |t|
          @user = t.user
          if @user.id != @winner_profile.id
-           OthersMailer.send_to_product_other(@user, @drawn_product, @winner_profile).deliver_later!(wait: 1.minute)
+           WinnerMailer.send_mail_to_other(@user, @drawn_product, @winner_profile).deliver_later!(wait: 1.minute)
          end
        end
        @notification.read = true
@@ -108,15 +108,21 @@ class User::NotificationsController < ApplicationController
 
   def received
     @product = Product.find(params[:pid])
-    @owner = User.find(@product.imageable_id)
-    @total = @product.sold_tickets * @product.ticket_price
-    @admin_revenue = @total*0.1
-    @owner_revenue = @total - @admin_revenue
-    @owner.balance = @owner.balance + @owner_revenue
-    @owner.save
-    @notification = Notification.find(params[:nid])
-    @notification.read = true
-    @notification.save
+    if @product.imageable_type == "User"
+      @owner = User.find(@product.imageable_id)
+      @total = @product.sold_tickets * @product.ticket_price
+      @admin_revenue = @total*0.1
+      @owner_revenue = @total - @admin_revenue
+      @owner.balance = @owner.balance + @owner_revenue
+      @owner.save
+      @notification = Notification.find(params[:nid])
+      @notification.read = true
+      @notification.save
+    elsif @product.imageable_type == "Admin"
+      @notification = Notification.find(params[:nid])
+      @notification.read = true
+      @notification.save
+    end
     redirect_to root_path
   end
 

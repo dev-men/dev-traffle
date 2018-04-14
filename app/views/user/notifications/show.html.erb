@@ -99,7 +99,7 @@
               <div class="col-md-12 col-xs-12">
                 <br><br>
                 <center>
-                  <%= link_to("I received my Prize", received_user_notification_path(pid: @product.id, nid: @notification.id), class:"btn btn-block btn-success")%>
+                  <%= link_to("I received my Prize", received_user_notification_path(@notification, pid: @product.id, nid: @notification.id), class:"btn btn-block btn-success")%>
                 </center>
               </div>
             </div>
