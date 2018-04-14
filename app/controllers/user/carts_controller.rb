@@ -204,8 +204,13 @@ class User::CartsController < ApplicationController
                  tickets_purchased.save
                }
                if product.sold_tickets == product.total_tickets
-                 @user = User.find(product.user_id)
-                 SoldTicketMailer.mail_send_to_product_owner(@user, product).deliver_later!(wait: 1.minute)
+                 if product.imageable_type == "User"
+                   @user = User.find(product.imageable_id)
+                   SoldTicketMailer.mail_send_to_product_owner(@user, product).deliver_later!(wait: 1.minute)
+                 else
+                   @user = Admin.find(product.imageable_id)
+                   SoldTicketMailer.mail_send_to_product_owner(@user, product).deliver_later!(wait: 1.minute)
+                 end
                end
              end
 
