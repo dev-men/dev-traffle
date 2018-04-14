@@ -37,50 +37,53 @@
     </div>
   <% end %>
 </div>
-
-<div class="col-md-12">
-  <div class="jumbotron" style="padding: 20px 0px 0px 0px;background:#FFFFFF;">
-    <div class="row">
-      <div class="col-md-2 col-xs-12"></div>
-      <div class="col-md-8 col-xs-12">
-        <%= form_with(model: @customer, url: user_dashboards_path, local: true, html: { class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
-              <p class="title" style="text-align:center;">Add Your Information</p>
-            <% if @customer.errors.any? %>
-              <div class="form-group alert alert-error alert-block" id="error_explanation">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <% @customer.errors.full_messages.each do |message| %>
-                  <h6 class="heading_error"><%= message%></h6>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron" style="padding: 20px 0px 0px 0px;background:#FFFFFF;">
+        <div class="row">
+          <div class="col-md-2 col-xs-12"></div>
+          <div class="col-md-8 col-xs-12">
+            <%= form_with(model: @customer, url: user_dashboards_path, local: true, html: { class:"login", style:"min-width:100%;max-width:100%;padding-bottom:3em;" }) do |f| %>
+                  <p class="title" style="text-align:center;">Add Your Information</p>
+                <% if @customer.errors.any? %>
+                  <div class="form-group alert alert-error alert-block" id="error_explanation">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <% @customer.errors.full_messages.each do |message| %>
+                      <h6 class="heading_error"><%= message%></h6>
+                    <% end %>
+                  </div>
                 <% end %>
-              </div>
-            <% end %>
-            <br>
-            <div class="row">
-              <% @str = @user.name.gsub(/\s+/m, ' ').strip.split(" ")%>
-              <div class="col-md-6 col-xs-12">
-                <%= f.label :first_name, "First Name", class:"label" %><br />
-                <%= f.text_field :first_name, value: @str[0], autofocus: true, placeholder: 'First Name', class: 'form-control', style:"font-size: 1em;", required: true %>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <%= f.label :last_name, "Last Name", class:"label" %><br />
-                <% if @str.count >= 2 %>
-                  <%= f.text_field :last_name, value: @str[1], autofocus: true, placeholder: 'Last Name', class: 'form-control', style:"font-size: 1em;", required: true %>
-                <%else%>
-                  <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name', class: 'form-control', style:"font-size: 1em;", required: true %>
-                <%end%>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <%= f.label :email, "Email", class:"label" %><br />
-                <%= f.email_field :email, autofocus: true, value: @user.email,  placeholder: 'Email',class: 'form-control', style:"font-size: 1em;", required: true %>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <%= f.label :phone, "Number", class:"label" %><br />
-                <%= f.number_field :phone, autofocus: true,value: @user.number, placeholder: 'Number', class: 'form-control', style:"font-size: 1em;", required: true %>
-              </div>
-            </div>
-            <%= f.submit "Save", style:"margin-top:1.2em;"%>
-        <%end%>
+                <br>
+                <div class="row">
+                  <% @str = @user.name.gsub(/\s+/m, ' ').strip.split(" ")%>
+                  <div class="col-md-6 col-xs-12">
+                    <%= f.label :first_name, "First Name", class:"label" %><br />
+                    <%= f.text_field :first_name, value: @str[0], autofocus: true, placeholder: 'First Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+                  </div>
+                  <div class="col-md-6 col-xs-12">
+                    <%= f.label :last_name, "Last Name", class:"label" %><br />
+                    <% if @str.count >= 2 %>
+                      <%= f.text_field :last_name, value: @str[1], autofocus: true, placeholder: 'Last Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+                    <%else%>
+                      <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name', class: 'form-control', style:"font-size: 1em;", required: true %>
+                    <%end%>
+                  </div>
+                  <div class="col-md-6 col-xs-12">
+                    <%= f.label :email, "Email", class:"label" %><br />
+                    <%= f.email_field :email, autofocus: true, value: @user.email,  placeholder: 'Email',class: 'form-control', style:"font-size: 1em;", required: true %>
+                  </div>
+                  <div class="col-md-6 col-xs-12">
+                    <%= f.label :phone, "Number", class:"label" %><br />
+                    <%= f.number_field :phone, autofocus: true,value: @user.number, placeholder: 'Number', class: 'form-control', style:"font-size: 1em;", required: true %>
+                  </div>
+                </div>
+                <%= f.submit "Save", style:"margin-top:1.2em;"%>
+            <%end%>
+          </div>
+          <div class="col-md-2 col-xs-12"></div>
+        </div>
       </div>
-      <div class="col-md-2 col-xs-12"></div>
     </div>
   </div>
 </div>
