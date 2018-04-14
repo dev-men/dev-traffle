@@ -30,6 +30,7 @@ class Api::V1::RegistrationsController < ApplicationController
            @u.provider = params[:provider]
            @u.image_url = params[:image_url]
            @u.name = params[:name]
+           @u.skip_confirmation!
            if @u.save
              render json: { :user => @u.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
            else
@@ -47,6 +48,7 @@ class Api::V1::RegistrationsController < ApplicationController
           @user.password = params[:password]
           @user.password_confirmation = params[:password_confirmation]
           @user.name = params[:name]
+          @user.skip_confirmation!
           if @user.save
             render json: { :user => @user.as_json(:except => [:approve, :created_at, :updated_at, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :uid, :provider], :include => [:customer], :methods => [:avatar_url])}, status: 200
           else
