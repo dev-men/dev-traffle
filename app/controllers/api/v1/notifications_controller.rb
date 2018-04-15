@@ -3,7 +3,7 @@ class Api::V1::NotificationsController < ApplicationController
     begin
       @user = User.find_by_email(params[:user_email])
       if @user
-        @notifications = Notification.where(:user_id => @user.id)
+        @notifications = Notification.where(:user_id => @user.id).order('id desc')
         render json: {:result => @notifications.as_json()}, status: 200
       else
         render json:  "-1", status: 200

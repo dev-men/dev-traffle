@@ -4,7 +4,7 @@ class Api::V1::TransactionsController < ApplicationController
      begin
        @user = User.find_by_email(params[:user_email])
        if @user
-         @all_transactions = Transaction.where(:user_id => @user.id)
+         @all_transactions = Transaction.where(:user_id => @user.id).order('id desc')
          render json: {:result => @all_transactions.as_json()}, status: 200
        else
          render json:  "-1", status: 200

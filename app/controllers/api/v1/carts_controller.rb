@@ -3,9 +3,9 @@ class Api::V1::CartsController < ApplicationController
     begin
       @user = User.find_by_email(params[:user_email])
       if @user
-        @myProducts = @user.products
+        @myProducts = @user.products.order('id desc')
         @purchasedProducts = []
-        @tickets = @user.tickets
+        @tickets = @user.tickets.order('id desc')
         @tickets.each do |t|
           @purchasedProducts << t.product
         end
@@ -33,6 +33,10 @@ class Api::V1::CartsController < ApplicationController
           @user.save
           @product.sold_tickets = @product.sold_tickets + @number
           @product.save
+          @number.to_i.times{
+            tickets_purchased = Ticket.new(:user_id => @user.id, :product_id => @product.id, :price => @product.ticket_price)
+            tickets_purchased.save
+          }
           if @product.sold_tickets == @product.total_tickets
             if @product.imageable_type == "User"
               @u = User.find(@product.imageable_id)
