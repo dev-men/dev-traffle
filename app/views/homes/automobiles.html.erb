@@ -10,15 +10,13 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
-          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;float:center;width:100%;margin-left:150px;">
             <li><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
             <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
             <li class="active"><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
-            <li><%= link_to("Raffle Items",  raffle_items_homes_path, class:"my_nav_bar")%></li>
-            <li><%= link_to("Recent Winners", recent_winners_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
           </ul>
         </div>

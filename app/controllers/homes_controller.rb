@@ -25,6 +25,13 @@ class HomesController < ApplicationController
         end
       end
     end
+    @raffle_products = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND raffle = ?", Time.current, true, true)
+    @winnerproducts = Product.where("winner_id > 0").order("updated_at DESC").limit(15)
+    @winners_profile = []
+    @winnerproducts.each do |p|
+      @user = User.find_by_id(p.winner_id)
+      @winners_profile << @user
+    end
   end
 
   def terms
@@ -160,35 +167,6 @@ class HomesController < ApplicationController
       elsif pro.imageable_type == "Admin"
         @products << pro
       end
-    end
-  end
-
-  def promoted_items
-    @products = []
-    category = "Promoted Items";
-    @p = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND lower(category) = ?", Time.current, true, category.downcase).order("count_down ASC").paginate(:page => params[:page], :per_page => 30)
-    @p.each do |pro|
-      if pro.imageable_type == "User"
-        @u = User.find(pro.imageable_id)
-        if @u && @u.approve
-          @products << pro
-        end
-      elsif pro.imageable_type == "Admin"
-        @products << pro
-      end
-    end
-  end
-
-  def raffle_items
-    @raffle_products = Product.where("sold_tickets < total_tickets AND count_down > ? AND approve = ? AND raffle = ?", Time.current, true, true)
-  end
-
-  def recent_winners
-    @products = Product.where("winner_id > 0").order("updated_at DESC").limit(15)
-    @winners_profile = []
-    @products.each do |p|
-      @user = User.find_by_id(p.winner_id)
-      @winners_profile << @user
     end
   end
 

@@ -142,10 +142,7 @@ Rails.application.routes.draw do
       get :phone_and_tablets
       get :automobiles
       get :featured_items
-      get :promoted_items
       get :terms
-      get :raffle_items
-      get :recent_winners
     end
   end
 

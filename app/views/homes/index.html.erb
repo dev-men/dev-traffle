@@ -11,15 +11,13 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" style="padding:0px;margin:0px;">
-          <ul class="nav navbar-nav" style="padding:0px;margin:0px;">
+          <ul class="nav navbar-nav" style="padding:0px;margin:0px;float:center;width:100%;margin-left:150px;">
             <li class="active"><%= link_to("Home", root_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Real Estate",  real_estate_homes_path, class:"my_nav_bar", onclick:"change(this, 1)")%></li>
             <li><%= link_to("Electronics",  electronics_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Phones and Tablets",  phone_and_tablets_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Automobiles",  automobiles_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Featured Items",  featured_items_homes_path, class:"my_nav_bar")%></li>
-            <li><%= link_to("Raffle Items",  raffle_items_homes_path, class:"my_nav_bar")%></li>
-            <li><%= link_to("Recent Winners", recent_winners_homes_path, class:"my_nav_bar")%></li>
             <li><%= link_to("Sell an Item",  new_user_product_path, class:"my_nav_bar")%></li>
           </ul>
         </div>
@@ -68,6 +66,56 @@
         <% end %>
       </div>
     </div>
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <h3 style="text-align:center;color:#BA4A00;border-bottom: 2px solid #BA4A00;padding:12px;margin:25px;">RAFFLE ITEMS</h3>
+        </div>
+        <div class="col-md-12">
+          <div class="content-top1">
+            <% @raffle_products.each do |p| %>
+              <div class="col-md-4" style="margin-top:15px;">
+                <%= render :partial => 'item', locals: {p: p} %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <h3 style="text-align:center;color:#BA4A00;border-bottom: 2px solid #BA4A00;padding:12px;margin:25px;">RECENT WINNERS</h3>
+        </div>
+        <div class="col-md-12">
+          <div class="content-top1">
+            <% @winners_profile.each do |p| %>
+              <div class="col-md-3" style="margin-top:15px;">
+                <div class="row" style="border: 1px solid #BA4A00;">
+                  <%if p.avatar.present? %>
+                    <%= image_tag (p.avatar(:original)), class: 'img-responsive img-thumbnail', style:"width:100%;height:260px;" %>
+                  <%elsif p.image_url != nil%>
+                    <%= image_tag (p.image_url), class: 'img-responsive img-thumbnail', style:"width:100%;height:260px;" %>
+                  <%else %>
+                    <%= image_tag ("user.png"), class: 'img-responsive img-thumbnail', style:"width:100%;height:260px;" %>
+                  <%end%>
+                  <center>
+                    <div class="col-md-12 col-xs-12">
+                      <h4 style="margin-left:7px;color:#BA4A00;"><%= p.name%>  wins
+                      <% @product = Product.where(:winner_id => p.id).select("title") %>
+                      <%= @product[0].title %> </h4>
+                    </div>
+                  </center>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-12 col-xs-12">

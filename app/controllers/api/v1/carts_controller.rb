@@ -1,4 +1,25 @@
 class Api::V1::CartsController < ApplicationController
+  def index
+    begin
+      @user = User.find_by_email(params[:user_email])
+      if @user
+        @myProducts = @user.products
+        @purchasedProducts = []
+        @tickets = @user.tickets
+        @tickets.each do |t|
+          @purchasedProducts << t.product
+        end
+        render json: {
+                        :myProducts => @myProducts.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}]),
+                        :purchasedProducts => @purchasedProducts.as_json(:except => [:price, :created_at, :updated_at,:approve,:imageable_id, :imageable_type], :include => [:images => { :only => [:avatar_url], :methods => [:avatar_url]}])
+                    }, status: 200
+      else
+        render json:  "-1", status: 200
+      end
+    rescue
+      render json:  "-2", status: 200
+    end
+  end
 
   def create
     begin
