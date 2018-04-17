@@ -76,7 +76,7 @@
           <div class="content-top1">
             <% @raffle_products.each do |q| %>
               <div class="col-md-12" style="margin-top:15px;">
-                <%= render :partial => 'raffle', locals: {q: q} %>
+                <%= render :partial => 'raffle', locals: {p: q} %>
               </div>
             <% end %>
           </div>
