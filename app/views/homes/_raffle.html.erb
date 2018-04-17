@@ -182,7 +182,6 @@
 var x = setInterval(function() {
   var date = "<%= p.count_down %>";
   var title = "<%= p.title %>";
-  //console.log("My time: " + date + " My Title: " + title);
   var length = date.length;
   date = date.substring(0, length-4);
   var countDownDate = new Date(date).getTime();
@@ -192,7 +191,6 @@ var x = setInterval(function() {
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  console.log("Days: " + days + "\nHours: " + hours + "\nMinutes: " + minutes + "\nSeconds: "+ seconds);
   document.getElementById("id_raffle_days<%= p.id%>").innerHTML = days;
   document.getElementById("id_raffle_hours<%= p.id%>").innerHTML = hours;
   document.getElementById("id_raffle_minutes<%= p.id%>").innerHTML = minutes;
