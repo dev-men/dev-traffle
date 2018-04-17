@@ -74,9 +74,9 @@
         </div>
         <div class="col-md-12">
           <div class="content-top1">
-            <% @raffle_products.each do |p| %>
-              <div class="col-md-4" style="margin-top:15px;">
-                <%= render :partial => 'item', locals: {p: p} %>
+            <% @raffle_products.each do |q| %>
+              <div class="col-md-12" style="margin-top:15px;">
+                <%= render :partial => 'raffle', locals: {q: q} %>
               </div>
             <% end %>
           </div>

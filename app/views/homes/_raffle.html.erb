@@ -1,0 +1,224 @@
+<!-- Modal -->
+<center>
+  <div id="my_item<%=q.id%>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background:#BA4A00;color:#FFFFFF;">
+          <button type="button" class="close" data-dismiss="modal" style="color:#FFFFFF;font-size:20px;font-weight:bold;">&times;</button>
+          <h4 class="modal-title"><%= q.title%></h4>
+        </div>
+        <div class="modal-body">
+          <% @images = q.images%>
+          <div class="row">
+            <% @images.each do |i|%>
+              <div class="col-md-3 col-xs-6">
+                <%= image_tag(i.avatar, class:"img-responsive img-thumbnail", style:"width:100%;height:150px;")%>
+              </div>
+            <%end%>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <% @s = q.sold_tickets * 1.0 %>
+              <% @t = q.total_tickets*1.0 %>
+              <% @a  = @s / @t %>
+                <%= progress_bar @a, alternative: 'success', label: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px;" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1 col-xs-12" style="height:4em;">
+             <label style="font-size:20px; margin-top:0.4em;float:right;"> ₦</label>
+            </div>
+            <div class="col-md-11">
+             <div class="row">
+               <%= form_for :ticket, url: add_to_cart_user_cart_path(q.id, key: 7) do |f| %>
+                 <div class="col-md-8 col-xs-8" style="height:4em;padding:0px;margin-top:0.5em">
+                   <div class="form-group">
+                     <%=f.number_field :price, value:q.ticket_price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min: q.ticket_price, step:q.ticket_price, required:true%>
+                   </div>
+                 </div>
+                 <div class="col-md-4 col-xs-4" style="padding:0px; margin-top:0.4em;">
+                   <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn btn-success btn-block" do %>
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                   <% end %>
+                 </div>
+               <%end%>
+             </div>
+           </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-xs-12">
+              <h4 class="admin_key">Item ID: </h4> <h4 class="admin_value"><%= q.id%></h4>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <h4 class="admin_key">Item Category: </h4> <h4 class="admin_value"><%=q.category%></h4>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h4 class="admin_key">Total Tickets: </h4> <h4 class="admin_value"><%= q.total_tickets %></h4>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h4 class="admin_key">Sold Tickets: </h4> <h4 class="admin_value"><%= q.sold_tickets %></h4>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12 col-xs-12">
+            </div>
+            <br>
+            <div class="col-md-12">
+              <h4 class="admin_value_1" style="margin:0px; word-break: normal;"><%= q.short_description %></h4>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12">
+              <h4 class="admin_value_1" style="margin:0px; word-break: normal;"><%= q.long_description %></h4>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
+<div class="simpleCart_shelfItem">
+  <div class="row">
+    <div class="col-md-4 col-xs-12" style="padding:1em;">
+      <a class="product_title_display" data-toggle="modal" data-target="#my_item<%=q.id%>">
+        <%= image_tag(q.images[0].avatar, class:"img-responsive display_image")%>
+        <h4 style="margin-left:7px;"><%= q.title%></h4>
+        <h5 style="margin-left:7px;">‎₦<%= q.ticket_price%></h5>
+      </a>
+    </div>
+    <div class="col-md-8">
+      <div class="price row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6 col-xs-6">
+              <h4 class="admin_key">Item ID: </h4> <h4 class="admin_value"><%= q.id%></h4>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <h4 class="admin_key">Item Category: </h4> <h4 class="admin_value"><%=q.category%></h4>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <h4 class="admin_key">Total Tickets: </h4> <h4 class="admin_value"><%= q.total_tickets %></h4>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <h4 class="admin_key">Sold Tickets: </h4> <h4 class="admin_value"><%= q.sold_tickets %></h4>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_value_1" style="margin:0px; word-break: normal;"><%= q.short_description %></h4>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <h4 class="admin_value_1" style="margin:0px; word-break: normal;"><%= q.long_description %></h4>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <h4 class="admin_key">Item: </h4> <h4 class="admin_value"><%= q.title%></h4>
+            </div>
+            <div class="col-md-6 col-xs-6" style="color:#BA4A00;">
+              <div class="row">
+                <div class="col-md-3 col-xs-3">
+                  <label>DAYS</label>
+                  <label id="id_days<%= q.id%>" class="square"></label>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                  <label>HOURS</label>
+                  <label id="id_hours<%= q.id%>" class="square"></label>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                  <label>MINS</label>
+                  <label id="id_minutes<%= q.id%>" class="square"></label>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                  <label>SECS</label>
+                  <label id="id_secs<%= q.id%>" class="square"></label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <h4 class="admin_key">Ticket Price: </h4> <h4 class="admin_value"><%= q.ticket_price%></h4>
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <% @s = q.sold_tickets * 1.0 %>
+              <% @t = q.total_tickets*1.0 %>
+              <% @a  = @s / @t %>
+              <%= progress_bar @a, alternative: 'success', label: true, style: "height:1.4em; width:100%; margin-bottom:10px; margin-top:0.5em; border-radius:50px;" %>
+            </div>
+            <div class="col-md-6 col-xs-6">
+            </div>
+            <div class="col-md-1 col-xs-1" style="height:4em;">
+             <label style="font-size:20px; margin-top:0.4em;float:right;" > ₦</label>
+            </div>
+            <div class="col-md-5">
+             <div class="row">
+               <%= form_for :ticket, url: add_to_cart_user_cart_path(q.id, key: 7) do |f| %>
+                 <div class="col-md-9 col-xs-8" style="height:4em;padding:0px;margin-top:0.5em">
+                   <div class="form-group">
+                     <%=f.number_field :price, class:"form-control  price_field", placeholder:"Enter the amount", id:"inputdefault", min: q.ticket_price, step:q.ticket_price, required:true%>
+                   </div>
+                 </div>
+                 <div class="col-md-3 col-xs-4" style="padding:0px; margin-top:0.4em;">
+                   <%= f.submit "Buy", style:"float-left;width:100%;height:80%;", class:"btn btn-success btn-block" do %>
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                   <% end %>
+                 </div>
+               <%end%>
+             </div>
+           </div>
+          </div>
+        </div>
+
+
+       <div class="col-md-12 col-xs-12">
+         <div class="row">
+           <div class="col-md-2">
+           </div>
+           <div class="col-md-10">
+             <label style="float:right;">1 ticket = ₦<%= q.ticket_price %></label>
+           </div>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var x = setInterval(function() {
+  var date = "<%= q.count_down %>";
+  var title = "<%= q.title %>";
+  console.log("My time: " + date + " My Title: " + title);
+  var length = date.length;
+  date = date.substring(0, length-4);
+  var countDownDate = new Date(date).getTime();
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("id_days<%= q.id%>").innerHTML = days;
+  document.getElementById("id_hours<%= q.id%>").innerHTML = hours;
+  document.getElementById("id_minutes<%= q.id%>").innerHTML = minutes;
+  document.getElementById("id_secs<%= q.id%>").innerHTML = seconds;
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("id_days<%= q.id%>").innerHTML = 0;
+    document.getElementById("id_hours<%= q.id%>").innerHTML = 0;
+    document.getElementById("id_minutes<%= q.id%>").innerHTML = 0;
+    document.getElementById("id_secs<%= q.id%>").innerHTML = 0;
+  }
+}, 1000);
+ </script>
